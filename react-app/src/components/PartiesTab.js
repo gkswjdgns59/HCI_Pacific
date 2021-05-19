@@ -43,9 +43,9 @@ const StyledTabs = withStyles({
 const StyledTab = withStyles((theme) => ({
     root: {
         textTransform: 'none',
-        width: 150,
+        width: 100,
         fontWeight: 300,
-        marginRight: theme.spacing(10),
+        marginRight: theme.spacing(7),
         fontFamily: 'Poppins',
         '&:hover': {
             color: '#222222',
