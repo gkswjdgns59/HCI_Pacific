@@ -80,6 +80,7 @@ export default function PartiesMain() {
           multiline
           rowsMax={4}
           fontFamily= 'Poppins'
+          disabled id="standard-disabled" 
         />
         <TextField
           id="datetime-local"
@@ -91,6 +92,7 @@ export default function PartiesMain() {
             shrink: true,
           }}
           fontFamily= 'Poppins'
+          disabled id="standard-disabled" 
         />
         <TextField
           id="standard-multiline-flexible"
@@ -98,7 +100,8 @@ export default function PartiesMain() {
           defaultValue="52, Rose street, Daejeon"
           multiline
           rowsMax={2}
-          fontFamily= 'Poppins'       
+          fontFamily= 'Poppins'  
+          disabled id="standard-disabled"      
         />
         <TextField
           id="standard-multiline-flexible"
@@ -107,7 +110,8 @@ export default function PartiesMain() {
           multiline
           rowsMax={2}
           fontFamily= 'Poppins'  
-          // variant='disabled'     
+          // variant='disabled'  
+          disabled id="standard-disabled"    
         />
 
     </form>
