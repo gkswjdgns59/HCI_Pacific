@@ -1,11 +1,44 @@
 import React, { Component } from 'react';
 
+const logo = {
+    width: "100px",
+    marginRight: "70px"
+};
+const st = {
+    color: "#222222",
+    margin: "10px"
+};
+const mp = {
+    color: "#222222",
+    margin: "10px",
+    width: "100%"
+};
+
 class Header extends Component{
     render(){
         return (
-        <header>
-        This is header
-        </header>
+        //<header>
+        <nav className="navbar navbar-expand-sm">
+            <img src="https://i.esdrop.com/d/jVtSFxmZHu/K7EY72p0Gq.png" alt="Brand" style={logo}></img>
+            <ul className="nav navbar-nav">
+                <li className="nav-item">
+                    <a className="nav-link" href="#" style={st}>Parties</a>
+                </li>
+                <li className="nav-item">
+                    <a className="nav-link" href="#" style={st}>Guest book</a>
+                </li>
+                <li className="nav-item">
+                    <a className="nav-link" href="#" style={st}>Records</a>
+                </li>
+                <li className="nav-item">
+                    <a className="nav-link" href="#" style={st}>About us</a>
+                </li>
+                <li className="nav-item justify-content-end">
+                    <a className="nav-link" href="#" style={mp}>My Page</a>
+                </li>
+            </ul>       
+        </nav>
+        //</header>
         );
     }
 }
