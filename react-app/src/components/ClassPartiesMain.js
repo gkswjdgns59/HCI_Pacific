@@ -9,24 +9,31 @@ import SendOutlinedIcon from '@material-ui/icons/SendOutlined';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import { Component } from 'react';
 
+const ColorButton = withStyles((theme) => ({
+  root: {
+    color: theme.palette.getContrastText('#F3F3FF'),
+    backgroundColor: '#F3F3FF',
+    '&:hover': {
+      backgroundColor: '#E0E0FF',
+    },
+  },
+}))(Button);
+
+
 class ClassPartiesMain extends Component{
-    constructor(){
-        super()
-        this.state={
-            value:0
-        }
+  constructor(){
+    super();
+    this.state={
+      value:0
     }
-    handleChange = (event, newValue) => {
-        this.setState({value:newValue})
-    }
-    render(){
-        return(
-            <div >
-      <Grid container spacing={3}>
-        <Grid item xs={1}></Grid>
-        <Grid item xs={6}>
-          <Paper>
-          <form  noValidate>
+  }
+  render(){
+    return(
+      <div class="container">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-6">
+            <Paper>
+          <form noValidate>
       
             <TextField
                 id="standard-multiline-flexible"
@@ -42,7 +49,6 @@ class ClassPartiesMain extends Component{
                 label="Date/Time"
                 type="datetime-local"
                 defaultValue="2021-05-13T19:00"
-                //className={classes.textField}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -70,33 +76,15 @@ class ClassPartiesMain extends Component{
               />
           </form>
           </Paper>
-        </Grid>
+            </div>
+            <div class="col-md-2"><Button variant="outlined" onClick={() => { alert('clicked') }}>    <EditOutlinedIcon fontsize="small" style={{color:'#A9A9FF' }}/> </Button></div>
+            <div class="col-md-2">
+              <ColorButton variant="contained" color="primary" onClick={() => { alert('clicked') }} >    <SendOutlinedIcon fontsize="small" style={{color:'#A9A9FF' }}/></ColorButton>
+            </div>
+        </div>
+      </div> 
+    )
+  }
 
-        <Grid
-          justify="center" alignContent="center" alignItems="center"  item xs={0} >
-          <Button variant="outlined" onClick={() => { alert('clicked') }}>    <EditOutlinedIcon fontsize="small" style={{color:'#A9A9FF' }}/> </Button>
-          
-        </Grid>
-
-        <Grid justify="center" alignContent="center" alignItems="center" item xs={0}>
-          <ColorButton variant="contained" color="primary" onClick={() => { alert('clicked') }} >    <SendOutlinedIcon fontsize="small" style={{color:'#A9A9FF' }}/></ColorButton>
-        </Grid>
-      </Grid>
-
-    </div>
-        )
-    }
 }
-  
-  const ColorButton = withStyles((theme) => ({
-    root: {
-      color: theme.palette.getContrastText('#F3F3FF'),
-      backgroundColor: '#F3F3FF',
-      '&:hover': {
-        backgroundColor: '#E0E0FF',
-      },
-    },
-  }))(Button);
-
-
-  export default ClassPartiesMain;
+export default ClassPartiesMain;

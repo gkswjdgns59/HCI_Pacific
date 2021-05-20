@@ -8,6 +8,13 @@ import Grid from '@material-ui/core/Grid';
 import SendOutlinedIcon from '@material-ui/icons/SendOutlined';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 
+var defaultList=[
+  {'name':'My birthday Party'},
+  {'dateTime':'2021-05-13T19:00'},
+  {'location':'52, Rose street, Daejeon'},
+  {'memo': 'Dresscode: red'},
+]
+//list에서 변수값 스트링으로 받아오기
 
 
 const useStyles = makeStyles((theme) => ({
@@ -24,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
       
       '& .MuiTextField-root': {
         margin: theme.spacing(0.8),
-        width: 225,
+        width: 200,
       },
       '.MuiGrid-container'	: {
         // display: 'flex',
@@ -47,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Poppins',
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    width: 1200,
+    //width: 1200,
     maxLines: 1
   },
   Grid:{
@@ -81,7 +88,8 @@ export default function PartiesMain() {
             <TextField
                 id="standard-multiline-flexible"
                 label="Title"
-                defaultValue="My Birthday Party"
+                defaultValue= {defaultList[0].name}
+                
                 multiline
                 rowsMax={2}
                 fontFamily= 'Poppins'
@@ -91,7 +99,7 @@ export default function PartiesMain() {
                 id="datetime-local"
                 label="Date/Time"
                 type="datetime-local"
-                defaultValue="2021-05-13T19:00"
+                defaultValue={defaultList[1].dateTime}
                 className={classes.textField}
                 InputLabelProps={{
                   shrink: true,
@@ -102,7 +110,7 @@ export default function PartiesMain() {
               <TextField
                 id="standard-multiline-flexible"
                 label="Location"
-                defaultValue="52, Rose street, Daejeon"
+                defaultValue={defaultList[2].location}
                 multiline
                 rowsMax={2}
                 fontFamily= 'Poppins'  
@@ -111,7 +119,7 @@ export default function PartiesMain() {
               <TextField
                 id="standard-multiline-flexible"
                 label="Memo"
-                defaultValue="Dresscode: red"
+                defaultValue={defaultList[3].memo}
                 multiline
                 rowsMax={2}
                 fontFamily= 'Poppins'  
