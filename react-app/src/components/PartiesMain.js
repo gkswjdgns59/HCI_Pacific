@@ -5,6 +5,9 @@ import TextField from '@material-ui/core/TextField';
 import { Paper } from '@material-ui/core';
 import { createMuiTheme, withStyles, ThemeProvider} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import SendOutlinedIcon from '@material-ui/icons/SendOutlined';
+import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -12,18 +15,15 @@ const useStyles = makeStyles((theme) => ({
     '& > *': {
       margin: theme.spacing(1),
       fontFamily: 'Poppins',
-      marginLeft: theme.spacing(20),      
-      //width: 400,
+      marginLeft: 30,      
       marginBottom: 20,
-      //marginRight: theme.spacing(10),
       outerHeight: 50,
-      //width: 1200,
-      //wrap: 'nowrap',
+
       
       
       '& .MuiTextField-root': {
-        margin: theme.spacing(1),
-        width: 220,
+        margin: theme.spacing(0.8),
+        width: 225,
       },
       '.MuiGrid-container'	: {
         // display: 'flex',
@@ -31,6 +31,9 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: 'Poppins',
         outerHeight: 50,
       },
+      '.MuiPaper-paper':{
+        minWidth: 230
+      }
     },
   },
   
@@ -69,6 +72,7 @@ export default function PartiesMain() {
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
+        <Grid item xs={1}></Grid>
         <Grid item xs={6}>
           <Paper className={classes.paper}>
           <form className={classes.container} noValidate>
@@ -118,13 +122,13 @@ export default function PartiesMain() {
         </Grid>
 
         <Grid
-          justify="center" alignContent="center" alignItems="center" item xs={1.2}>
-          <Button variant="outlined" onClick={() => { alert('clicked') }}>View & Edit</Button>
+          justify="center" alignContent="center" alignItems="center"  item xs={0} >
+          <Button variant="outlined" onClick={() => { alert('clicked') }}>    <EditOutlinedIcon fontsize="small" style={{color:'#A9A9FF' }}/> </Button>
           
         </Grid>
 
         <Grid justify="center" alignContent="center" alignItems="center" item xs={1}>
-          <ColorButton variant="contained" color="primary" onClick={() => { alert('clicked') }} >Send</ColorButton>
+          <ColorButton variant="contained" color="primary" onClick={() => { alert('clicked') }} >    <SendOutlinedIcon fontsize="small" style={{color:'#A9A9FF' }}/></ColorButton>
         </Grid>
       </Grid>
 
