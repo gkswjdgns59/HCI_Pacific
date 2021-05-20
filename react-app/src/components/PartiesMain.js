@@ -95,7 +95,7 @@ export default function PartiesMain() {
         <TextField
           id="standard-multiline-flexible"
           label="Location"
-          defaultValue="So-mang 251, Daehak-ro 251, Daejeon"
+          defaultValue="52, Rose street, Daejeon"
           multiline
           rowsMax={2}
           fontFamily= 'Poppins'       
@@ -103,7 +103,7 @@ export default function PartiesMain() {
         <TextField
           id="standard-multiline-flexible"
           label="Memo"
-          defaultValue="Dresscode: red & Bring a present~^^"
+          defaultValue="Dresscode: red"
           multiline
           rowsMax={2}
           fontFamily= 'Poppins'  
