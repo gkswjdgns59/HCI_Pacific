@@ -15,7 +15,8 @@ const useStyles = makeStyles((theme) => ({
     '& > *': {
       margin: theme.spacing(1),
       fontFamily: 'Poppins',
-      marginLeft: 30,      
+      marginLeft: 40,     
+      marginRight: 30, 
       marginBottom: 20,
       outerHeight: 50,
 
@@ -23,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
       
       '& .MuiTextField-root': {
         margin: theme.spacing(0.8),
-        width: 225,
+        width: 320,
       },
       '.MuiGrid-container'	: {
         // display: 'flex',
@@ -32,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
         outerHeight: 50,
       },
       '.MuiPaper-paper':{
-        minWidth: 230
+        minWidth: 300
       }
     },
   },
@@ -73,7 +74,7 @@ export default function PartiesMain() {
     <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={1}></Grid>
-        <Grid item xs={6}>
+        <Grid item xs={7}>
           <Paper className={classes.paper}>
           <form className={classes.container} noValidate>
       
@@ -127,7 +128,7 @@ export default function PartiesMain() {
           
         </Grid>
 
-        <Grid justify="center" alignContent="center" alignItems="center" item xs={1}>
+        <Grid justify="center" alignContent="center" alignItems="center" item xs={0}>
           <ColorButton variant="contained" color="primary" onClick={() => { alert('clicked') }} >    <SendOutlinedIcon fontsize="small" style={{color:'#A9A9FF' }}/></ColorButton>
         </Grid>
       </Grid>
