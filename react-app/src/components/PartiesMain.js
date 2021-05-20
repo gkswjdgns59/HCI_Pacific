@@ -20,24 +20,27 @@ var defaultList=[
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
-      margin: theme.spacing(1),
+      //margin: theme.spacing(1),
       fontFamily: 'Poppins',
       marginLeft: 30,     
-      marginRight: 30, 
-      marginBottom: 20,
-      outerHeight: 50,
+      //marginRight: 30, 
+      //marginBottom: 20,
+      //outerHeight: 50,
+      height: '10px',
 
       
       
       '& .MuiTextField-root': {
         margin: theme.spacing(0.8),
-        width: 200,
+        width: 170,
       },
       '.MuiGrid-container'	: {
         // display: 'flex',
         // flexWrap: 'wrap',
         fontFamily: 'Poppins',
-        outerHeight: 50,
+        //outerHeight: 20,
+
+        height: '10px'
       },
       '.MuiPaper-paper':{
         minWidth: 230
@@ -55,7 +58,9 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
     //width: 1200,
-    maxLines: 1
+    maxLines: 1,
+    height: '10px',
+    
   },
   Grid:{
     
@@ -80,9 +85,9 @@ export default function PartiesMain() {
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
-        <Grid item xs={1}></Grid>
+        <Grid item md={1}></Grid>
         <Grid item xs={6}>
-          <Paper className={classes.paper}>
+          <Paper className={classes.paper} style={{width: '100%'} }>
           <form className={classes.container} noValidate>
       
             <TextField
@@ -94,7 +99,11 @@ export default function PartiesMain() {
                 rowsMax={2}
                 fontFamily= 'Poppins'
                 disabled id="standard-disabled" 
+                style={{ height: 50, width: '42%', position: 'relative' }}
+                
+                
               />
+
               <TextField
                 id="datetime-local"
                 label="Date/Time"
@@ -106,6 +115,7 @@ export default function PartiesMain() {
                 }}
                 fontFamily= 'Poppins'
                 disabled id="standard-disabled" 
+                style={{ height: 50, width: '42%', position: 'relative' }}
               />
               <TextField
                 id="standard-multiline-flexible"
@@ -114,7 +124,9 @@ export default function PartiesMain() {
                 multiline
                 rowsMax={2}
                 fontFamily= 'Poppins'  
-                disabled id="standard-disabled"      
+                disabled id="standard-disabled"    
+                style={{ height: 50, width: '42%', position: 'relative' }}  
+              
               />
               <TextField
                 id="standard-multiline-flexible"
@@ -124,7 +136,8 @@ export default function PartiesMain() {
                 rowsMax={2}
                 fontFamily= 'Poppins'  
                 // variant='disabled'  
-                disabled id="standard-disabled"    
+                disabled id="standard-disabled"  
+                style={{ height: 50, width: '42%', position: 'relative' }}  
               />
           </form>
           </Paper>
@@ -132,7 +145,8 @@ export default function PartiesMain() {
 
         <Grid
           justify="center" alignContent="center" alignItems="center"  item xs={0} >
-          <Button variant="outlined" onClick={() => { alert('clicked') }}>    <EditOutlinedIcon fontsize="small" style={{color:'#A9A9FF' }}/> </Button>
+          <Button variant="outlined" onClick={() => { alert('clicked') }}>    <EditOutlinedIcon fontsize="small" style={{color:'#A9A9FF', borderBlockColor: '#A9A9FF'}}/> </Button>
+          
           
         </Grid>
 

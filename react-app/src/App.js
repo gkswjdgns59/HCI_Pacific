@@ -11,7 +11,6 @@ class App extends Component{
     <div className="App">
       hello
       <Header></Header>
-      <PartiesMain></PartiesMain>
       <PartiesTab></PartiesTab>
     </div>
     );

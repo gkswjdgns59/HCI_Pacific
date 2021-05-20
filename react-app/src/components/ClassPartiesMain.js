@@ -78,6 +78,7 @@ class ClassPartiesMain extends Component{
           </Paper>
             </div>
             <div class="col-md-2"><Button variant="outlined" onClick={() => { alert('clicked') }}>    <EditOutlinedIcon fontsize="small" style={{color:'#A9A9FF' }}/> </Button></div>
+            
             <div class="col-md-2">
               <ColorButton variant="contained" color="primary" onClick={() => { alert('clicked') }} >    <SendOutlinedIcon fontsize="small" style={{color:'#A9A9FF' }}/></ColorButton>
             </div>
