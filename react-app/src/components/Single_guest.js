@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 // import Card from '@material-ui/core/Card';
 // import CardActions from '@material-ui/core/CardActions';
 // import CardContent from '@material-ui/core/CardContent';
@@ -27,11 +29,15 @@ import {ReactComponent as Blob20} from '../blobs/blob-haikei (20).svg';
 
 
 export const Single_guest =({num,fill}) => {
+    const classes=useStyles();
     switch(num) {
         case '1':
             return (
-                <div>
-                    <Blob1 fill={fill} class='blob'></Blob1>
+                <div align='center'>
+                    <Blob1 fill={fill} class='blob' className={classes.Blob}></Blob1>
+                    <Typography align='center' className={classes.root}>
+                        Stamp <i class="fas fa-plus"></i> <i class="fas fa-minus"></i>
+                    </Typography>
                 </div>
             )
         case '2':
@@ -49,3 +55,22 @@ export const Single_guest =({num,fill}) => {
     }
     
 }
+
+const useStyles = makeStyles((theme)=>({
+    root: {
+        textTransform: 'none',
+        width: 120,
+        height: 30,
+        fontWeight: 300,
+        fontFamily: 'Poppins',
+        
+        color: '#A6A6A6',
+        fontSize: '16px',
+
+    },
+    Blob: {
+        paddingTop:20,
+        width:120,
+        height:120
+    }
+}))

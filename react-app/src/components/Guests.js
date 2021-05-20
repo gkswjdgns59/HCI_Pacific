@@ -1,33 +1,26 @@
 import React, { Component } from 'react'
-import Grid from '@material-ui/core/Grid';
 import {Single_guest} from './Single_guest';
+import {Empty_guest} from './Empty_guest';
+
+const guests_list=[{num:"1",fill:"#222222"},{num:"1",fill:"#555555"},{num:"1",fill:"#aaaaaa"},{num:"1",fill:"#333333"},{num:"1",fill:"#555555"},{num:"1",fill:"#555555"}]
 
 export default class Guests extends Component {
-    color = '#e6e6fa'
-    num='1'
     render() {
-        return (
+        const guests=guests_list.map(guest=>{
+            return (
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                    <Single_guest num={guest.num} fill={guest.fill} />
+                </div>
+            )
+        })
+        return(
             <div>
-                <Grid container spacing={3}>
-                    <Grid item xs={2}>
-                        <Single_guest num={this.num} fill={this.color}></Single_guest>
-                    </Grid>
-                    <Grid item xs={2}>
-                        xs=2
-                    </Grid>
-                    <Grid item xs={2}>
-                        xs=2
-                    </Grid>
-                    <Grid item xs={2}>
-                        xs=2
-                    </Grid>
-                    <Grid item xs={2}>
-                        xs=2
-                    </Grid>
-                    <Grid item xs={2}>
-                        xs=2
-                    </Grid>
-                </Grid>
+                <div class="row">
+                    {guests}
+                    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2" align='center'>
+                        <Empty_guest></Empty_guest>
+                    </div>
+                </div>
             </div>
         )
     }
