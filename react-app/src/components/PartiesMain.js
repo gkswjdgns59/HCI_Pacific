@@ -22,11 +22,12 @@ const useStyles = makeStyles((theme) => ({
     '& > *': {
       //margin: theme.spacing(1),
       fontFamily: 'Poppins',
-      marginLeft: 30,     
+      // marginLeft: 30,     
       //marginRight: 30, 
       //marginBottom: 20,
       //outerHeight: 50,
-      height: '10px',
+      height: 150,
+
 
       
       
@@ -85,7 +86,6 @@ export default function PartiesMain() {
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
-        <Grid item md={1}></Grid>
         <Grid item xs={6}>
           <Paper className={classes.paper} style={{width: '100%'} }>
           <form className={classes.container} noValidate>

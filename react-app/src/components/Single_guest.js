@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme)=>({
         fontFamily: 'Poppins',
         
         color: '#A6A6A6',
-        fontSize: '16px',
+        fontSize: '14px',
 
     },
     Blob: {
