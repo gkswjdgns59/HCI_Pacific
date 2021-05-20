@@ -7,76 +7,26 @@ import { createMuiTheme, withStyles, ThemeProvider} from '@material-ui/core/styl
 import Grid from '@material-ui/core/Grid';
 import SendOutlinedIcon from '@material-ui/icons/SendOutlined';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import { Component } from 'react';
 
-
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-      fontFamily: 'Poppins',
-      marginLeft: 30,     
-      marginRight: 30, 
-      marginBottom: 20,
-      outerHeight: 50,
-
-      
-      
-      '& .MuiTextField-root': {
-        margin: theme.spacing(0.8),
-        width: 225,
-      },
-      '.MuiGrid-container'	: {
-        // display: 'flex',
-        // flexWrap: 'wrap',
-        fontFamily: 'Poppins',
-        outerHeight: 50,
-      },
-      '.MuiPaper-paper':{
-        minWidth: 230
-      }
-    },
-  },
-  
-  // Paper : {
-  //   width: 400,
-  //   innerWidth:300 
-  // },
-  
-  TextField: {
-    fontFamily: 'Poppins',
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 1200,
-    maxLines: 1
-  },
-  Grid:{
-    
-  },
-
-}));
-
-
-const ColorButton = withStyles((theme) => ({
-  root: {
-    color: theme.palette.getContrastText('#F3F3FF'),
-    backgroundColor: '#F3F3FF',
-    '&:hover': {
-      backgroundColor: '#E0E0FF',
-    },
-  },
-}))(Button);
-
-export default function PartiesMain() {
-  const classes = useStyles();
-
-  return (
-    <div className={classes.root}>
+class ClassPartiesMain extends Component{
+    constructor(){
+        super()
+        this.state={
+            value:0
+        }
+    }
+    handleChange = (event, newValue) => {
+        this.setState({value:newValue})
+    }
+    render(){
+        return(
+            <div >
       <Grid container spacing={3}>
         <Grid item xs={1}></Grid>
         <Grid item xs={6}>
-          <Paper className={classes.paper}>
-          <form className={classes.container} noValidate>
+          <Paper>
+          <form  noValidate>
       
             <TextField
                 id="standard-multiline-flexible"
@@ -92,7 +42,7 @@ export default function PartiesMain() {
                 label="Date/Time"
                 type="datetime-local"
                 defaultValue="2021-05-13T19:00"
-                className={classes.textField}
+                //className={classes.textField}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -134,5 +84,19 @@ export default function PartiesMain() {
       </Grid>
 
     </div>
-  );
+        )
+    }
 }
+  
+  const ColorButton = withStyles((theme) => ({
+    root: {
+      color: theme.palette.getContrastText('#F3F3FF'),
+      backgroundColor: '#F3F3FF',
+      '&:hover': {
+        backgroundColor: '#E0E0FF',
+      },
+    },
+  }))(Button);
+
+
+  export default ClassPartiesMain;
