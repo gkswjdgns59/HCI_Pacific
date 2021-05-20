@@ -17,38 +17,38 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: 20,
       //marginRight: theme.spacing(10),
       outerHeight: 50,
-      width: 1200,
+      //width: 1200,
       //wrap: 'nowrap',
       
       
       '& .MuiTextField-root': {
         margin: theme.spacing(1),
-        width: 240,
+        width: 220,
+      },
+      '.MuiGrid-container'	: {
+        // display: 'flex',
+        // flexWrap: 'wrap',
+        fontFamily: 'Poppins',
+        outerHeight: 50,
       },
     },
   },
   
-  Paper : {
-    width: 400,
-    innerWidth:300 
-  },
-  '.MuiGrid-container'	: {
-    // display: 'flex',
-    // flexWrap: 'wrap',
-    fontFamily: 'Poppins',
-    outerHeight: 50,
-  },
+  // Paper : {
+  //   width: 400,
+  //   innerWidth:300 
+  // },
+  
   TextField: {
     fontFamily: 'Poppins',
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
     width: 1000,
     maxLines: 1
-    //fontWeight: 300,
   },
   Grid:{
     
-  }
+  },
 
 }));
 
@@ -73,63 +73,60 @@ export default function PartiesMain() {
           <Paper className={classes.paper}>
           <form className={classes.container} noValidate>
       
-      <TextField
-          id="standard-multiline-flexible"
-          label="Title"
-          defaultValue="My Birthday Party"
-          multiline
-          rowsMax={4}
-          fontFamily= 'Poppins'
-          disabled id="standard-disabled" 
-        />
-        <TextField
-          id="datetime-local"
-          label="Date/Time"
-          type="datetime-local"
-          defaultValue="2021-05-13T19:00"
-          className={classes.textField}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          fontFamily= 'Poppins'
-          disabled id="standard-disabled" 
-        />
-        <TextField
-          id="standard-multiline-flexible"
-          label="Location"
-          defaultValue="52, Rose street, Daejeon"
-          multiline
-          rowsMax={2}
-          fontFamily= 'Poppins'  
-          disabled id="standard-disabled"      
-        />
-        <TextField
-          id="standard-multiline-flexible"
-          label="Memo"
-          defaultValue="Dresscode: red"
-          multiline
-          rowsMax={2}
-          fontFamily= 'Poppins'  
-          // variant='disabled'  
-          disabled id="standard-disabled"    
-        />
-
-    </form>
+            <TextField
+                id="standard-multiline-flexible"
+                label="Title"
+                defaultValue="My Birthday Party"
+                multiline
+                rowsMax={2}
+                fontFamily= 'Poppins'
+                disabled id="standard-disabled" 
+              />
+              <TextField
+                id="datetime-local"
+                label="Date/Time"
+                type="datetime-local"
+                defaultValue="2021-05-13T19:00"
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                fontFamily= 'Poppins'
+                disabled id="standard-disabled" 
+              />
+              <TextField
+                id="standard-multiline-flexible"
+                label="Location"
+                defaultValue="52, Rose street, Daejeon"
+                multiline
+                rowsMax={2}
+                fontFamily= 'Poppins'  
+                disabled id="standard-disabled"      
+              />
+              <TextField
+                id="standard-multiline-flexible"
+                label="Memo"
+                defaultValue="Dresscode: red"
+                multiline
+                rowsMax={2}
+                fontFamily= 'Poppins'  
+                // variant='disabled'  
+                disabled id="standard-disabled"    
+              />
+          </form>
           </Paper>
         </Grid>
+
         <Grid
           justify="center" alignContent="center" alignItems="center" item xs={1.2}>
           <Button variant="outlined" onClick={() => { alert('clicked') }}>View & Edit</Button>
           
         </Grid>
+
         <Grid justify="center" alignContent="center" alignItems="center" item xs={1}>
-          <ColorButton variant="contained" color="primary" onClick={() => { alert('clicked') }} >
-          Send
-          </ColorButton>
+          <ColorButton variant="contained" color="primary" onClick={() => { alert('clicked') }} >Send</ColorButton>
         </Grid>
-
       </Grid>
-
 
     </div>
   );
