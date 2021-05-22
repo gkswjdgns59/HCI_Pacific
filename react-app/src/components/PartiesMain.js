@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
       //marginBottom: 20,
       //outerHeight: 50,
       height: 150,
-
+      marginBottom: 15,
 
       
       
@@ -125,7 +125,8 @@ export default function PartiesMain() {
                 rowsMax={2}
                 fontFamily= 'Poppins'  
                 disabled id="standard-disabled"    
-                style={{ height: 50, width: '42%', position: 'relative' }}  
+                style={{ height: 50, width: '42%', position: 'relative', fontSize:14, }} 
+                //fontsize={14px} 
               
               />
               <TextField
