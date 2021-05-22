@@ -14,12 +14,9 @@ class App extends Component{
     return (
     <div className="App" style={{marginLeft:240, marginRight:240}}>
       <Header></Header>
-      {/* <PartiesMain></PartiesMain> */}
-      {/* <PartiesTab/> */}
-      <Board/>
-      <GBbar/>
-      <BookGuests/>
-      {/* <Guests></Guests> */}
+      <PartiesMain></PartiesMain>}
+      <PartiesTab/>
+      <Guests></Guests>
     </div>
     );
   }
