@@ -28,32 +28,44 @@ import {ReactComponent as Blob19} from '../blobs/blob-haikei (19).svg';
 import {ReactComponent as Blob20} from '../blobs/blob-haikei (20).svg';
 
 
-export const Single_guest =({num,fill}) => {
+export const Single_guest =({num,fill,showStamp}) => {
     const classes=useStyles();
+    if(showStamp){
+        return(
+            <div align='center' style={{paddingTop:'10%'}}>
+                {makeblob(num,fill)}
+                <Typography align='center' className={classes.root}>
+                                Stamp <i class="fas fa-plus"></i> <i class="fas fa-minus"></i>
+                </Typography>
+            </div>
+        )
+    }
+    else{
+        return(
+            <div align='center'>
+                {makeblob(num,fill)}
+            </div>
+        )
+    }
+}
+
+
+const makeblob=(num,fill)=>{
+    
     switch(num) {
         case '1':
             return (
-                <div align='center'>
-                    <Blob1 fill={fill} class='blob' className={classes.Blob}></Blob1>
-                    <Typography align='center' className={classes.root}>
-                        Stamp <i class="fas fa-plus"></i> <i class="fas fa-minus"></i>
-                    </Typography>
-                </div>
+                <Blob1 fill={fill} width='60%' height='60%'></Blob1>
             )
         case '2':
             return (
-                <div>
-                    <Blob2></Blob2>
-                </div>
+                <Blob2 fill={fill} width='60%' height='60%'></Blob2>
             )
         case '3':
             return (
-                <div>
-                    <Blob3></Blob3>
-                </div>
+                <Blob3 fill={fill} width='60%' height='60%'></Blob3>
             )
     }
-    
 }
 
 const useStyles = makeStyles((theme)=>({
@@ -66,7 +78,6 @@ const useStyles = makeStyles((theme)=>({
         
         color: '#A6A6A6',
         fontSize: '14px',
-
     },
     Blob: {
         paddingTop:20,
