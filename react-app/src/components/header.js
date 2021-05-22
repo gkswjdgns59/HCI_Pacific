@@ -11,14 +11,14 @@ const st = {
 const mp = {
     color: "#222222",
     margin: "10px",
-    width: "100%"
+    marginRight: "300px"
 };
 
 class Header extends Component{
     render(){
         return (
         //<header>
-        <nav className="navbar navbar-expand-sm">
+        <nav style={{borderBottom: "1px black solid"}} className="navbar navbar-expand-sm">
             <img src="https://i.esdrop.com/d/jVtSFxmZHu/K7EY72p0Gq.png" alt="Brand" style={logo}></img>
             <ul className="nav navbar-nav">
                 <li className="nav-item">
@@ -31,10 +31,10 @@ class Header extends Component{
                     <a className="nav-link" href="#" style={st}>Records</a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="#" style={st}>About us</a>
+                    <a className="nav-link" href="#" style={mp}>About us</a>
                 </li>
                 <li className="nav-item justify-content-end">
-                    <a className="nav-link" href="#" style={mp}>My Page</a>
+                    <a className="nav-link" href="#" style={st}>My Page</a>
                 </li>
             </ul>       
         </nav>
