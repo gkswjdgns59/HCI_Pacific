@@ -14,7 +14,7 @@ class App extends Component{
     return (
     <div className="App" style={{marginLeft:240, marginRight:240}}>
       <Header></Header>
-      <PartiesMain></PartiesMain>}
+      <PartiesMain></PartiesMain>
       <PartiesTab/>
       <Guests></Guests>
     </div>
