@@ -5,5 +5,11 @@ nav {
     font-family: 'Poppins';
     font-weight: 300;
     font-size: 14px;
-    margin: 0px;
+    border-bottom: 2px black solid;
 }
+
+.fa-award {
+    width: 24px;
+    height: 24px;
+}
+
