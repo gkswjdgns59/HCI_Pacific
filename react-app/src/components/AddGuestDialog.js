@@ -20,7 +20,12 @@ export default function AddGuestDialog() {
           fontSize: 16,
           fontWeight:300,
           color: "#222222"
-      }
+      },
+      palette :{
+        primary: {
+            main: "#A9A9FF"
+        }
+    }
   })
 
   return (
@@ -42,19 +47,21 @@ export default function AddGuestDialog() {
                 margin="dense"
                 label="Name"
                 fullWidth
+                color="primary"
             />
             <TextField
                 autoFocus
                 margin="dense"
                 label="Phone Number"
                 fullWidth
+                color="primary"
                 />
             </DialogContent>
             <DialogActions>
             <Button onClick={handleClose}>
                 Cancel
             </Button>
-            <Button onClick={handleClose} variant="outlined">
+            <Button onClick={handleClose} variant="outlined" color="primary">
                 Add
             </Button>
             </DialogActions>

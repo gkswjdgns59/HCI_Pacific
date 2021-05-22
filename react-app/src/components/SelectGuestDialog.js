@@ -64,6 +64,12 @@ export default function SelectGuestDialog() {
         })
     };
 
+    const onListChange = (value) => {
+        // let copyList = [...loadedGuest];
+        // setListData(copyList.filter((guest)=>guest===value));
+        setListData(value);
+    }
+
     const handleToggle = (value) => () => {
         let copyData = [...chipData];
         if (checked[value]===false){
@@ -108,7 +114,18 @@ export default function SelectGuestDialog() {
       };
 
     const handleSearch = (event) => {
-        console.log(event.target.value)
+        const inputText = event.target.value.trim().toLowerCase();
+        let resultList = [];
+        if (inputText.length>0){
+            for (let i=0; i<loadedGuest.length; i++){
+                if (inputText===loadedGuest[i].slice(0, inputText.length).toLowerCase()){
+                    resultList.push(loadedGuest[i]);
+                }
+            }
+            onListChange(resultList);
+        }else{
+            onListChange(loadedGuest);
+        }
     }
     
     const theme = createMuiTheme({
@@ -144,6 +161,7 @@ export default function SelectGuestDialog() {
                             variant="outlined"
                             onDelete={handleDelete(data.label)}
                             className={classes.chip}
+                            key={data.label}
                         />
                     </li>
                 )})}
@@ -162,9 +180,9 @@ export default function SelectGuestDialog() {
                     )
                 }}
             />
-            <List className={classes.root}>
-                {loadedGuest.map((guest)=>(
-                    <ListItem button onClick={()=>handleListItemClick(guest)}>
+            <List className={classes.root} onListChange={onListChange}>
+                {listData.map((guest)=>(
+                    <ListItem button onClick={()=>handleListItemClick(guest)} key={guest}>
                         <Blob1 fill='#E6E6FA' class='blob' className={classes.Blob}></Blob1>
                         <ListItemText primary={guest} />
                         <ListItemSecondaryAction>
@@ -189,4 +207,3 @@ export default function SelectGuestDialog() {
     </span>
     );
 }
-
