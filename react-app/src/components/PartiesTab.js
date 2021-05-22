@@ -15,7 +15,7 @@ class PartiesTab extends Component{
     render(){
         return (
         <div>
-            <Paper>
+            <Paper elevation={0}>
                 <StyledTabs
                     value={this.state.value}
                     onChange={this.handleChange}
