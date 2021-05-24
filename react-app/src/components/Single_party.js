@@ -54,7 +54,7 @@ export const Single_party = ({}) => {
                         </Typography>
                     </CardMedia>
                     <CardContent>
-                        <Typography className={classes.text} textAlign='center'>
+                        <Typography className={classes.text} textalign='center'>
                             HBD Jaeryung!
                         </Typography>
                     </CardContent>
