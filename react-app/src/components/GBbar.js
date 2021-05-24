@@ -5,7 +5,8 @@ import TextField from '@material-ui/core/TextField';
 
 const item = {
     position: 'absolute', left: '50%', top: '50%',
-    transform: 'translate(-50%, -50%)'
+    transform: 'translate(-50%, -50%)',
+    fontSize: 15
 }
 const item2 = {
     position: 'absolute', left: '50%', top: '50%',
@@ -13,38 +14,29 @@ const item2 = {
     fontSize: "1px",
     margin: 0
 }
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-      '& > *': {
-        margin: theme.spacing(1),
-        width: '25ch'
-      },
-    },
-  }));
   
 export default function GBbar() {
-    const classes = useStyles();
-
     return (
         <div className="container-fluid" style={{height: "50px"}}>
                 <div className="row">
-                    <div className="col-md-8"></div>
+                    <div className="col-md-9"></div>
                     <div className="col-md-1">
                     <Typography style={item}>
                         <i class="fas fa-plus"></i>
                     </Typography>
                     </div>
-                    <div className="col-md-1" >
-                        <div style={item2}>Sort by : Date</div>
-                    </div>
                     <div className="col-md-2">
-                    <form className={classes.root} noValidate autoComplete="off">
-                        <TextField label="Search"
-                        id="outlined-size-small"
+                    <form>
+                        <TextField
+                        placeholder="Search"
+                        id="standard-basic"
+                        style={{ margin: 8, fontFamily: 'Poppins'}}
+                        inputProps={{style: {fontSize: 8}, fontFamily: 'Poppins'}}
+                        InputLabelProps={{style: {fontSize: 8}, shrink: true, fontFamily: 'Poppins'}}
                         defaultValue=""
                         variant="outlined"
-                        size="small" 
+                        size="small"
+                        color="#D6D6FF" 
                         />
                     </form>
                     </div>
