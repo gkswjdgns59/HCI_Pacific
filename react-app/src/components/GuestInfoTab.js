@@ -1,21 +1,11 @@
 import React, { Component } from 'react';
 import { Paper, Tab, Tabs } from '@material-ui/core';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
-import Guests from './Guests.js';
 import Roulette from './Roulette.js';
 import { Switch, Link, Route, BrowserRouter, Redirect } from 'react-router-dom';
 import styled from 'styled-components'
 
-const StyledLink = styled(Link)`
-    text-decoration: none;
-
-    &:focus, &:hover, &:visited, &:link, &:active {
-        text-decoration: none;
-        outline: 0;
-    }
-`;
-
-class PartiesTab extends Component{
+class GuestInfoTab extends Component{
     constructor(){
         super();
         this.state = {
@@ -35,18 +25,15 @@ class PartiesTab extends Component{
                         onChange={this.handleChange}
                         centered
                     >
-                        <StyledTab label="guests" component={StyledLink} to={"/"}/>
-                        <StyledTab label="records" component={StyledLink} to={"/records"}/>
-                        <StyledTab label="bill split"/>
+                        <StyledTab label="roulette" component={StyledLink} to={"/"}/>
+                        <StyledTab label="records" />
+                        <StyledTab label="statistics"/>
                     </StyledTabs>
                 </Paper>
                 <Redirect to={"/"} />
                 <Switch>
                     <Route exact path="/">
-                        <Guests />
-                    </Route>
-                    <Route exact path="/records">
-                        <Roulette />
+                        <Roulette dataFromParent={this.props.dataFromParent} callbackFromParent={this.props.callbackFromParent}/>
                     </Route>
                 </Switch>
             </BrowserRouter>
@@ -89,4 +76,13 @@ const StyledTab = withStyles((theme) => ({
     selected: {},
 }))((props) => <Tab disableRipple {...props} />);
 
-export default PartiesTab;
+const StyledLink = styled(Link)`
+    text-decoration: none;
+
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+        outline: 0;
+    }
+`;
+
+export default GuestInfoTab;
