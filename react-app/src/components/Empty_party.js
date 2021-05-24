@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import empty_party_img from '../images/empty_party.png'
 
 
 const useStyles = makeStyles((theme)=>({
     root: {
-        width:120,
-        height:150,
+        width:'100%',
+        // height:,
         color:'e2e2e2',
-        paddingTop:40
+        paddingTop: '20px'
     },
     text: {
         color:'#e2e2e2'
@@ -21,7 +22,7 @@ export const Empty_party = () => {
     return (
         <div >
             <div align='center' className={classes.root} >
-                <img src={require('../images/empty-party.png').default} width='80' height='80' onClick={() => { alert('clicked') }}></img>
+                <img src={empty_party_img} width='100%' onClick={() => { alert('clicked') }}></img>
             </div>
         </div>
     )
