@@ -10,12 +10,13 @@ import BookGuests from './components/Book_Guests'
 import GBbar from './components/GBbar'
 import { BrowserRouter as Router, Switch, Link, Route } from 'react-router-dom'
 
+import SelectGuestDialog from './components/SelectGuestDialog'
 class App extends Component{
   render(){
     return (
     <div className="App" style={{marginLeft:240, marginRight:240}}>
       <Header></Header>
-      <FormSubmission></FormSubmission>
+      <SelectGuestDialog />
     </div>
     );
   }
