@@ -15,11 +15,6 @@ const st = {
     margin: "10px"
 };
 
-const mp = {
-    color: "#222222",
-    margin: "10px"
-};
-
 const navbar = {
     fontFamily: "Poppins",
     fontWeight: 300,
