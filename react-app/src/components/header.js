@@ -3,12 +3,15 @@ import React, { Component } from 'react';
 const logo = {
     width: "100px"
 };
-const st = {
+const actst = {
     color: "#222222",
+    backgroundColor: "#D6D6FF",
     margin: "10px"
 };
-const mp = {
+
+const st = {
     color: "#222222",
+    backgroundColor: "#2222222",
     margin: "10px"
 };
 
@@ -23,7 +26,6 @@ const navbar = {
 class Header extends Component{
     render(){
         return (
-        
         <nav style={navbar} className="navbar navbar-expand-lg collapse navbar-collapse bs-navbar-collapse">
             <ul className="nav navbar-nav">
                 <li className="nav-item">
