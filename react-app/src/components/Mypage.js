@@ -36,11 +36,6 @@ export default function Mypage() {
         onNoticeChange(copyList);
       }
     }
-    const onblurnotice = (event) => {
-      console.log("focus out")
-      const copyList = [...notice];
-      setNotice(copyList);
-    }
 
     const [wishlist, setWishlist] = React.useState(init_wishlist);
     const onWishlistChange = (value) => {

@@ -1,27 +1,28 @@
 import './App.css';
 import React, { Component } from 'react';
-import Header from "./components/header"
-import Parties from './components/Parties'
-import PartiesTab from "./components/PartiesTab"
-import {Parties_page_tab} from "./components/Parties_page_tab"
-import PartiesMain from "./components/PartiesMain"
-import {Guests} from './components/Guests'
-import { BrowserRouter as Router, Switch, Link, Route } from 'react-router-dom'
+import { BrowserRouter, Router, Switch, Link, Route } from 'react-router-dom'
+
+import PageParties from './components/PageParties'
+import PageOpen from './components/PageOpen'
+import PageParty from './components/PageParty'
 
 class App extends Component{
   render(){
     return (
-
-      <div class="container">
-    <div class="row">
-        <div class="col-xs-1"></div>
-        <div class="col-xs-10"><div className="App">
-      <Header></Header>
-      {/* <Parties_page_tab></Parties_page_tab> */}
-      <Parties></Parties>
-      {/* <Guests></Guests> */}
-    </div></div>
-        <div class="col-xs-1"></div>
+    // <div className="App" style={{marginLeft:240, marginRight:240}}>
+    <div className="App">
+      <div className="container">
+          <div className="row">
+              <div className="col-xs-1 col-md-2"></div>
+              <div className="col-xs-10 col-md-8"></div>
+                <BrowserRouter>
+                  <Route exact path="/" component={PageParties}/>
+                  <Route exact path="/open" component={PageOpen}/>
+                  <Route exact path="/parties/partyname" component={PageParty}/>
+                </BrowserRouter>
+              <div className="col-xs-1 col-md-2"></div>
+          </div>
+      </div>
     </div>
 </div>
 
