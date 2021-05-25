@@ -65,7 +65,7 @@ export const Guests = ({party_name}) => {
         }
         return (
             <div className="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-                <Single_guest num={guest[name].blob_num} fill={guest[name].blob_fill} key={index} name={name} showStamp={true}/>
+                <Single_guest num={guest[name].blob_num} fill={guest[name].blob_fill} key={name} name={name} showCoin={true} coins={guest[name].coins}/>
             </div>
         )
     })
@@ -81,4 +81,3 @@ export const Guests = ({party_name}) => {
         </div>
     )
 }
-

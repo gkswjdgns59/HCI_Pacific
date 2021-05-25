@@ -7,7 +7,7 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     tab:{
-        borderBottom: '1px solid #222222',
+        //borderBottom: '1px solid #222222',
         height: 35,
         width: '100%',
     },
@@ -41,7 +41,8 @@ export const Parties_page_tab = () => {
         <div className="Row">
             <Paper elevation={0} className={`${classes.tab} col-xs-12`}>
                 {/* <TextField className="col-lg-offset-6 col-lg-2"></TextField> */}
-                <div className="col-md-offset-9 col-sm-offset-8 col-xs-offset-7 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                {/* <div className="col-md-offset-9 col-sm-offset-8 col-xs-offset-7 col-lg-2 col-md-2 col-sm-2 col-xs-2"> */}
+                <div className="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                     <Input
                     placeholder="Search"
                     className={`${classes.text} ${classes.input}`}
