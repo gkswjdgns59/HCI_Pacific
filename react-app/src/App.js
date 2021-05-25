@@ -1,24 +1,28 @@
 import './App.css';
 import React, { Component } from 'react';
-import Header from "./components/header"
-import PartiesTab from "./components/PartiesTab"
-import PartiesMain from "./components/PartiesMain"
-import FormSubmission from "./components/OpenParty"
-import Guests from './components/Guests'
-import Board from './components/Board'
-import BookGuests from './components/Book_Guests'
-import GBbar from './components/GBbar'
-import Mypage from './components/Mypage'
-import { BrowserRouter as Router, Switch, Link, Route } from 'react-router-dom'
+import { BrowserRouter, Router, Switch, Link, Route } from 'react-router-dom'
 
-import GuestInfo from './components/GuestInfo'
-import SelectGuestDialog from './components/SelectGuestDialog'
+import PageParties from './components/PageParties'
+import PageOpen from './components/PageOpen'
+import PageParty from './components/PageParty'
 
 class App extends Component{
   render(){
     return (
-    <div className="App" style={{marginLeft:240, marginRight:240}}>
-      <Header></Header>
+    // <div className="App" style={{marginLeft:240, marginRight:240}}>
+    <div className="App">
+      <div className="container">
+          <div className="row">
+              <div className="col-xs-1 col-md-2"></div>
+              <div className="col-xs-10 col-md-8"></div>
+                <BrowserRouter>
+                  <Route exact path="/" component={PageParties}/>
+                  <Route exact path="/open" component={PageOpen}/>
+                  <Route exact path="/parties/partyname" component={PageParty}/>
+                </BrowserRouter>
+              <div className="col-xs-1 col-md-2"></div>
+          </div>
+      </div>
     </div>
     );
   }
