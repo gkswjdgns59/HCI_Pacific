@@ -5,6 +5,10 @@ import NativeSelect from '@material-ui/core/Select';
 import { FormControl, InputLabel, makeStyles } from '@material-ui/core';
 import firebase from './Firebase'
 import {Empty_party} from './Empty_party';
+import Input from '@material-ui/core/Input';
+import IconButton from '@material-ui/core/IconButton';
+import {  Paper } from '@material-ui/core';
+// import {Parties_page_tab} from './Parties_page_tab'
 
 // const guests_list=[{num:"1",fill:"#222222"},{num:"2",fill:"#555555"},{num:"1",fill:"#aaaaaa"},{num:"3",fill:"#333333"},{num:"1",fill:"#555555"},{num:"2",fill:"#555555"},{num:"2",fill:"#aaaaaa"}]
 
@@ -27,10 +31,36 @@ const useStyles= makeStyles((theme)=>({
         fontFamily: 'Poppins',
         color: '#222222',
         fontSize: '14px',
+    },
+    tab:{
+        //borderBottom: '1px solid #222222',
+        height: 35,
+        width: '100%',
+    },
+    text: {
+        textTransform: 'none',
+        width: 100,
+        fontWeight: 300,
+        fontFamily: 'Poppins',
+        color: '#A6A6A6',
+        fontSize: '14px',
+    },
+    input:{
+        // border: '1px solid #222222',
+        width: '100%',
+    },
+    button:{
+        textTransform: 'none',
+        fontWeight: 300,
+        fontFamily: 'Poppins',
+        color: '#A6A6A6',
+        fontSize: '18px',
+        width: 'auto',
+        alignItems:'center'
     }
 }))
 
-export default function Guests() {
+export default function Parties() {
     const classes=useStyles()
     const userRef = firebase.database();
 
@@ -64,10 +94,12 @@ export default function Guests() {
 
     return(
         <div>
-            <div className="row">
-                <FormControl className="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8"><FormControl className="col-xs-2 col-sm-2 col-md-8 col-lg-2">
                     <NativeSelect
                     labelId="parties_type"
+                    fullWidth
                     id="parties_type"
                     open={open}
                     onClose={handleClose}
@@ -80,8 +112,55 @@ export default function Guests() {
                         <MenuItem value="Previous" className={classes.text}>Previous</MenuItem>
                         <MenuItem value="Upcoming" className={classes.text}>Upcoming</MenuItem>
                     </NativeSelect>
-                </FormControl>
+                </FormControl></div>
+                    <div className="col-md-4"> 
+
+
+
+                    <div className="Row">
+            <Paper elevation={0} className={`${classes.tab} col-xs-12`}>
+                {/* <TextField className="col-lg-offset-6 col-lg-2"></TextField> */}
+                {/* <div className="col-md-offset-9 col-sm-offset-8 col-xs-offset-7 col-lg-2 col-md-2 col-sm-2 col-xs-2"> */}
+                <div className="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <Input
+                    placeholder="Search"
+                    className={`${classes.text} ${classes.input}`}
+                    variant='outlined'
+                    >
+                    </Input>
+                </div>
+                <div className="col-xs-auto">
+                    <div className="row" width='100%'>
+                        <IconButton className={`${classes.button} col`}><i className="far fa-calendar-alt"></i></IconButton>
+                        <IconButton className={`${classes.button} col`}><i className="fas fa-plus"></i></IconButton>
+                    </div>
+                </div>
+            </Paper>
+        </div>
+
+
+                    
+                    </div>
+                </div>
             </div>
+            {/* <div className="row">
+                
+               
+                
+            </div> */}
+
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-offset-4 col-md-4"></div>
+                </div>
+            </div>
+
+
+
+
+
             <div className="row">
                 {parties}
                 <div className="col-xs-6 col-sm-4 col-md-3 col-lg-2" align='center'>

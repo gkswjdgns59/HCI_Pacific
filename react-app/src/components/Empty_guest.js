@@ -7,15 +7,15 @@ const useStyles = makeStyles((theme)=>({
         width:120,
         height:150,
         color:'e2e2e2',
-        paddingTop:40
+        paddingTop:55
     },
     text: {
         color:'#e2e2e2'
     }
 }));
 
+export const Empty_guest = () => {
 
-export const Empty_guest = ({num}) => {
     const classes = useStyles(); 
     return (
         <div >

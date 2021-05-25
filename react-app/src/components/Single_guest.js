@@ -1,10 +1,14 @@
-import React, { Component } from 'react'
+import React, { useState, Component } from 'react'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
+
+import firebase from './Firebase.js'
 // import Card from '@material-ui/core/Card';
 // import CardActions from '@material-ui/core/CardActions';
 // import CardContent from '@material-ui/core/CardContent';
 // import Button from '@material-ui/core/CardContent';
+import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 
 import {ReactComponent as Blob1} from '../blobs/blob-haikei (1).svg';
 import {ReactComponent as Blob2} from '../blobs/blob-haikei (2).svg';
@@ -30,26 +34,58 @@ import {ReactComponent as Blob20} from '../blobs/blob-haikei (20).svg';
 
 
 
-export const Single_guest =({num,fill,showStamp,name}) => {
+export const Single_guest =({num,fill,showCoin,name,coins}) => {
     const classes=useStyles();
     const color_Set=['#e6e6fa','#faece6','#e6f3fa','#e7fae6','#faf8e6']
-    if(showStamp){
+    const userRef = firebase.database();
+    const [coin, setCoin] = useState(coins)
+
+    const onPlus = () => {
+        userRef.ref('/Guests/'+name).update({coins: coin+1})
+        setCoin(coin+1)
+    }
+    const onMinus = () => {
+        userRef.ref('/Guests/'+name).update({coins: coin-1})
+        setCoin(coin-1)
+    }
+
+    const minusButton = () => {
+        if(coin>0){
+            return (
+                <span><i className={`${classes.abled} fas fa-minus`} onClick={onMinus} style={{margin:10}}></i></span>
+            )
+        }
+        else {
+            return (
+                <span className={classes.minus}><i className={`${classes.disabled} fas fa-minus` } style={{margin:10}}></i></span>
+            )
+        }
+    }
+
+    if(showCoin){
         return(
             <div align='center' style={{paddingTop:'10%'}}>
                 {makeblob(num,color_Set[fill-1])}
-                <Typography align='center' className={classes.root}>
+                <div className={`${classes.root} ${classes.abled}`}>
                     {name}
-                </Typography>
-                <Typography align='center' className={classes.root}>
-                    Stamp <i className="fas fa-plus"></i> <i className="fas fa-minus"></i>
-                </Typography>
+                </div>
+                <Paper className={classes.Paper} style={{boxShadow:'none', border:'1px solid #e2e2e2', paddingBottom:45}}>
+                    <Typography className={`${classes.root} ${classes.coin}`}>
+                            {minusButton()}
+                            <span className={`${classes.abled}`}> <MonetizationOnIcon/>{coin}</span>
+                            <span className={classes.plus} style={{flexDirection:'row', justifyContent:'flex-end', margin:10}}> <i className={`${classes.abled} fas fa-plus`} onClick={onPlus}></i> </span>
+                    </Typography>
+                </Paper>
             </div>
         )
     }
     else{
         return(
             <div align='center'>
-                {makeblob(num,fill)}
+                {makeblob(num,color_Set[fill-1])}
+                <div className={`${classes.root} ${classes.abled}`}>
+                    {name}
+                </div>
             </div>
         )
     }
@@ -149,13 +185,28 @@ const useStyles = makeStyles((theme)=>({
         height: 30,
         fontWeight: 300,
         fontFamily: 'Poppins',
-        
-        color: '#A6A6A6',
+        // color: '#A6A6A6',
         fontSize: '14px',
+    },
+    abled: {
+        color: '#222222'
+    },
+    disabled: {
+        color: '#e2e2e2'
     },
     Blob: {
         paddingTop:20,
         width:120,
         height:120
+    },
+    Paper: {
+        width : 120,
+        height: 35
+    },
+    coin: {
+        position: 'absolute',
+        // top: '33%',
+        left: '50%',
+        transform: 'translate(-50%,18%)',
     }
 }))
