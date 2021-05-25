@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {TextField, List} from "@material-ui/core";
-import firebase from "./Firebase"
 
 const styles = {
     textField: {
