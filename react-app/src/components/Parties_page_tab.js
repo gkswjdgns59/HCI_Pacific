@@ -51,8 +51,8 @@ export const Parties_page_tab = () => {
                 </div>
                 <div className="col-xs-auto">
                     <div className="row" width='100%'>
-                        <IconButton className={`${classes.button} col`}><i class="far fa-calendar-alt"></i></IconButton>
-                        <IconButton className={`${classes.button} col`}><i class="fas fa-plus"></i></IconButton>
+                        <IconButton className={`${classes.button} col`}><i className="far fa-calendar-alt"></i></IconButton>
+                        <IconButton className={`${classes.button} col`}><i className="fas fa-plus"></i></IconButton>
                     </div>
                 </div>
             </Paper>

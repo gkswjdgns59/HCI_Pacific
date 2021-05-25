@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 
 const logo = {
-    width: "100px",
-    marginRight: "70px"
+    width: "100px"
 };
 const st = {
     color: "#222222",
@@ -10,17 +9,28 @@ const st = {
 };
 const mp = {
     color: "#222222",
-    margin: "10px",
-    marginRight: "300px"
+    margin: "10px"
 };
+
+const navbar = {
+    fontFamily: "Poppins",
+    fontWeight: 300,
+    fontSize: 14,
+    borderBottom: "1px black solid"
+}
+
 
 class Header extends Component{
     render(){
         return (
-        //<header>
-        <nav style={{borderBottom: "1px black solid"}} className="navbar navbar-expand-sm">
-            <img src="https://i.esdrop.com/d/jVtSFxmZHu/K7EY72p0Gq.png" alt="Brand" style={logo}></img>
+        
+        <nav style={navbar} className="navbar navbar-expand-lg collapse navbar-collapse bs-navbar-collapse">
             <ul className="nav navbar-nav">
+                <li className="nav-item">
+                    <a href="#">
+                        <img src="https://i.esdrop.com/d/jVtSFxmZHu/K7EY72p0Gq.png" alt="Brand" style={logo}></img>
+                    </a>
+                </li>
                 <li className="nav-item">
                     <a className="nav-link" href="#" style={st}>Parties</a>
                 </li>
@@ -31,14 +41,15 @@ class Header extends Component{
                     <a className="nav-link" href="#" style={st}>Records</a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="#" style={mp}>About us</a>
+                    <a className="nav-link" href="#" style={st}>About us</a>
                 </li>
-                <li className="nav-item justify-content-end">
-                    <a className="nav-link" href="#" style={st}>My Page</a>
+            </ul>
+            <ul className="nav navbar-nav navbar-right">
+                <li className="nav-item">
+                        <a className="nav-link" href="#" align="center" style={mp}>My Page</a>
                 </li>
             </ul>       
         </nav>
-        //</header>
         );
     }
 }
