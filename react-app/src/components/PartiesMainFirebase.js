@@ -6,7 +6,7 @@ import SendOutlinedIcon from '@material-ui/icons/SendOutlined';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 
 
-const databaseURL = "https://dp4jaeryung-default-rtdb.firebaseio.com/";
+const databaseURL = "https://aster-42bcb-default-rtdb.firebaseio.com/";
 
 
 const theme = createMuiTheme({

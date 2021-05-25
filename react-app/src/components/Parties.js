@@ -4,7 +4,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import NativeSelect from '@material-ui/core/Select';
 import { FormControl, InputLabel, makeStyles } from '@material-ui/core';
 import firebase from './Firebase'
-import {Empty_party} from './Empty_party';
+import Empty_party from './Empty_party';
 
 // const guests_list=[{num:"1",fill:"#222222"},{num:"2",fill:"#555555"},{num:"1",fill:"#aaaaaa"},{num:"3",fill:"#333333"},{num:"1",fill:"#555555"},{num:"2",fill:"#555555"},{num:"2",fill:"#aaaaaa"}]
 
@@ -30,7 +30,7 @@ const useStyles= makeStyles((theme)=>({
     }
 }))
 
-export default function Guests() {
+export default function Parties() {
     const classes=useStyles()
     const userRef = firebase.database();
 
