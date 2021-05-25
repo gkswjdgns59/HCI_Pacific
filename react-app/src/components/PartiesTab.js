@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Paper, Tab, Tabs } from '@material-ui/core';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
-import Guests from './Guests.js';
+import {Guests} from './Guests.js';
 import Roulette from './Roulette.js';
 import { Switch, Link, Route, BrowserRouter, Redirect } from 'react-router-dom';
 import styled from 'styled-components'
