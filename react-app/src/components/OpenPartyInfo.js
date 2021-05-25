@@ -110,7 +110,7 @@ class OpenPartyInfo extends React.Component {
               onChange={onChangeInputName}           
               //size='large'
               margin="normal"
-              inputProps={{style: {fontSize: 16,  fontFamily: 'Poppins'},}}
+              inputProps={{style: {fontSize: 16,  fontFamily: 'Poppins', fontWeight: 300},}}
               InputLabelProps={{style: {fontSize: 16, fontFamily: 'Poppins' }, shrink: true, }}
               color="#D6D6FF"
               
@@ -127,7 +127,7 @@ class OpenPartyInfo extends React.Component {
                 shrink: true,
               }}
               style={{ margin: 8, fontFamily: 'Poppins', marginBottom: 15}}
-              inputProps={{style: {fontSize: 15,  fontFamily: 'Poppins'},}}
+              inputProps={{style: {fontSize: 15,  fontFamily: 'Poppins', fontWeight: 300},}}
               InputLabelProps={{style: {fontSize: 16, fontFamily: 'Poppins' }, shrink: true, }}
             />
             <TextField className="custom-input"
@@ -142,7 +142,7 @@ class OpenPartyInfo extends React.Component {
               placeholder={String(this.state.mypage.location)}
               //defaultValue={String(this.state.mypage.location)}
               margin="normal"
-              inputProps={{style: {fontSize: 16,  fontFamily: 'Poppins'},}}
+              inputProps={{style: {fontSize: 16,  fontFamily: 'Poppins', fontWeight: 300},}}
               InputLabelProps={{style: {fontSize: 16, fontFamily: 'Poppins' }, shrink: true, }}
               //color="#D6D6FF"
               color="#383838"
@@ -156,7 +156,7 @@ class OpenPartyInfo extends React.Component {
               fullWidth
               onChange={onChangeInputMemo} 
               margin="normal"
-              inputProps={{style: {fontSize: 16,  fontFamily: 'Poppins'},}}
+              inputProps={{style: {fontSize: 16,  fontFamily: 'Poppins', fontWeight: 300},}}
               InputLabelProps={{style: {fontSize: 16, fontFamily: 'Poppins' }, shrink: true, }}
               color="#D6D6FF"
               inputStyle={styles.textField}

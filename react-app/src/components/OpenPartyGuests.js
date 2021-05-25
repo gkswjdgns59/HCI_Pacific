@@ -1,5 +1,5 @@
 import React from 'react';
-import SendOutlinedIcon from '@material-ui/icons/SendOutlined';
+
 import Button from '@material-ui/core/Button';
 import { createMuiTheme, withStyles, ThemeProvider} from '@material-ui/core/styles';
 
@@ -21,7 +21,7 @@ class OpenPartyGuests extends React.Component{
     }
     render(){
         return(
-            <div style={{ marginBottom:100} }>
+            <div >
                 <h2
                 style={{fontFamily: 'Poppins', fontSize: 16, color:'#383838', marginTop:25}}
                 ><b>Guests</b></h2>
@@ -37,17 +37,6 @@ class OpenPartyGuests extends React.Component{
                         </div>
                     </div>
                 </div>
-
-
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-11"></div>
-                        <div class="col-md-1">
-                        <ColorButton variant="contained" color="primary" onClick={() => { alert('clicked') }} >    <SendOutlinedIcon fontsize="small" style={{color:'#A9A9FF' }}/></ColorButton>
-                        </div>
-                    </div>
-                </div>
-                
             </div>
 
         )
