@@ -6,7 +6,7 @@ import FormControl from '@material-ui/core/FormControl';
 import { createMuiTheme, withStyles, ThemeProvider } from '@material-ui/core/styles';
 import NativeSelect from '@material-ui/core/NativeSelect';
 
-const databaseURL = "https://dp4jaeryung-default-rtdb.firebaseio.com/";
+const databaseURL = "https://dp4-test-c4be7-default-rtdb.firebaseio.com/";
 
 
 const theme = createMuiTheme({
@@ -32,22 +32,7 @@ const styles = {
 
 const info_list = ['', '2021-01-01T00:00', 'no location', '']
 
-const onChangeInputName = (event) => {
-      info_list[0]=event.target.value
-      console.log(info_list);
-    }
-const onChangeInputDateTime = (event) => {
-  info_list[1]=event.target.value
-  console.log(info_list);
-}
-const onChangeInputLocation = (event) => {
-  info_list[2]=event.target.value
-  console.log(info_list);
-}
-const onChangeInputMemo = (event) => {
-  info_list[3]=event.target.value
-  console.log(info_list);
-}
+
 
 
 
@@ -83,6 +68,48 @@ class OpenPartyInfo extends React.Component {
       //var location_default = "52, Rose street, Daejeon"
       //console.log(location_default)
       info_list[2]=this.state.mypage.location
+      const setInfo = this.props.setInfo;
+
+      const onChangeInputName = (event) => {
+        info_list[0]=event.target.value
+        console.log(info_list);
+        var data=this.props.info;
+        data['name']=info_list[0]
+        data['dataTime']=info_list[1]
+        data['location']=info_list[2]
+        data['memo']=info_list[3]
+        setInfo(data)
+      }
+      const onChangeInputDateTime = (event) => {
+        info_list[1]=event.target.value
+        console.log(info_list);
+        var data=this.props.info;
+        data['name']=info_list[0]
+        data['dataTime']=info_list[1]
+        data['location']=info_list[2]
+        data['memo']=info_list[3]
+        setInfo(data)
+      }
+      const onChangeInputLocation = (event) => {
+        info_list[2]=event.target.value
+        console.log(info_list);
+        var data=this.props.info;
+        data['name']=info_list[0]
+        data['dataTime']=info_list[1]
+        data['location']=info_list[2]
+        data['memo']=info_list[3]
+        setInfo(data)
+      }
+      const onChangeInputMemo = (event) => {
+        info_list[3]=event.target.value
+        console.log(info_list);
+        var data=this.props.info;
+        data['name']=info_list[0]
+        data['dataTime']=info_list[1]
+        data['location']=info_list[2]
+        data['memo']=info_list[3]
+        setInfo(data)
+      }
       
       return  (
         <div><ThemeProvider theme={theme}>

@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import Input from '@material-ui/core/Input';
 import firebase from './Firebase.js'
 import { useForkRef } from '@material-ui/core';
+import { InfoSharp } from '@material-ui/icons';
 
 
 
@@ -132,7 +133,7 @@ var notice_check=[]
 
 
 var usersData=[]
-export default function OpenPartyNotices() {
+export default function OpenPartyNotices({info, setInfo}) {
   const [list, setList] = useState([]);
   const [checked,setChecked] = useState([]);
   const userRef = firebase.database();
@@ -166,14 +167,19 @@ export default function OpenPartyNotices() {
     userRef.ref('/Mypage/notices').on('value',(snapshot) => {
       var temp_list = [];
       var temp_checked_list=[];
+      var temp_info=info;
+      var temp={};
       const notices = snapshot.val();
       for(let id in notices) {
         temp_list.push(notices[id]);
         temp_checked_list.push(true);
+        temp[id]=notices[id]
       }
       temp_list.push("")
+      temp_info['notices']=temp;
       setList(temp_list)
       setChecked(temp_checked_list)
+      setInfo(temp_info)
     })
   },[])
 
@@ -189,6 +195,9 @@ export default function OpenPartyNotices() {
         }}
         onClick={(event)=>{
           var temp = checked;
+          var temp_info = info
+          var temp_notices = {}
+          
           //console.log(event.target.id)
           // console.log(event.target.checked)
           // console.log(id.id)
@@ -197,6 +206,14 @@ export default function OpenPartyNotices() {
           temp[id.id]=event.target.checked
           console.log(temp)
           setChecked(temp)
+
+          for(let id in list){
+            if(checked[id]){
+              temp_notices[id]=list[id]
+            }
+          }
+          temp_info['notices']=temp_notices
+          setInfo(temp_info)
           // console.log(notice_check)
           
           // console.log(wishlist_check)
@@ -256,17 +273,26 @@ export default function OpenPartyNotices() {
     );
   }
 
-  const notice_map= (notices) => {
-
-    const onChangeInput = (ind) => {
-      const _onchange = event => {
-        var temp_list = list;
-        temp_list[ind] = event.target.value
-        console.log(temp_list)
-        setList(temp_list)
+  const onChangeInput = (ind) => {
+    const _onchange = event => {
+      var temp_list = list;
+      var temp_notices={};
+      var temp_info = info;
+      temp_list[ind] = event.target.value
+      console.log(temp_list)
+      setList(temp_list)
+      for(let id in temp_list) {
+        if(checked[id]){
+          temp_notices[id]=temp_list[id];
+        }
       }
-      return _onchange
+      temp_info['notices']=temp_notices;
+      setInfo(temp_info)
     }
+    return _onchange
+  }
+
+  const notice_map= (notices) => {
     
     var ind=-1;
 
