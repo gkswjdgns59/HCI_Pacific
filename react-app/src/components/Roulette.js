@@ -3,6 +3,7 @@ import { Wheel } from 'react-custom-roulette'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Button, Dialog, DialogActions, Divider, TableContainer, Table, TableBody, TableHead, TableRow, TableCell, Hidden, DialogTitle, Typography } from '@material-ui/core';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import firebase from './Firebase'
 
 const data = [
     { option: 'free Dinner', style: { backgroundColor: '#E6E6FA', textColor: '#222222'} },
@@ -40,10 +41,22 @@ const useStyles = makeStyles((theme) => ({
 export default function Roulette(props) {
     const [mustSpin, setMustSpin] = React.useState(false);
     const [prizeNumber, setPrizeNumber] = React.useState(0);
-    const [listData, setListData] = React.useState(rows);
+    const [listData, setListData] = React.useState([]);
     const [open, setOpen] = React.useState(false);
     const classes = useStyles();
     const callbackFunction = props.callbackFromParent;
+    const userRef= firebase.database()
+
+    React.useEffect(()=>{
+        userRef.ref('/Guests/'+props.name+'/coupons').on('value',snapshot =>{
+            var data= snapshot.val();
+            var temp=listData;
+            for(let coupon in data){
+                temp.push({date:data[coupon].date,desc:data[coupon].desc})
+            }
+            setListData(temp)
+        })
+    })
 
     const handleSpinClick = () => {
         const newPrizeNumber = Math.floor(Math.random() * data.length);
@@ -79,7 +92,7 @@ export default function Roulette(props) {
     const handleClose = () => {
         setOpen(false);
     };
-
+    // console.log(props.dataFromParent)
     return(
         <ThemeProvider theme={theme}>
         <div className="container" className={classes.root}>
@@ -106,7 +119,8 @@ export default function Roulette(props) {
                 <div className="col-md-6">
                     <div className={classes.Block}>
                         <Typography className={classes.SpinText}>Use {cost} X Coins to play roulette.
-                        You have {props.dataFromParent} coins.</Typography>
+                        You have {props.dataFromParent} coins.
+                        </Typography>
                         <Button onClick={handleSpinClick} variant="outlined" color="primary" className={classes.SpinButton}>SPIN</Button>
                     </div>
                     <TableContainer>
@@ -118,12 +132,12 @@ export default function Roulette(props) {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {listData.map((row)=>(
+                                {/* {listData.map((row)=>(
                                     <TableRow>
                                         <TableCell>{row.date}</TableCell>
                                         <TableCell>{row.value}</TableCell>
                                     </TableRow>
-                                ))}
+                                ))} */}
                             </TableBody>
                         </Table>
                     </TableContainer>
