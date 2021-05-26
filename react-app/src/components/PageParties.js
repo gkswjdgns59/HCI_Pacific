@@ -8,7 +8,7 @@ export default class PageParties extends Component{
         return(
             <div>
                 <Header />
-                <Parties_page_tab />
+                {/* <Parties_page_tab /> */}
                 <Parties />
             </div>
         )
