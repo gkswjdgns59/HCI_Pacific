@@ -4,6 +4,7 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Roulette from './Roulette.js';
 import { Switch, Link, Route, BrowserRouter, Redirect } from 'react-router-dom';
 import styled from 'styled-components'
+import { CompassCalibrationOutlined } from '@material-ui/icons';
 
 class GuestInfoTab extends Component{
     constructor(){
@@ -33,7 +34,7 @@ class GuestInfoTab extends Component{
                 <Redirect to={"/"} />
                 <Switch>
                     <Route exact path="/">
-                        <Roulette dataFromParent={this.props.dataFromParent} callbackFromParent={this.props.callbackFromParent}/>
+                        <Roulette dataFromParent={this.props.dataFromParent} name={this.props.name} callbackFromParent={this.props.callbackFromParent}/>
                     </Route>
                 </Switch>
             </BrowserRouter>
@@ -86,3 +87,5 @@ const StyledLink = styled(Link)`
 `;
 
 export default GuestInfoTab;
+
+

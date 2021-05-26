@@ -48,7 +48,7 @@ class Header extends Component{
             </ul>
             <ul className="nav navbar-nav navbar-right">
                 <li className="nav-item">
-                        <a className="nav-link" href="#" align="center" style={mp}>My Page</a>
+                        <a className="nav-link" href="#" align="center" style={st}>My Page</a>
                 </li>
             </ul>       
         </nav>
