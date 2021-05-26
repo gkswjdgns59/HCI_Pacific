@@ -11,10 +11,28 @@ import IconButton from '@material-ui/core/IconButton';
 import {  Paper } from '@material-ui/core';
 import Empty_party from './Empty_party';
 
-
 // const guests_list=[{num:"1",fill:"#222222"},{num:"2",fill:"#555555"},{num:"1",fill:"#aaaaaa"},{num:"3",fill:"#333333"},{num:"1",fill:"#555555"},{num:"2",fill:"#555555"},{num:"2",fill:"#aaaaaa"}]
+// var cnt = 0
+// firebase.database().ref('/Parties/').on('value', snapshot =>{
+//     for(let pty in snapshot.val()){
+//         cnt++;
+//     }
+// })
+// var parties_list=[]
+// for(var i=0;i<cnt;i++){
+//     parties_list.push(i)
+// }
+    var cnt = 0
+    firebase.database().ref('/Parties/').on('value', snapshot =>{
+        for(let pty in snapshot.val()){
+            cnt++;
+        }
+    })
+    var parties_list=[]
+    for(var i=0;i<cnt;i++){
+        parties_list.push(i)
+    }
 
-const parties_list=[1,2,3,4,5]
 
 
 const useStyles= makeStyles((theme)=>({
@@ -62,6 +80,7 @@ const useStyles= makeStyles((theme)=>({
     }
 }))
 
+
 export default function Parties() {
     const classes=useStyles()
     const userRef = firebase.database();
@@ -80,11 +99,11 @@ export default function Parties() {
     const handleOpen = () => {
     setOpen(true);
     };
-    
-    const parties=parties_list.map(id=>{
+
+    const parties = parties_list.map(id=>{
         return (
-            <div className="col-xs-6 col-sm-4 col-md-3 col-lg-2" key={id}>
-                <Single_party />
+            <div className="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                <Single_party index={id} />
             </div>
         )
     })
@@ -93,7 +112,6 @@ export default function Parties() {
     //     userRef()
 
     // })
-
     return(
         <div>
             <div class="container">
@@ -109,6 +127,7 @@ export default function Parties() {
                     value={type}
                     onChange={handleChange}
                     className={classes.dropdown}
+                    defaultValue="All"
                     >
                         <MenuItem value="All" className={classes.text}>All</MenuItem>
                         <MenuItem value="Previous" className={classes.text}>Previous</MenuItem>
