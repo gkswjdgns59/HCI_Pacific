@@ -205,7 +205,6 @@ export default function OpenPartyNotices({info, setInfo}) {
           // console.log(id)
           // temp[]=event.target.checked
           temp[id.id]=event.target.checked
-          console.log(temp)
           setChecked(temp)
 
           for(let id in list){
@@ -280,7 +279,6 @@ export default function OpenPartyNotices({info, setInfo}) {
       var temp_notices={};
       var temp_info = info;
       temp_list[ind] = event.target.value
-      console.log(temp_list)
       setList(temp_list)
       for(let id in temp_list) {
         if(checked[id]){

@@ -24,78 +24,27 @@ import {ReactComponent as Blob19} from '../blobs/blob-haikei (19).svg';
 import {ReactComponent as Blob20} from '../blobs/blob-haikei (20).svg';
 import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
-import GuestInfoTab from './GuestInfoTab.js'
 import firebase from './Firebase'
+import Header from './Header'
+import Roulette from './Roulette.js';
 
-const useStyles = makeStyles((theme) => ({
-    Blob: {
-        width:150,
-        height:150,
-        display: 'block',
-        margin: 'auto',
-        textAlign: 'center'
-    },
-    Box: {
-        position: 'absolute',
-        top: '50%',
-        transform: 'translate(0, -50%)'
-    },
-    Name: {
-        fontFamily: 'Poppins',
-        fontSize: 16,
-        fontWeight: 500
-    },
-    Number: {
-        fontFamily: 'Poppins',
-        fontSize: 16,
-        fontWeight: 300
-    },
-    Coin:{
-        width: 190,
-        borderColor: '#EDEDF5',
-        borderWidth: 2,
-        position: 'absolute',
-        top: '50%',
-        transform: 'translate(0, -50%)',
-        padding: '10px 0px 10px 0px'
-    },
-    CoinText:{
-        fontFamily: 'Poppins',
-        fontSize: 14,
-        fontWeight: 300,
-        padding: '0',
-        display: 'inline',
-        marginLeft: '20%',
-        marginRight: '20%'
-    },
-    CoinIcon: {
-        display: 'inline'
-    },
-    Buttons:{
-        textAlign: 'center'
-    }
-  }));
-
-
-
-export default function GuestInfo(){
+export default function GuestInfo(props){
     const color_Set=['#e6e6fa','#faece6','#e6f3fa','#e7fae6','#faf8e6']
     const classes = useStyles();
-    const name='Woojung Jun'
+    const name = props.match.params.guestname;
     const userRef=firebase.database();
-    var coin=0;
     const [data, setData] = useState({});
-    // const [coinData, setCoinData] = React.useState(0);
+    const [coinData, setCoinData] = React.useState(0);
     // const [num, setNum]=React.useState(0)
     // const [fill,setFill] = React.useState(0);
     // const [phone,setPhone] = React.useState('')
     
     useEffect(()=>{
         userRef.ref('/Guests/'+name).once('value',snapshot=>{
-            console.log(snapshot.val())
-            setData(snapshot.val())
+            setData(snapshot.val());
+            setCoinData(snapshot.val().coins);
         },[])
-    })
+    }, [])
 
     const makeblob=(num,fill)=>{
     
@@ -184,22 +133,20 @@ export default function GuestInfo(){
     }
 
     const handleCoin = (value) =>{
-        const copyCoin = data.coins+value;
-        var temp = data;
-        temp.coins=copyCoin;
-        setData(temp)
-        userRef.ref('/Guests/'+name).update({coins:copyCoin})
+        const coinUpdate = coinData+value;
+        setCoinData(coinUpdate);
+        userRef.ref('/Guests/'+name).update({coins: coinUpdate});
     }
+
     const parentCallback = (dataFromChild) => {
-        const copyCoin = data.coins-dataFromChild;
-        var temp = data;
-        temp.coins=copyCoin;
-        setData(temp)
-        userRef.ref('/Guests/'+name).update({coins:copyCoin})
+        const coinUpdate = coinData-dataFromChild;
+        setCoinData(coinUpdate);
+        userRef.ref('/Guests/'+name).update({coins: coinUpdate});
     }
     return (
         <div>
-            <div className="container">
+            <Header />
+            <div className="container" className={classes.Container}>
                 <div className="row">
                     <div className="col-md-3">
                         {makeblob(data.blob_num,color_Set[data.blob_fill-1])}
@@ -215,7 +162,7 @@ export default function GuestInfo(){
                             <div className={classes.Buttons}>
                                 <RemoveIcon className={classes.CoinIcon} button onClick={()=>handleCoin(-1)}/>
                                 <Typography className={classes.CoinText}>
-                                    Coin X {data.coins}
+                                    Coin X {coinData}
                                 </Typography>
                                 <AddIcon className={classes.CoinIcon} button onClick={()=>handleCoin(1)} />
                             </div>
@@ -227,7 +174,59 @@ export default function GuestInfo(){
                     <div className="col-xs-12"></div>
                 </div>
             </div>
-            <GuestInfoTab dataFromParent={data.coins} name={name} callbackFromParent={parentCallback}></GuestInfoTab>
+            <Roulette dataFromParent={coinData} guestname={name} callbackFromParent={parentCallback}/>
         </div>
     )
 }
+
+const useStyles = makeStyles((theme) => ({
+    Blob: {
+        width:150,
+        height:150,
+        display: 'block',
+        margin: 'auto',
+        textAlign: 'center'
+    },
+    Box: {
+        position: 'absolute',
+        top: '50%',
+        transform: 'translate(0, -50%)'
+    },
+    Name: {
+        fontFamily: 'Poppins',
+        fontSize: 16,
+        fontWeight: 500
+    },
+    Number: {
+        fontFamily: 'Poppins',
+        fontSize: 16,
+        fontWeight: 300
+    },
+    Coin:{
+        width: 190,
+        borderColor: '#EDEDF5',
+        borderWidth: 2,
+        position: 'absolute',
+        top: '50%',
+        transform: 'translate(0, -50%)',
+        padding: '10px 0px 10px 0px'
+    },
+    CoinText:{
+        fontFamily: 'Poppins',
+        fontSize: 14,
+        fontWeight: 300,
+        padding: '0',
+        display: 'inline',
+        marginLeft: '20%',
+        marginRight: '20%'
+    },
+    CoinIcon: {
+        display: 'inline'
+    },
+    Buttons:{
+        textAlign: 'center'
+    },
+    Container:{
+        borderBottom: '1px solid #EAEAEA'
+    }
+  }));

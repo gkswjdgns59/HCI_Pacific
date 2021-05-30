@@ -8,7 +8,6 @@ import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 
 const databaseURL = "https://aster-42bcb-default-rtdb.firebaseio.com/";
 
-
 const theme = createMuiTheme({
     typography :{
         fontFamily:"Poppins",
@@ -37,7 +36,7 @@ const ColorButton = withStyles((theme) => ({
 // var partyLocation = '52, Rose Street, Daejeon'
 // var partyMemo = 'Dresscode: Red'
 
-class PartiesMainFirebase extends React.Component{
+class PartiesMain extends React.Component{
     constructor(props){
         super(props)
         this.state = {
@@ -48,7 +47,7 @@ class PartiesMainFirebase extends React.Component{
     }
     
     _get() {
-        fetch(`${databaseURL}/Parties/${this.props.partyName}.json`).then(res => {
+        fetch(`${databaseURL}/Parties/${this.props.partyname}.json`).then(res => {
         if(res.status != 200) {
         throw new Error(res.statusText);
         }
@@ -84,11 +83,11 @@ class PartiesMainFirebase extends React.Component{
                         
         return(
             <div><ThemeProvider theme={theme}>
-                <div class="container" style={{marginBottom:40}}> 
+                <div class="container" style={{marginBottom:40, borderBottom:'1px solid #EAEAEA', paddingBottom:'3%'}}> 
                     <div class="row" style={{marginBottom:10}}>
                         <div class="col-sm-9">
                         <h1 style={{ fontFamily: 'Poppins', marginBottom: 10, color:'#A9A9FF', fontWeight:500}}
-                            ><b>{this.props.partyName}</b></h1>
+                            ><b>{this.props.partyname}</b></h1>
                         </div>
 
                         <div class="col-sm-offset-0 col-sm-1">
@@ -152,17 +151,9 @@ class PartiesMainFirebase extends React.Component{
                             </div>
                     </div>
                 </div>
-
             </ThemeProvider></div>
         )
-        //////////////////
-    // })}
-    // </div>
-    
-    // );
-    
-    //////////////////
     }
 }
 
-export default PartiesMainFirebase
+export default PartiesMain

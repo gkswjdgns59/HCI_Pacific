@@ -74,10 +74,9 @@ class OpenPartyInfo extends React.Component {
 
       const onChangeInputName = (event) => {
         info_list[0]=event.target.value
-        console.log(info_list);
         var data=this.props.info;
         data['name']=info_list[0]
-        data['dataTime']=info_list[1]
+        data['dateTime']=info_list[1]
         data['location']=info_list[2]
         data['memo']=info_list[3]
         setInfo(data)
@@ -93,30 +92,27 @@ class OpenPartyInfo extends React.Component {
       }
       const onChangeInputDateTime = (event) => {
         info_list[1]=event.target.value
-        console.log(info_list);
         var data=this.props.info;
         data['name']=info_list[0]
-        data['dataTime']=info_list[1]
+        data['dateTime']=info_list[1]
         data['location']=info_list[2]
         data['memo']=info_list[3]
         setInfo(data)
       }
       const onChangeInputLocation = (event) => {
         info_list[2]=event.target.value
-        console.log(info_list);
         var data=this.props.info;
         data['name']=info_list[0]
-        data['dataTime']=info_list[1]
+        data['dateTime']=info_list[1]
         data['location']=info_list[2]
         data['memo']=info_list[3]
         setInfo(data)
       }
       const onChangeInputMemo = (event) => {
         info_list[3]=event.target.value
-        console.log(info_list);
         var data=this.props.info;
         data['name']=info_list[0]
-        data['dataTime']=info_list[1]
+        data['dateTime']=info_list[1]
         data['location']=info_list[2]
         data['memo']=info_list[3]
         setInfo(data)
