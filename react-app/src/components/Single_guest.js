@@ -1,15 +1,11 @@
-import React, { useState, Component } from 'react'
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import React, { useState } from 'react'
+import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 
 import firebase from './Firebase.js'
-// import Card from '@material-ui/core/Card';
-// import CardActions from '@material-ui/core/CardActions';
-// import CardContent from '@material-ui/core/CardContent';
-// import Button from '@material-ui/core/CardContent';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
-
+import { Link } from 'react-router-dom';
 import {ReactComponent as Blob1} from '../blobs/blob-haikei (1).svg';
 import {ReactComponent as Blob2} from '../blobs/blob-haikei (2).svg';
 import {ReactComponent as Blob3} from '../blobs/blob-haikei (3).svg';
@@ -65,14 +61,16 @@ export const Single_guest =({num,fill,showCoin,name,coins}) => {
     if(showCoin){
         return(
             <div align='center' style={{paddingTop:'10%'}}>
-                {makeblob(num,color_Set[fill-1])}
+                <Link to={`/guests/${name}`} style={{textDecoration:'none'}}>
+                    {makeblob(num,color_Set[fill-1])}
+                </Link>
                 <div className={`${classes.root} ${classes.abled}`}>
                     {name}
                 </div>
                 <Paper className={classes.Paper} style={{boxShadow:'none', border:'1px solid #e2e2e2', paddingBottom:45}}>
                     <Typography className={`${classes.root} ${classes.coin}`}>
                             {minusButton()}
-                            <span className={`${classes.abled}`}> <MonetizationOnIcon/>{coin}</span>
+                            <span className={`${classes.abled}`}> <MonetizationOnIcon/>   {coin}</span>
                             <span className={classes.plus} style={{flexDirection:'row', justifyContent:'flex-end', margin:10}}> <i className={`${classes.abled} fas fa-plus`} onClick={onPlus}></i> </span>
                     </Typography>
                 </Paper>
@@ -185,7 +183,6 @@ const useStyles = makeStyles((theme)=>({
         height: 30,
         fontWeight: 300,
         fontFamily: 'Poppins',
-        // color: '#A6A6A6',
         fontSize: '14px',
     },
     abled: {
@@ -205,7 +202,6 @@ const useStyles = makeStyles((theme)=>({
     },
     coin: {
         position: 'absolute',
-        // top: '33%',
         left: '50%',
         transform: 'translate(-50%,18%)',
     }

@@ -7,6 +7,7 @@ import { createMuiTheme, withStyles, ThemeProvider} from '@material-ui/core/styl
 import SendOutlinedIcon from '@material-ui/icons/SendOutlined';
 import { FormatAlignCenter } from '@material-ui/icons';
 import firebase from './Firebase'
+import Header from './Header'
 
 const ColorButton = withStyles((theme) => ({
     root: {
@@ -28,9 +29,10 @@ const PageOpen = () => {
     }
     return(
         <div style={{marginBottom:100}}>
+            <Header />
             <OpenPartyInfo info={info} setInfo={setInfo} />
             <OpenPartyNotices info={info} setInfo={setInfo} />
-            <OpenPartyGuests info={info} setInfo={setInfo} name={info.name}/>
+            <OpenPartyGuests info={info} setInfo={setInfo}/>
             <div className='row' style={{width:'100%'}}>
                 <div className='col-11'/>
                 <div className='col-1'>

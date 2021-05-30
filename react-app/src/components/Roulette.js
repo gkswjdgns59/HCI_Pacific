@@ -45,10 +45,10 @@ export default function Roulette(props) {
     const [open, setOpen] = React.useState(false);
     const classes = useStyles();
     const callbackFunction = props.callbackFromParent;
-    const userRef= firebase.database()
+    const userRef= firebase.database();
 
     React.useEffect(()=>{
-        userRef.ref('/Guests/'+props.name+'/coupons').on('value',snapshot =>{
+        userRef.ref('/Guests/'+props.guestname+'/coupons').on('value',snapshot =>{
             var data= snapshot.val();
             var temp=listData;
             for(let coupon in data){
@@ -56,7 +56,7 @@ export default function Roulette(props) {
             }
             setListData(temp)
         })
-    })
+    }, [])
 
     const handleSpinClick = () => {
         const newPrizeNumber = Math.floor(Math.random() * data.length);
@@ -81,7 +81,8 @@ export default function Roulette(props) {
         const dateNow = new Date();
         const dateString = `${dateNow.getFullYear()}.${dateNow.getMonth()+1}.${dateNow.getDate()}`;
         let copyList = [...listData];
-        copyList.unshift({date: dateString, value: value});
+        copyList.unshift({date: dateString, desc: value});
+        userRef.ref('/Guests/'+props.guestname).update({coupons: copyList});
         setListData(copyList);
     }
 
@@ -132,12 +133,12 @@ export default function Roulette(props) {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {/* {listData.map((row)=>(
-                                    <TableRow>
+                                {listData.map((row)=>(
+                                    <TableRow key={row.date+row.desc+String(Math.floor(Math.random()*1000))}>
                                         <TableCell>{row.date}</TableCell>
-                                        <TableCell>{row.value}</TableCell>
+                                        <TableCell>{row.desc}</TableCell>
                                     </TableRow>
-                                ))} */}
+                                ))}
                             </TableBody>
                         </Table>
                     </TableContainer>
