@@ -138,7 +138,11 @@ class OpenPartyInfo extends React.Component {
             
 
           <form noValidate>
-            <TextField className="custom-input"
+
+          <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                <TextField className="custom-input"
               id="standard-basic"
               label="Party Name"
               style={{ margin: 8, fontFamily: 'Poppins', marginBottom: 15}}
@@ -160,7 +164,11 @@ class OpenPartyInfo extends React.Component {
               
               inputStyle={styles.textField}
             />
-            <TextField
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                <TextField
               id="datetime-local"
               label="Date Time"
               type="datetime-local"
@@ -174,7 +182,11 @@ class OpenPartyInfo extends React.Component {
               inputProps={{style: {fontSize: 15,  fontFamily: 'Poppins', fontWeight: 300},}}
               InputLabelProps={{style: {fontSize: 16, fontFamily: 'Poppins' }, shrink: true, }}
             />
-            <TextField className="custom-input"
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                <TextField className="custom-input"
               id="standard-basic"
               label="Location"
               style={{ margin: 8, fontFamily: 'Poppins', marginBottom: 10}}
@@ -192,7 +204,11 @@ class OpenPartyInfo extends React.Component {
               color="#383838"
               inputStyle={styles.textField}
             />
-            <TextField className="custom-input"
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                <TextField className="custom-input"
               id="standard-basic"
               label="Memo"
               style={{ margin: 8, fontFamily: 'Poppins', marginBottom: 40}}
@@ -205,6 +221,15 @@ class OpenPartyInfo extends React.Component {
               color="#D6D6FF"
               inputStyle={styles.textField}
             />
+                </div>
+            </div>
+        </div>
+
+
+            
+            
+            
+            
             
           </form>
           
