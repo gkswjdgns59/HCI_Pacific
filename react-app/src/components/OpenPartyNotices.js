@@ -176,6 +176,7 @@ export default function OpenPartyNotices({info, setInfo}) {
         temp[id]=notices[id]
       }
       temp_list.push("")
+      temp_checked_list.push(true)
       temp_info['notices']=temp;
       setList(temp_list)
       setChecked(temp_checked_list)
@@ -321,13 +322,14 @@ export default function OpenPartyNotices({info, setInfo}) {
         return(
           <div class="row">
               <div class="col-md-1">
-                  <CustomCheckbox_unchecked />
+                  <CustomCheckbox_checked />
               </div>
               <div class="col-md-11">
               <Input 
                   id={ind}
-                  placeholder="Click to add more..."  
+                  placeholder="Click to add more...(distinguish the content with comma)"  
                   fullWidth
+                  onChange={onChangeInput(ind)}
                   style={{fontFamily: 'Poppins', fontSize:14, marginBottom: 15}}
                   marginBottom={20}
                   inputProps={{style: {fontSize: 14,  fontFamily: 'Poppins' , color:'#ADADAD'},}}

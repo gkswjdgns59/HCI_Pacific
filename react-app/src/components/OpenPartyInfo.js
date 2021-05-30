@@ -40,8 +40,10 @@ class OpenPartyInfo extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        mypage: {}
+        mypage: {},
+        //isEmpty: false
     };
+      this.isEmpty=true
     }
     
 
@@ -79,6 +81,15 @@ class OpenPartyInfo extends React.Component {
         data['location']=info_list[2]
         data['memo']=info_list[3]
         setInfo(data)
+        console.log(info_list[0])
+        console.log(event.target.value==="", '비어있는가')
+        console.log(info_list[0]==="", '비어있는가')
+
+
+        this.isEmpty=(event.target.value==="")
+        
+        console.log(this.isEmpty)
+        
       }
       const onChangeInputDateTime = (event) => {
         info_list[1]=event.target.value
@@ -110,7 +121,7 @@ class OpenPartyInfo extends React.Component {
         data['memo']=info_list[3]
         setInfo(data)
       }
-      
+
       return  (
         <div><ThemeProvider theme={theme}>
           
@@ -137,6 +148,12 @@ class OpenPartyInfo extends React.Component {
               onChange={onChangeInputName}           
               //size='large'
               margin="normal"
+              
+              //required
+              //value={target.value}
+              
+              error={this.isEmpty}
+
               inputProps={{style: {fontSize: 16,  fontFamily: 'Poppins', fontWeight: 300},}}
               InputLabelProps={{style: {fontSize: 16, fontFamily: 'Poppins' }, shrink: true, }}
               color="#D6D6FF"
