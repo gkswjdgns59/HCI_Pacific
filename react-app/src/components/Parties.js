@@ -22,18 +22,14 @@ import Empty_party from './Empty_party';
 // for(var i=0;i<cnt;i++){
 //     parties_list.push(i)
 // }
-    var cnt = 0
-    firebase.database().ref('/Parties/').on('value', snapshot =>{
-        for(let pty in snapshot.val()){
-            cnt++;
-        }
-    })
-    var parties_list=[]
-    for(var i=0;i<cnt;i++){
-        parties_list.push(i)
+var cnt = 0
+let parties_list=[]
+firebase.database().ref('/Parties/').on('value', snapshot =>{
+    for(let pty in snapshot.val()){
+        cnt++;
+        parties_list.push(cnt);
     }
-
-
+})
 
 const useStyles= makeStyles((theme)=>({
     text: {
