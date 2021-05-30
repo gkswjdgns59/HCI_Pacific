@@ -72,7 +72,7 @@ export const Single_guest =({num,fill,showCoin,name,coins}) => {
                 <Paper className={classes.Paper} style={{boxShadow:'none', border:'1px solid #e2e2e2', paddingBottom:45}}>
                     <Typography className={`${classes.root} ${classes.coin}`}>
                             {minusButton()}
-                            <span className={`${classes.abled}`}> <MonetizationOnIcon/>{coin}</span>
+                            <span className={`${classes.abled}`}> <MonetizationOnIcon/>   {coin}</span>
                             <span className={classes.plus} style={{flexDirection:'row', justifyContent:'flex-end', margin:10}}> <i className={`${classes.abled} fas fa-plus`} onClick={onPlus}></i> </span>
                     </Typography>
                 </Paper>

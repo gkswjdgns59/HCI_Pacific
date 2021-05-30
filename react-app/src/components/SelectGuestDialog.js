@@ -315,7 +315,7 @@ export default function SelectGuestDialog() {
     const theme = createMuiTheme({
         typography :{
             fontFamily:"Poppins",
-            fontSize: 16,
+            fontSize: 20,
             fontWeight:300,
             color: "#222222"
         },
@@ -329,9 +329,10 @@ export default function SelectGuestDialog() {
     return (
     <span>
         <ThemeProvider theme={theme}>
-            <Button variant="outlined" onClick={handleClickOpen}>
+            {/* <Button variant="outlined" onClick={handleClickOpen}>
                 Select guests from Guest book
-            </Button>
+            </Button> */}
+            <img src='/empty-blob.png' width='80' height='80' onClick={handleClickOpen} style={{margin:30}}></img>
             <Dialog open={open} onClose={handleClose} maxWidth={'sm'} fullWidth={true}>
                 <DialogTitle>
                     Select guests from Guest book

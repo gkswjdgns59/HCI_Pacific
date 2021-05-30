@@ -43,7 +43,7 @@ class PartiesTab extends Component{
                 <Redirect to={"/"} />
                 <Switch>
                     <Route exact path="/">
-                        <Guests />
+                        <Guests party_name='HBD Jaeryung'/>
                     </Route>
                     <Route exact path="/records">
                         <Roulette />

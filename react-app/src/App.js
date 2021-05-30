@@ -1,10 +1,12 @@
 import './App.css';
 import React, { Component } from 'react';
-import { BrowserRouter, Router, Switch, Link, Route } from 'react-router-dom'
+import { BrowserRouter,  Route } from 'react-router-dom'
 
 import PageParties from './components/PageParties'
 import PageOpen from './components/PageOpen'
 import PageParty from './components/PageParty'
+import PageGuestBook from './components/PageGuestBook';
+import PageGuestInfo from './components/PageGuestInfo';
 
 class App extends Component{
   render(){
@@ -19,6 +21,8 @@ class App extends Component{
                   <Route exact path="/" component={PageParties}/>
                   <Route exact path="/open" component={PageOpen}/>
                   <Route exact path="/parties/partyname" component={PageParty}/>
+                  <Route exact path="/guestbook" component={PageGuestBook}></Route>
+                  <Route exact path="/guestinfo/:guestname" component={PageGuestInfo}></Route>
                 </BrowserRouter>
               <div className="col-xs-1 col-md-2"></div>
           </div>

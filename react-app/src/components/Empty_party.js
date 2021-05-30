@@ -26,12 +26,14 @@ const Empty_party = ({ location, match, history }) => {
         //         <img src={empty_party_img} width='100%' ></img>
         //     </div>
         <Card className={classes.root} elevation={0}>
-            <CardActionArea onClick={() => {history.push('/open')}}>
-                <CardMedia
-                    component="img"
-                    image={empty_party_img}
-                />
-            </CardActionArea>
+            <Link to='/open' style={{textDecoration:'none'}}>
+                <CardActionArea>
+                    <CardMedia
+                        component="img"
+                        image={empty_party_img}
+                    />
+                </CardActionArea>
+            </Link>
         </Card>
         // </div>
     )
