@@ -210,6 +210,9 @@ export default function SelectGuestDialog(props) {
         palette :{
             primary: {
                 main: "#A9A9FF"
+            },
+            secondary:{
+                main: "#ABABAB"
             }
         }
     })

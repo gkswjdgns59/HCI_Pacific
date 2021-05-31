@@ -10,6 +10,7 @@ import SendOutlinedIcon from '@material-ui/icons/SendOutlined';
 import firebase from './Firebase'
 import Header from './Header'
 import {Typography} from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 const ColorButton = withStyles((theme) => ({
     root: {
@@ -67,7 +68,8 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 
-const PageOpen = () => {
+const PageOpen = ({history}) => {
+    window.scrollTo(0, 0)
     const [info,setInfo] = useState({});
     const classes = useStyles();
     //should be form of {name: 'HBD Sehoon',location:'busan',memo:'blah',dateTime:'2021-11-06T19:00', notices:{0:"don't sleep"}}
@@ -87,12 +89,8 @@ const PageOpen = () => {
     })
     },[])
 
-    const sendInvitation = () => {
+    const openonly = () => {
         var temp = info
-        console.log('send button')
-        console.log(temp.name)
-
-
 
         if (temp.location==""){
             console.log(location_default)
@@ -104,11 +102,28 @@ const PageOpen = () => {
         }
         else{
             userRef.ref('/Parties/'+info.name).set(info)
+            history.replace('/parties/'+info.name)
         }
-        
-       
-        // console.log(info)
     }
+
+    const sendInvitation = () => {
+        var temp = info
+
+        if (temp.location==""){
+            console.log(location_default)
+            info.location=location_default
+            console.log(info)
+        }
+        if (temp.name==("" ||undefined)){
+            alert('You need to add your party name')
+        }
+        else{
+            userRef.ref('/Parties/'+info.name).set(info)
+            alert('successfully Sent')
+            history.replace('/parties/'+info.name)
+        }
+    }
+        
     return(
         <ThemeProvider theme={theme}>
         <div style={{marginBottom:100}}>
@@ -126,10 +141,10 @@ const PageOpen = () => {
 
             <Box display="flex" justifyContent="center">
                 <Box>
-                    <Button style={{marginRight: 20}} variant="outlined" color="secondary" onClick={sendInvitation} >
-                        {/* <SendOutlinedIcon style={{color:'#A9A9FF'}}/> */}
-                        <Typography className={classes.rootTwo} >open only</Typography>
-                    </Button>
+                        <Button style={{marginRight: 20}} variant="outlined" color="secondary" onClick={openonly} >
+                            {/* <SendOutlinedIcon style={{color:'#A9A9FF'}}/> */}
+                            <Typography className={classes.rootTwo} >open only</Typography>
+                        </Button>
                 </Box>
                 <Box>
                     <Button  variant="outlined" color="primary" onClick={sendInvitation} >

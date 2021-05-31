@@ -4,6 +4,7 @@ import PartiesMain from "./PartiesMain"
 import Guests from './Guests'
 
 export default function PageParty(props){
+    window.scrollTo(0, 0)
     const name = props.match.params.partyname;
 
     return(
