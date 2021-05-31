@@ -64,6 +64,24 @@ export const Empty_guest = () => {
             }
         }
     })
+    
+    const add_button = () => {
+        if(name!='' && number!=''){
+            return(
+                <Button onClick={handleCloseAdd} variant="outlined" color="primary">
+                    Add
+                </Button>
+            )
+        }
+        else { 
+            return(
+                <Button variant="outlined" disabled>
+                    Add
+                </Button>
+            )
+        }
+    }
+
     const classes = useStyles(); 
     return (
         <span>
@@ -99,9 +117,7 @@ export const Empty_guest = () => {
                     <Button onClick={handleClose}>
                         Cancel
                     </Button>
-                    <Button onClick={handleCloseAdd} variant="outlined" color="primary">
-                        Add
-                    </Button>
+                    {add_button()}
                     </DialogActions>
                 </Dialog>
             </ThemeProvider>
