@@ -74,6 +74,9 @@ export default function Roulette(props) {
         palette :{
             primary: {
                 main: "#A9A9FF"
+            },
+            secondary:{
+                main: "#ABABAB"
             }
         }
     });

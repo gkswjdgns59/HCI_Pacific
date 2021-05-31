@@ -13,6 +13,7 @@ var init_notice = [""]
 var init_wishlist = [""]
 
 export const Mypage = () => {
+  window.scrollTo(0, 0)
   const [location, setLocation] = React.useState("")
   React.useEffect(()=>{
     firebase.database().ref('/Mypage').once('value',snapshot => {

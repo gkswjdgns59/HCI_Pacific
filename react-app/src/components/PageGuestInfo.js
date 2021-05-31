@@ -1,6 +1,7 @@
 import React, { useEffect, useState, Component } from 'react';
 import { TableContainer, Table, TableBody, TableHead, TableRow, TableCell, Card, CardContent, Typography } from '@material-ui/core';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { createMuiTheme, ThemeProvider} from '@material-ui/core/styles';
 import { Switch, Link, Route, BrowserRouter as Router, BrowserRouter } from 'react-router-dom';
 import {ReactComponent as Blob1} from '../blobs/blob-haikei (1).svg';
 import {ReactComponent as Blob2} from '../blobs/blob-haikei (2).svg';
@@ -35,6 +36,7 @@ export default function GuestInfo(props){
     const userRef=firebase.database();
     const [data, setData] = useState({});
     const [coinData, setCoinData] = React.useState(0);
+    window.scrollTo(0, 0)
     // const [num, setNum]=React.useState(0)
     // const [fill,setFill] = React.useState(0);
     // const [phone,setPhone] = React.useState('')
@@ -178,7 +180,6 @@ export default function GuestInfo(props){
         </div>
     )
 }
-
 const useStyles = makeStyles((theme) => ({
     Blob: {
         width:150,
@@ -230,3 +231,4 @@ const useStyles = makeStyles((theme) => ({
         borderBottom: '1px solid #EAEAEA'
     }
   }));
+
