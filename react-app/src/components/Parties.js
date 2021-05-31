@@ -2,7 +2,7 @@ import React, { useEffect, useState, Component } from 'react'
 import {Single_party} from './Single_party';
 import MenuItem from '@material-ui/core/MenuItem';
 import NativeSelect from '@material-ui/core/Select';
-import { FormControl,  makeStyles } from '@material-ui/core';
+import { Box, FormControl,  makeStyles } from '@material-ui/core';
 import firebase from './Firebase'
 import SearchIcon from '@material-ui/icons/Search'
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -12,7 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import {  Paper } from '@material-ui/core';
 import Empty_party from './Empty_party';
-
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 // const guests_list=[{num:"1",fill:"#222222"},{num:"2",fill:"#555555"},{num:"1",fill:"#aaaaaa"},{num:"3",fill:"#333333"},{num:"1",fill:"#555555"},{num:"2",fill:"#555555"},{num:"2",fill:"#aaaaaa"}]
 // var cnt = 0
 // firebase.database().ref('/Parties/').on('value', snapshot =>{
@@ -24,6 +24,23 @@ import Empty_party from './Empty_party';
 // for(var i=0;i<cnt;i++){
 //     parties_list.push(i)
 // }
+const theme = createMuiTheme({
+    typography :{
+        fontFamily:"Poppins",
+        //fontSize: 16,
+        //fontWeight:300,
+        color: "#222222"
+    },
+    palette :{
+        primary: {
+            main: "#A9A9FF"
+        }
+    },
+    status: {
+          use: '#A9A9FF',
+          //fontSize: 200
+        },
+  })
 
 const useStyles= makeStyles((theme)=>({
     text: {
@@ -34,7 +51,7 @@ const useStyles= makeStyles((theme)=>({
         fontSize: '14px',
     },
     dropdown:{
-        width:'100%',
+        width:120,
         height:40,
         textTransform: 'none',
         fontWeight: 300,
@@ -58,12 +75,11 @@ const useStyles= makeStyles((theme)=>({
     input:{
         // border: '1px solid #222222',
         textTransform: 'none',
-        width: 100,
+        width: "100%",
         fontWeight: 300,
         fontFamily: 'Poppins',
         color: '#222222',
         fontSize: '20px',
-        width: '100%',
     },
     button:{
         textTransform: 'none',
@@ -112,10 +128,17 @@ export default function Parties() {
             for(let party in ref){
                 var party_info=ref[party]
                 var guests = ref[party].guests;
-                party_info['guest_num']=Object.keys(guests).length
-                var random_ind = Math.floor(Math.random()*Object.keys(guests).length)
+                var random_ind=0;
+                if(guests!=undefined){
+                    party_info['guest_num']=Object.keys(guests).length
+                    random_ind=Math.floor(Math.random()*Object.keys(guests).length)
+                }
+                else{
+                    party_info['guest_num']=0;
+                    random_ind=0;
+                }
                 var cnt=0;
-                var random_guest;
+                var random_guest='';
                 for(let guest in guests){
                     if(cnt==random_ind){
                         random_guest=guest;
@@ -134,98 +157,72 @@ export default function Parties() {
         return (
                 <Single_party 
                 partyname={party.name} dateTime={party.dateTime} guest_num={party.guest_num} random_guest={party.random_guest}
-                blob_num={party.blob_num} blob_fill={party.blob_fill}
+                
                 type={type} searchname={search}
                 key={party.name}/>
         )
     })
 
     return(
+        <ThemeProvider theme={theme}>
         <div>
             <div className="container">
-                <div className="row">
-                    <div className="col-md-8"><FormControl className="col-xs-2 col-sm-2 col-md-8 col-lg-2">
-                    <NativeSelect
-                    labelId="parties_type"
-                    fullWidth
-                    id="parties_type"
-                    open={open}
-                    onClose={handleClose}
-                    onOpen={handleOpen}
-                    value={type}
-                    onChange={handleChange}
-                    className={classes.dropdown}
-                    defaultValue={type}
-                    >
-                        <MenuItem value="All" className={classes.text}>All</MenuItem>
-                        <MenuItem value="Previous" className={classes.text}>Previous</MenuItem>
-                        <MenuItem value="Upcoming" className={classes.text}>Upcoming</MenuItem>
-                        {/* <option value={1} className={classes.text} style={{margin:10}}>All</option>
-                        <option value={2} className={classes.text} style={{margin:10}}>Previous</option>
-                        <option value={3} className={classes.text} style={{margin:10}}>Upcoming</option> */}
-                    </NativeSelect>
-                </FormControl></div>
-                    <div className="col-md-4"> 
-                        <div className="Row">
-                            <Paper elevation={0} className={`${classes.tab} col-xs-12`}>
-                                {/* <TextField className="col-lg-offset-6 col-lg-2"></TextField> */}
-                                {/* <div className="col-md-offset-9 col-sm-offset-8 col-xs-offset-7 col-lg-2 col-md-2 col-sm-2 col-xs-2"> */}
-                                <div className="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                                    {/* <Input
-                                    placeholder="Search"
-                                    className={`${classes.text} ${classes.input}`}
-                                    variant='outlined'
-                                    onChange={handleSearch}
-                                    InputProps={{
-                                        startAdornment: (
-                                            <InputAdornment position='start'>
-                                                <SearchIcon />
-                                            </InputAdornment>
-                                        )
-                                    }}
-                                    /> */}
-                                    <Grid container spacing={1} alignItems="flex-end">
-                                        <Grid item>
-                                        <SearchIcon />
-                                        </Grid>
-                                        <Grid item>
-                                            <TextField 
-                                            onChange={handleSearch}
-                                            className={`${classes.input}`}
-                                            id="input-with-icon-grid" label="Seach with name" />
-                                        </Grid>
-                                    </Grid>
-                                    {/* <TextField
-                                        onChange={handleSearch}
-                                        className={`${classes.text} ${classes.input}`}
-                                        label= "Search with name"
-                                        InputProps={{
-                                            startAdornment: (
-                                                <InputAdornment position='start'>
-                                                    <SearchIcon />
-                                                </InputAdornment>
-                                            )
-                                        }}
-                                    /> */}
-                                </div>
-                                <div className="col-xs-auto">
-                                    <div className="row" width='100%'>
-                                        <IconButton className={`${classes.button} col`}><i className="far fa-calendar-alt"></i></IconButton>
-                                        <IconButton className={`${classes.button} col`}><i className="fas fa-plus"></i></IconButton>
-                                    </div>
-                                </div>
-                            </Paper>
-                        </div>
+                <Box display="flex">
+                    <Box flexGrow={1}>
+                        <FormControl>
+                            <NativeSelect
+                            labelId="parties_type"
+                            id="parties_type"
+                            open={open}
+                            onClose={handleClose}
+                            onOpen={handleOpen}
+                            value={type}
+                            onChange={handleChange}
+                            className={classes.dropdown}
+                            defaultValue={type}
+                            
+                            >
+                                <MenuItem value="All" className={classes.text}>All</MenuItem>
+                                <MenuItem value="Previous" className={classes.text}>Previous</MenuItem>
+                                <MenuItem value="Upcoming" className={classes.text}>Upcoming</MenuItem>
+                                {/* <option value={1} className={classes.text} style={{margin:10}}>All</option>
+                                <option value={2} className={classes.text} style={{margin:10}}>Previous</option>
+                                <option value={3} className={classes.text} style={{margin:10}}>Upcoming</option> */}
+                            </NativeSelect>
+                        </FormControl>
+                    </Box>
+                    <Box>
+                        <Grid container spacing={1} alignItems="flex-end">
+                            <Grid item>
+                            <SearchIcon />
+                            </Grid>
+                            <Grid item>
+                                <TextField 
+                                onChange={handleSearch}
+                                className={`${classes.input}`}
+                                id="input-with-icon-grid" 
+                                placeholder="Search with name" 
+                                inputProps={{style: {fontSize: 14,  fontFamily: 'Poppins' , color:'#222222', fontWeight:300},}}
+                                />
+                            </Grid>
+                        </Grid>
+                    </Box>
+                </Box>
+                {/* <div className="col-xs-auto">
+                    <div className="row" width='100%'>
+                        <IconButton className={`${classes.button} col`}><i className="far fa-calendar-alt"></i></IconButton>
+                        <IconButton className={`${classes.button} col`}><i className="fas fa-plus"></i></IconButton>
                     </div>
-                </div>
-            </div>
-
-            <div className="row">
-                {parties}
-                <div className="col-xs-6 col-sm-4 col-md-3 col-lg-2" align='center'>
-                    <Empty_party></Empty_party>
-                </div>
+                </div> </Paper>*/}
             </div>
         </div>
+
+        <div className="row">
+            {parties}
+            <div className="col-xs-6 col-sm-4 col-md-3 col-lg-2" align='center'>
+                <Empty_party></Empty_party>
+            </div>
+        </div>
+        </ThemeProvider>
     )
 }
