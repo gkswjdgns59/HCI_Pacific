@@ -1,16 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
 import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
-import { orange } from '@material-ui/core/colors';
-import TextField from '@material-ui/core/TextField';
 import Input from '@material-ui/core/Input';
 import firebase from './Firebase.js'
-import { useForkRef } from '@material-ui/core';
-import { InfoSharp } from '@material-ui/icons';
-
-
-
-
 
 
 const databaseURL = "https://dp4jaeryung-default-rtdb.firebaseio.com/";
@@ -48,20 +40,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function writeUserData(userId, name, email, imageUrl) {
-  firebase.database().ref('users/' + userId).set({
-    username: name,
-    email: email,
-    profile_picture : imageUrl
-  });
-}
-
 
 var wishlist_check=true
 var notice_check=[]
-
-
-
 
 var usersData=[]
 export default function OpenPartyNotices({info, setInfo}) {
@@ -93,7 +74,7 @@ export default function OpenPartyNotices({info, setInfo}) {
     })
   },[])
 
-  function CustomCheckbox_checked(id) {
+  function CustomCheckbox_checked(id_num) {
     const classes = useStyles();
   
     return (
@@ -109,7 +90,7 @@ export default function OpenPartyNotices({info, setInfo}) {
           var temp_notices = {}
           
 
-          temp[id.id]=event.target.checked
+          temp[id_num.id_num]=event.target.checked
           setChecked(temp)
 
           for(let id in list){
@@ -128,23 +109,7 @@ export default function OpenPartyNotices({info, setInfo}) {
     );
   }
 
-  function CustomCheckbox_unchecked(id) {
-    const classes = useStyles();
-    return (
-      <Checkbox
-        defaultUnchecked
-        classes={{
-          root: classes.root,
-          checked: classes.checked,
-        }}
-        style={{fontSize:200}}
-        onClick={(event)=>{
 
-        }
-        }
-      />
-    );
-  }
 
   function CustomCheckbox_checked_wish(id) {
     const classes = useStyles(); 
@@ -194,13 +159,13 @@ export default function OpenPartyNotices({info, setInfo}) {
       ind=ind+1;
       if (notice!=""){
         return (
-          <div className="row">
+          <div className="row" key={ind}>
               <div className="col-md-1">
-                  <CustomCheckbox_checked id={ind}/>
+                  <CustomCheckbox_checked id_num={ind} key={String(ind)}/>
               </div>
-              <div className="col-md-6">
+              <div className="col-md-11">
               <Input 
-                  id={ind}
+                  id_num={ind}
                   defaultValue={notice} 
                   onChange={onChangeInput(ind)}
                   fullWidth
@@ -213,18 +178,18 @@ export default function OpenPartyNotices({info, setInfo}) {
         )}
       else {
         return(
-          <div class="row">
-              <div class="col-md-1">
-                  <CustomCheckbox_checked />
+          <div className="row" key={ind}> 
+              <div className="col-md-1">
+                  <CustomCheckbox_checked id_num={ind} key={String(ind)}/>
               </div>
-              <div class="col-md-6">
+              <div className="col-md-11">
               <Input 
-                  id={ind}
+                  id_num={ind}
                   placeholder="Click to add more...(distinguish the content with comma)"  
                   fullWidth
                   onChange={onChangeInput(ind)}
                   style={{fontFamily: 'Poppins', fontSize:14, marginBottom: 15}}
-                  marginBottom={20}
+                  marginbottom={20}
                   inputProps={{style: {fontSize: 14,  fontFamily: 'Poppins' , color:'#ADADAD'},}}
               />
               </div>
@@ -247,7 +212,7 @@ export default function OpenPartyNotices({info, setInfo}) {
             <div className="col-md-1">
                 <CustomCheckbox_checked_wish key='wishlist' id='wishlist'/>
             </div>
-            <div className="col-md-6">
+            <div className="col-md-11">
             <h2 style={{fontSize: 14,  fontWeight: 300, fontFamily: 'Poppins' , color:'#ADADAD', margintop:20, paddingTop: 7.5, paddingBottom:9}} >Send Wishlist</h2>
 
             </div>
@@ -269,98 +234,6 @@ export default function OpenPartyNotices({info, setInfo}) {
          
         </div>
 
-
-
-
-{/* 
-
-      <div class="row">
-            <div class="col-md-1">
-                <CustomCheckbox_checked id={2}/>
-            </div>
-            <div class="col-md-11">
-            <Input 
-                id={2}
-                defaultValue="Don't go on my bed!" 
-                onChange={onChangeInput}
-                fullWidth
-                key={'234'}
-                style={{fontFamily: 'Poppins', fontWeight: 300, fontSize:14, marginBottom: 15}}
-                inputProps={{style: {fontSize: 14,  fontFamily: 'Poppins' , color:'#ADADAD'},}}
-            />
-            </div>
-        </div>
-
-
-
-
-
-
-        <div class="row">
-            <div class="col-md-1">
-                <CustomCheckbox_checked id={1}/>
-            </div>
-            <div class="col-md-11">
-            <Input 
-                id='notice_input'
-                defaultValue="Don't go on my bed!" 
-                onChange={onChangeInput}
-                fullWidth
-                key={'234'}
-                style={{fontFamily: 'Poppins', fontWeight: 300, fontSize:14, marginBottom: 15}}
-                inputProps={{style: {fontSize: 14,  fontFamily: 'Poppins' , color:'#ADADAD'},}}
-            />
-            </div>
-        </div> */}
-
-        {/* <div class="row">
-            <div class="col-md-1">
-                <CustomCheckbox_checked />
-            </div>
-            <div class="col-md-11">
-            <Input 
-                id='notice_input'
-                defaultValue="We should not be too noisy!"
-                fullWidth
-                style={{fontFamily: 'Poppins', fontSize:14, marginBottom: 15}}
-                inputProps={{style: {fontSize: 14,  fontFamily: 'Poppins' , color:'#ADADAD'},}}
-            />
-
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-1">
-                <CustomCheckbox_checked />
-            </div>
-            <div class="col-md-11">
-            <Input 
-                id='notice_input'
-                defaultValue="Can someone bring paper tissues?" 
-                fullWidth
-                style={{fontFamily: 'Poppins', fontSize:14, marginBottom: 15}}
-                marginBottom={20}
-                inputProps={{style: {fontSize: 14,  fontFamily: 'Poppins' , color:'#ADADAD'},}}
-            />
-            </div>
-        </div>
-
-
-        <div class="row">
-            <div class="col-md-1">
-                <CustomCheckbox_unchecked />
-            </div>
-            <div class="col-md-11">
-            <Input 
-                id='notice_input'
-                placeholder="Click to add more..."  
-                fullWidth
-                style={{fontFamily: 'Poppins', fontSize:14, marginBottom: 15}}
-                marginBottom={20}
-                inputProps={{style: {fontSize: 14,  fontFamily: 'Poppins' , color:'#ADADAD'},}}
-            />
-            </div>
-        </div> */}
 
 
 

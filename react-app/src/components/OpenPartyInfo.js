@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import TextField from "@material-ui/core/TextField";
-import Box from '@material-ui/core/Box';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
 import { createMuiTheme, withStyles, ThemeProvider } from '@material-ui/core/styles';
-import NativeSelect from '@material-ui/core/NativeSelect';
 
 const databaseURL = "https://dp4-test-c4be7-default-rtdb.firebaseio.com/";
 
@@ -40,10 +36,10 @@ class OpenPartyInfo extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        mypage: {},
+        mypage: {location:""},
         //isEmpty: false
     };
-      this.isEmpty=true
+      this.isEmpty=false
     }
     
 
@@ -135,11 +131,11 @@ class OpenPartyInfo extends React.Component {
 
           <form noValidate>
 
-          <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
+          <div className="container">
+            <div className="row">
+                <div className="col-sm-12">
                 <TextField className="custom-input"
-              id="standard-basic"
+              id="Party Name"
               label="Party Name"
               style={{ margin: 8, fontFamily: 'Poppins', marginBottom: 15}}
               placeholder="My Party Name"
@@ -151,19 +147,19 @@ class OpenPartyInfo extends React.Component {
               
               //required
               //value={target.value}
-              
+              //focused
               error={this.isEmpty}
 
               inputProps={{style: {fontSize: 16,  fontFamily: 'Poppins', fontWeight: 300},}}
               InputLabelProps={{style: {fontSize: 16, fontFamily: 'Poppins' }, shrink: true, }}
-              color="#D6D6FF"
+              // color="#D6D6FF"
               
-              inputStyle={styles.textField}
+              inputstyle={styles.textField}
             />
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-6">
+            <div className="row">
+                <div className="col-sm-12">
                 <TextField
               id="datetime-local"
               label="Date Time"
@@ -180,10 +176,10 @@ class OpenPartyInfo extends React.Component {
             />
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-6">
+            <div className="row">
+                <div className="col-sm-12">
                 <TextField className="custom-input"
-              id="standard-basic"
+              id="Location"
               label="Location"
               style={{ margin: 8, fontFamily: 'Poppins', marginBottom: 10}}
               defaultValue= {this.state.mypage.location}
@@ -197,15 +193,15 @@ class OpenPartyInfo extends React.Component {
               inputProps={{style: {fontSize: 16,  fontFamily: 'Poppins', fontWeight: 300},}}
               InputLabelProps={{style: {fontSize: 16, fontFamily: 'Poppins' }, shrink: true, }}
               //color="#D6D6FF"
-              color="#383838"
-              inputStyle={styles.textField}
+              // color="#383838"
+              inputstyle={styles.textField}
             />
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-6">
+            <div className="row">
+                <div className="col-sm-12">
                 <TextField className="custom-input"
-              id="standard-basic"
+              id="Memo"
               label="Memo"
               style={{ margin: 8, fontFamily: 'Poppins', marginBottom: 40}}
               placeholder="Dresscode, menu, etc"
@@ -214,8 +210,8 @@ class OpenPartyInfo extends React.Component {
               margin="normal"
               inputProps={{style: {fontSize: 16,  fontFamily: 'Poppins', fontWeight: 300},}}
               InputLabelProps={{style: {fontSize: 16, fontFamily: 'Poppins' }, shrink: true, }}
-              color="#D6D6FF"
-              inputStyle={styles.textField}
+              // color="#D6D6FF"
+              inputstyle={styles.textField}
             />
                 </div>
             </div>

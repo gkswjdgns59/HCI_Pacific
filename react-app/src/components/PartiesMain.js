@@ -4,7 +4,8 @@ import TextField from "@material-ui/core/TextField";
 import Button from '@material-ui/core/Button';
 import SendOutlinedIcon from '@material-ui/icons/SendOutlined';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
-
+import Box from '@material-ui/core/Box';
+import { makeStyles } from '@material-ui/core/styles';
 
 const databaseURL = "https://aster-42bcb-default-rtdb.firebaseio.com/";
 
@@ -17,19 +18,13 @@ const theme = createMuiTheme({
     },
     palette :{
         primary: {
-            main: "#A9A9FF"
+            main: "#8484ED"
+        },
+        secondary:{
+            main: "#ABABAB"
         }
     }
 })
-const ColorButton = withStyles((theme) => ({
-    root: {
-      color: theme.palette.getContrastText('#F3F3FF'),
-      backgroundColor: '#F3F3FF',
-      '&:hover': {
-        backgroundColor: '#E0E0FF',
-      },
-    },
-  }))(Button);
 
 // var partyName = 'HBD Jaeryung'
 // var partyDateTime = '2021-05-13T19:00'
@@ -84,21 +79,29 @@ class PartiesMain extends React.Component{
         return(
             <div><ThemeProvider theme={theme}>
                 <div class="container" style={{marginBottom:40, borderBottom:'1px solid #EAEAEA', paddingBottom:'3%'}}> 
-                    <div class="row" style={{marginBottom:10}}>
-                        <div class="col-sm-9">
+
+
+                <div style={{ width: '100%' }}>
+                    <Box display="flex" p={1} >
+                        <Box p={1} flexGrow={1} >
                         <h1 style={{ fontFamily: 'Poppins', marginBottom: 10, color:'#A9A9FF', fontWeight:500}}
                             ><b>{this.props.partyname}</b></h1>
-                        </div>
-
-                        <div class="col-sm-offset-0 col-sm-1">
-                        <Button variant="outlined" onClick={() => { alert('clicked') }}><EditOutlinedIcon fontsize="small" style={{color:'#A9A9FF', borderBlockColor: '#A9A9FF', }}/> </Button>
-                        </div>
-
-                        <div class="col-sm-offset-1 col-sm-1">
-                        <ColorButton variant="contained" color="primary" onClick={() => { alert('clicked') }} >    <SendOutlinedIcon fontsize="small" style={{color:'#A9A9FF' }}/></ColorButton>
-                        </div>
-
+                        </Box>
+                        <Box p={1} >
+                        <Button  size="large" variant="outlined" color="secondary" onClick={() => { alert('clicked') }}>Edit </Button>
+                        </Box>
+                        <Box p={1} >
+                        <Button size="large" variant="outlined" color="primary" onClick={() => { alert('clicked') }} > Send   </Button>
+                        </Box>
+                    </Box>
                     </div>
+                    
+{/* <EditOutlinedIcon fontsize="small" style={{color:'#A9A9FF', borderBlockColor: '#A9A9FF', }}/>
+<SendOutlinedIcon fontsize="small" style={{color:'#A9A9FF' }}/> */} 
+
+
+
+
                     <div class="row">
                         <div class="col-sm-offset-0 col-sm-2"><h1
                             style={{fontFamily: 'Poppins', fontSize: 16, color:'#ADADAD', fontWeight:300}}

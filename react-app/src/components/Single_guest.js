@@ -179,7 +179,7 @@ const makeblob=(num,fill)=>{
 const useStyles = makeStyles((theme)=>({
     root: {
         textTransform: 'none',
-        width: 120,
+        // width: 120,
         height: 30,
         fontWeight: 300,
         fontFamily: 'Poppins',
