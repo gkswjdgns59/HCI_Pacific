@@ -1,5 +1,4 @@
 import React, { useEffect, useState, Component } from 'react';
-import GBbar from './GBbar';
 import Guests from './Guests';
 import Header from './Header';
 
