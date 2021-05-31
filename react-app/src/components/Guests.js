@@ -11,26 +11,27 @@ const Guests = ({partyname}) => {
 
     useEffect(() => {
         if(partyname != null) {
-            userRef.ref('/Parties/'+partyname+'/guests').on('value', snapshot => {
+            let tempPartyGuests = [...partyGuests];
+            userRef.ref('/Parties/'+partyname+'/guests').once('value', snapshot => {
                 const users = snapshot.val();
                 const guests_name = [];
                 for(let id in users) {
                     guests_name.push( id );
                 }
-                userRef.ref('/Guests').on('value', snapshot => {
+                userRef.ref('/Guests').once('value', snapshot => {
                     const users = snapshot.val()
                     const usersData=[];
                     for(let guest_name of guests_name) {
                         var data={};
                         data[guest_name]=users[guest_name];
                         usersData.push(data);
-                        partyGuests.push({
+                        tempPartyGuests.push({
                             key: guest_name,
                             label: guest_name
                         });
                         
                     }
-                    setPartyGuests(partyGuests);
+                    setPartyGuests(tempPartyGuests);
                     setGuests(usersData);
                 })
             })
@@ -52,6 +53,7 @@ const Guests = ({partyname}) => {
                 setGuests(usersData);
             })
         }
+
       }, []);
 
     const put_guests=guests.map((guest,index) => {
@@ -67,7 +69,6 @@ const Guests = ({partyname}) => {
     })
 
     const parentCallback = (object) => {
-        
         let tempPartyGuests = [];
         let tempGuests = [];
         userRef.ref('/Parties/'+partyname+'/guests').remove()
@@ -79,7 +80,7 @@ const Guests = ({partyname}) => {
             let data = {};
             data[i] = object[i];
             tempGuests.push(data)
-            userRef.ref('/Parties/'+partyname+'/guests/'+i).push(object[i]);
+            userRef.ref('/Parties/'+partyname+'/guests/'+i).set(false);
         }
         setPartyGuests(tempPartyGuests);
         setGuests(tempGuests);
@@ -98,10 +99,10 @@ const Guests = ({partyname}) => {
     }
 
     return(
-        <div>
+        <div style={{marginBottom: '7%'}}>
             <div className="row">
                 {put_guests}
-                <div className="col-xs-6 col-sm-4 col-md-3 col-lg-2" align='center'>
+                <div className="col-xs-6 col-sm-4 col-md-3 col-lg-2" align='center' style={{marginTop: "3.5%"}}>
                     {add_guest_version()}
                 </div>
             </div>

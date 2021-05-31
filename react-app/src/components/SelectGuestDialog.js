@@ -217,7 +217,7 @@ export default function SelectGuestDialog(props) {
     return (
     <span>
         <ThemeProvider theme={theme}>
-            <img src='/empty-blob.png' width='80' height='80' onClick={handleClickOpen}></img>
+            <img src='/empty-blob.png' width='60' height='60' onClick={handleClickOpen}></img>
             <Dialog open={open} onClose={handleClose} maxWidth={'sm'} fullWidth={true}>
                 <DialogTitle>
                     Select guests from Guest book

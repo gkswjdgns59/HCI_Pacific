@@ -7,6 +7,7 @@ import PageOpen from './components/PageOpen'
 import PageParty from './components/PageParty'
 import PageGuestInfo from './components/PageGuestInfo'
 import PageGuestbook from './components/PageGuestbook';
+import {Mypage} from './components/Mypage'
 
 class App extends Component{
   render(){
@@ -17,13 +18,14 @@ class App extends Component{
           <div className="row">
               <div className="col-xs-1 col-md-2"></div>
               <div className="col-xs-10 col-md-8"></div>
+              {/*<Mypage></Mypage>*/} 
                 <BrowserRouter>
                   <Route exact path="/" component={PageParties}/>
                   <Route exact path="/open" component={PageOpen}/>
                   <Route exact path="/parties/:partyname" component={PageParty}/>
                   <Route exact path="/guests/:guestname" component={PageGuestInfo}/>
                   <Route exact path="/guestbook" component={PageGuestbook}/>
-                </BrowserRouter>
+    </BrowserRouter> 
               <div className="col-xs-1 col-md-2"></div>
           </div>
       </div>

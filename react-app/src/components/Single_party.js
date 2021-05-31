@@ -187,7 +187,8 @@ const SmallAvatar = withStyles((theme) => ({
   }))(Avatar);
 
   const userRef = firebase.database();
-  const month_list=["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+//   const month_list=["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+  const month_list=["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 //   let test = []
 //   let testdict = {"partyname": "HBD JR", "dateTime": "1234-1234", "guests": [1,2,3]}
 //   test.push(testdict)
@@ -214,8 +215,12 @@ export const Single_party = (data) => {
     React.useEffect(()=>{
         userRef.ref('/Guests/'+random_guest).on('value',snapshot => {
             var res = snapshot.val()
-            setNum(res.blob_num)
-            setFill(res.blob_fill)
+            if(res!=null){
+                setNum(res.blob_num)
+                setFill(res.blob_fill)
+            }
+            else{
+            }
         })
     },[])
 
