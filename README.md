@@ -10,66 +10,99 @@
 
 - [Libraries](#libraries)
   - [Library and Frameworks](#library-and-frameworks)
-- [Codes](#codes)
-  - [Banner](#banner)
-  - [Badges](#badges)
-- [Definitions](#definitions)
+- [Codes-pages](#codes-pages)
+  - [PageHome.js](#pagehome)
+- [Codes-components](#codes-components)
+  - [Auth.js](#auth)
+  - [HomeHeader.js](#homeheader)
+  - [Header.js](#header)
+- [Hosting](#hosting)
+
+---
 
 ## Libraries
 
 ### Library and Frameworks
 
-**React** for component-based coding
+_**React**_   for component-based coding
 
-**Material-ui** for convenient ui build
+_**Material-ui**_ for convenient ui build
 
-**Bootstrap** for grid system
+_**Bootstrap**_ for grid system
 
-**Firebase** to save data
+_**Firebase**_ to save data
 
-**React-router-dom** for routing
+_**React-router-dom**_ for routing
 
-**React-custom-roulette** for roulette implement
+_**React-custom-roulette**_ for roulette implement
 
-## Codes
+--- 
 
+## Codes-pages
 
+### PageHome
+> PageHome.js
 
+<p align="center">
+<img src="https://user-images.githubusercontent.com/83863073/120479273-b9162f80-c3e8-11eb-9669-34972045e25e.PNG"
+  width="650" >
+</p>
 
-### Banner
-**Status:** Optional.
+**Role of the page:**
 
-**Requirements:**
-- Must not have its own title.
-- Must link to local image in current repository.
-- Must appear directly after the title.
+- one-line explanation of the page role
 
-### Badges
-**Status:** Optional.
+**Components**
+- [Auth.js](#auth)
+- [HomeHeader.js](#homeheader)
+- [Header.js](#header)
 
-**Requirements:**
-- Must not have its own title.
-- Must be newline delimited.
+**Description**
+- additional information
 
-**Suggestions:**
-- Use http://shields.io or a similar service to create and host the images.
-- Add the [Standard Readme badge](https://github.com/RichardLitt/standard-readme#badge).
-
-
-## Definitions
-
-_These definitions are provided to clarify any terms used above._
-
-- **Documentation repositories**: Repositories without any functional code. For instance, [RichardLitt/knowledge](https://github.com/RichardLitt/knowledge).
+<br/>
 
 
 
+## Codes-components
+
+### Auth 
+> Auth.js
+- additional information
+
+<br/>
+
+### HomeHeader 
+> HomeHeader.js
+- additional information
+
+<br/>
+
+### Header 
+> Header.js
+- additional information
+
+<br/>
+
+
+
+
+
+------------
+## Hosting
+
+_Hosting Information_
+
+- **Firebase Hosting**: firebase hosting information
 
 
 
 
 
 
+
+
+-------------
 
 **Bold**
   - first circle
