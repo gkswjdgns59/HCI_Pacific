@@ -189,6 +189,9 @@ _**React-custom-roulette**_ for roulette implement
 
 **Components**
 - [Guests.js](#guests)
+    - [SelectGuestDialog.js](#selectguestdialog)
+    - [Single_guest.js](#single_guest)
+    - [Empty_guest.js](#empty_guest)
 
 **Description**
 - additional information
