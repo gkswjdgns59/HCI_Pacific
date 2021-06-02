@@ -79,7 +79,8 @@ _**React-custom-roulette**_ for roulette implement
 - [Header.js](#header)
 
 **Description**
-- You can signup and login to your page. It shows our logo and explains our project. 
+- You can signup and login to your page. 
+- It shows our logo and explains our project. 
 
 <br/>
 
@@ -103,7 +104,8 @@ _**React-custom-roulette**_ for roulette implement
     - [Single_guest.js](#single_guest)
 
 **Description**
-- Set your party name, date/time, location and additional information, and select your guests. You can ‘Open Only’ or ‘Open and Send’ to your friends. 
+- Set your party name, date/time, location and additional information, and select your guests. 
+- You can ‘Open Only’ or ‘Open and Send’ to your friends. 
 
 <br/>
 
@@ -139,7 +141,8 @@ _**React-custom-roulette**_ for roulette implement
 
 **Role of the page**
 
-- View all parties you have, both previous and upcoming. Click ‘+’ to open a new party. 
+- View all parties you have, both previous and upcoming. 
+- Click ‘+’ to open a new party. 
 
 **Components**
 - [Parties.js](#parties)
@@ -147,7 +150,9 @@ _**React-custom-roulette**_ for roulette implement
     - [Empty_party.js](#empty_party)
 
 **Description**
-- View the parties with cards containing party name, date/time, number of guests, etc. You can sort by ‘all’, ‘previous’, and ‘upcoming’. Also, you can search party by its name. 
+- View the parties with cards containing party name, date/time, number of guests, etc. 
+- You can sort by ‘all’, ‘previous’, and ‘upcoming’. 
+- Also, you can search party by its name. 
 
 <br/>
 
@@ -171,7 +176,8 @@ _**React-custom-roulette**_ for roulette implement
     - [Empty_guest.js](#empty_guest)
 
 **Description**
-- You can go to edit information, add new guests, and send more invitations. Also, click ‘+’ below the guest to give them coins.
+- You can go to edit information, add new guests, and send more invitations. 
+- Also, click ‘+’ below the guest to give them coins.
 
 <br/>
 
@@ -185,7 +191,8 @@ _**React-custom-roulette**_ for roulette implement
 
 **Role of the page**
 
-- View all the list of guests you have. Add new guests. 
+- View all the list of guests you have. 
+- Add new guests. 
 
 **Components**
 - [Guests.js](#guests)
@@ -194,7 +201,8 @@ _**React-custom-roulette**_ for roulette implement
     - [Empty_guest.js](#empty_guest)
 
 **Description**
-- It shows all your guests, along with each guest’s coins. You can click onto each guest to manage more. 
+- It shows all your guests, along with each guest’s coins. 
+- You can click onto each guest to manage more. 
 
 <br/>
 
@@ -214,7 +222,9 @@ _**React-custom-roulette**_ for roulette implement
 - [Roulette.js](#roulette)
 
 **Description**
-- You can play the roulette when the guest has enough coins. The present they won will be tracked on the right. You can also manage their coins on the bar below the guest. 
+- You can play the roulette when the guest has enough coins. 
+- The present they won will be tracked on the right. 
+- You can also manage their coins on the bar below the guest. 
 
 <br/>
 
