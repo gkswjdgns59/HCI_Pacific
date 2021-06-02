@@ -248,7 +248,6 @@ export const Single_party = (data) => {
     if (badge_guest===0){
         badge_guest="0"
     }
-
     var party_name=data['partyname']
     if (data['partyname'].length>12){
         party_name=party_name.slice(0, 10) + " . ."

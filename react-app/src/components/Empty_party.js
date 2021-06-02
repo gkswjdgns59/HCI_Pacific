@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme)=>({
     }
 }));
 
-
 const Empty_party = ({ location, match, history }) => {
     const classes = useStyles();
     return (
