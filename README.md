@@ -60,6 +60,7 @@ _**React-custom-roulette**_ for roulette implement
 --- 
 
 ## Codes-pages
+> file path: HCI_Pacific/react-app/src/components/ 
 
 ### PageHome
 > PageHome.js
@@ -252,6 +253,7 @@ _**React-custom-roulette**_ for roulette implement
 ---------------------
 
 ## Codes-components
+> file path: HCI_Pacific/react-app/src/components/ 
 
 ### Auth 
 > Auth.js
@@ -379,6 +381,7 @@ _**React-custom-roulette**_ for roulette implement
 ###  App
 > App.js
 - Where our page routing code code is
+- file path: HCI_Pacific/react-app/src/
 
 <br/>
 
