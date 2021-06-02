@@ -5,6 +5,7 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import PageHome from './components/PageHome'
 import PageParties from './components/PageParties'
 import PageOpen from './components/PageOpen'
+import PageEdit from './components/PageEdit'
 import PageParty from './components/PageParty'
 import PageGuestInfo from './components/PageGuestInfo'
 import PageGuestbook from './components/PageGuestbook';
@@ -30,6 +31,7 @@ class App extends Component{
                   <Route exact path="/" component={PageHome}/>
                   <Route exact path="/parties" component={PageParties}/>
                   <Route exact path="/open" component={PageOpen}/>
+                  <Route exact path="/parties/:partyname/edit" component={PageEdit}/>
                   <Route exact path="/parties/:partyname" component={PageParty}/>
                   <Route exact path="/guests/:guestname" component={PageGuestInfo}/>
                   <Route exact path="/guestbook" component={PageGuestbook}/>

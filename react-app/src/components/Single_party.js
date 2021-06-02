@@ -3,7 +3,7 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import firebase from './Firebase.js'
 import Badge from "@material-ui/core/Badge";
@@ -28,7 +28,10 @@ import {ReactComponent as Blob17} from '../blobs/blob-haikei (17).svg';
 import {ReactComponent as Blob18} from '../blobs/blob-haikei (18).svg';
 import {ReactComponent as Blob19} from '../blobs/blob-haikei (19).svg';
 import {ReactComponent as Blob20} from '../blobs/blob-haikei (20).svg';
-
+import IconButton from '@material-ui/core/IconButton';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { CardActionArea, Typography } from '@material-ui/core';
 const color = "#e6e6fa";
 const useStyles=makeStyles((theme)=>({
@@ -195,7 +198,7 @@ const SmallAvatar = withStyles((theme) => ({
 
 export const Single_party = (data) => {
     var dict={}
-
+    let history=useHistory()
 
     let today = new Date();
     let nowyear = today.getFullYear();
@@ -242,6 +245,38 @@ export const Single_party = (data) => {
     const classes=useStyles();
     const color_Set=['#D4D4FB','#FDDACB','#C3E5F8','#C7E2C6','#FFF9C8']
     const fill_color=color_Set[blobfill-1]
+
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+    
+    const editParty = () => {
+        history.replace('/parties/'+data['partyname']+'/edit')
+    }
+
+    const deleteParty= () => {
+        userRef.ref('/Parties/'+data['partyname']).remove()
+        setAnchorEl(null);
+    }
+
+    var badge_guest = 0
+    badge_guest = data.guest_num
+    if (badge_guest===0){
+        badge_guest="0"
+    }
+
+    var party_name=data['partyname']
+    if (data['partyname'].length>12){
+        party_name=party_name.slice(0, 10) + " . ."
+    }
+
     if((data.type == dict['when'] || data.type=='All')&&(data['partyname'].toLowerCase().replace(/\s/g, '').includes(data.searchname.replace(/\s/g, '').toLowerCase()))){
         return (
             <div className="col-xs-6 col-sm-4 col-md-3 col-lg-2" style={{paddingTop:'20px'}}>
@@ -258,8 +293,8 @@ export const Single_party = (data) => {
                                 {dict["when"]}
                             </Typography>
                         <br />
-                            <Typography variant="h5" component="h4"  style={{fontFamily:'Poppins'}}>
-                                {data['partyname']}
+                            <Typography variant="h6" component="h5"  style={{fontFamily:'Poppins'}}>
+                                {party_name}
                             </Typography>
                             
                             <Badge className={classes.badge}
@@ -268,7 +303,8 @@ export const Single_party = (data) => {
                                         vertical: "bottom",
                                         horizontal: "right"
                                         }}
-                                        badgeContent={<SmallAvatar alt={String(data.guest_num)} src="/static/images/avatar/1.jpg" />}
+                                        //badgeContent={<SmallAvatar alt={String(data.guest_num)} src="/static/images/avatar/1.jpg" />}
+                                        badgeContent={badge_guest}                                       
                                     >
                                         <BigAvatar
                                         style={{ backgroundColor: { color } }}
@@ -291,6 +327,27 @@ export const Single_party = (data) => {
                         </Card>
                     </CardActionArea>
                 </Link>
+                <IconButton aria-label="settings" style={{position:'absolute', right:'2%', top:'2%'}} onClick={handleClick}>
+                    <MoreVertIcon />
+                </IconButton>
+                <Menu
+                    id="long-menu"
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={open}
+                    onClose={handleClose}
+                    PaperProps={{
+                    style: {
+                        maxHeight: 100,
+                        width: 65,
+                        boxShadow: 'none'
+                    },
+                    }}
+                >
+                    <MenuItem onClick={editParty}>Edit</MenuItem>
+                    <MenuItem onClick={deleteParty}>Delete</MenuItem>
+                </Menu>
+
             </div>
         )
     }

@@ -6,8 +6,12 @@ import SendOutlinedIcon from '@material-ui/icons/SendOutlined';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
+
 import Auth from './Auth';
 import firebase from './Firebase.js';
+
+import { Link } from 'react-router-dom';
+
 const databaseURL = "https://aster-42bcb-default-rtdb.firebaseio.com/";
 const userRef=firebase.database();
 const theme = createMuiTheme({
@@ -102,7 +106,9 @@ class PartiesMain extends React.Component{
                             ><b>{this.props.partyname}</b></h1>
                         </Box>
                         <Box p={1} >
-                        <Button  size="large" variant="outlined" color="secondary" onClick={() => { alert('clicked') }}>Edit </Button>
+                        <Link to={`${this.props.partyname}/edit`} style={{textDecoration:'none'}}>
+                        <Button  size="large" variant="outlined" color="secondary" >Edit </Button>
+                        </Link>
                         </Box>
                         <Box p={1} >
                         <Button size="large" variant="outlined" color="primary" onClick={()=>{sendInvitation()}} > Send   </Button>
