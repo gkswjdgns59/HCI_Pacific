@@ -1,50 +1,85 @@
-# HCI_Pacific
-# Brief Code Explanation
-# We will edit this soon
+# Team Pacific : Aster
+
+> https://aster-42bcb.web.app/ 
+
+> Party managing system for off-campus homeloners
+
+> POV: Aster met off campus home loner who holds the home party. Aster is amazed to realize that he/she quite often feels burdened to talk about subtle upset, regarding home party. So, it’d be game-changing for Aster to convey messages (home party manner), preventing conflicts in human relationship.
+
+## Table of Contents
+
+- [Libraries](#libraries)
+  - [Library and Frameworks](#library-and-frameworks)
+- [Codes](#codes)
+  - [Banner](#banner)
+  - [Badges](#badges)
+- [Definitions](#definitions)
+
+## Libraries
+
+### Library and Frameworks
+
+**React** for component-based coding
+
+**Material-ui** for convenient ui build
+
+**Bootstrap** for grid system
+
+**Firebase** to save data
+
+**React-router-dom** for routing
+
+**React-custom-roulette** for roulette implement
+
+## Codes
 
 
-# Main files
-### header.js
-#### Our header which is located on the top of every page
 
-### Parties.js
-#### You can see previous and upcoming parties with each party name. When you click on the party, you go to the page where you can see more information and manage party and guests of each party
 
-### Single_guest.js & Single_party.js 
-#### Single component of guests and parties
+### Banner
+**Status:** Optional.
 
-### OpenPartyInfo.js
-#### Input area where the user types in the party name, location, and memo, and also pick the date and time
+**Requirements:**
+- Must not have its own title.
+- Must link to local image in current repository.
+- Must appear directly after the title.
 
-### OpenPartyNotices.js
-#### It shows the default notices saved in mypage, and whenever the user changes the notice or uncheck the checkbox, it tracts the status of it
+### Badges
+**Status:** Optional.
 
-### OpenPartyGuests.js
-#### Pop-up shows to let you select guests you want to invite from the guestbook, or you can newly add guest directly
+**Requirements:**
+- Must not have its own title.
+- Must be newline delimited.
 
-### SelectGuestDialog.js
-#### Pop-up to see your guests, search among them, and manage the guests 
+**Suggestions:**
+- Use http://shields.io or a similar service to create and host the images.
+- Add the [Standard Readme badge](https://github.com/RichardLitt/standard-readme#badge).
 
-### PageOpen.js
-#### Bind all three files(OpenPartyInfo, OpenPartyNotices, OpenPartyGuests) and receive the outputs, and save the information on database. 
 
-### PartiesMainFirebase.js
-#### An area with individual party information
+## Definitions
 
-### PartiesTab.js
-#### tab with guests, record, and bill split, which appears on the page of each party
+_These definitions are provided to clarify any terms used above._
 
-### Roulette.js
-#### Where you can play the present roulette
+- **Documentation repositories**: Repositories without any functional code. For instance, [RichardLitt/knowledge](https://github.com/RichardLitt/knowledge).
 
-### Guests.js
-#### Shows each guest with cute blob, and also the coin number
 
-#### Not-yet-implemented features
-##### * Those are not directly related to our main tasks, so we decided to move those aside and concentrate on other parts first. Those features does not influence the main task. We will further implement them, and also after the usability test, we will implement higher-level details
-##### 1. bill-split
-##### 2. changing defaults on mypage
-##### 3. record
-##### 4. home page
-##### 5. about (on the header)
-##### 6. minor details
+
+
+
+
+
+
+
+
+**Bold**
+  - first circle
+    - second circle
+      - third circle
+
+_Italic_
+> Note bar
+
+  ```markdown
+  # Standard Readme Style _(standard-readme)_
+  ```
+
