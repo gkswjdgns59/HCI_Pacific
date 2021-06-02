@@ -6,7 +6,6 @@ import { BrowserRouter, Router, Switch, Link, Route, withRouter } from 'react-ro
 import styled from 'styled-components'
 import { Card, CardActionArea, CardMedia } from '@material-ui/core';
 
-
 const useStyles = makeStyles((theme)=>({
     root: {
         width:'100%',
@@ -26,13 +25,12 @@ const Empty_party = ({ location, match, history }) => {
         //     <div align='center'  >
         //         <img src={empty_party_img} width='100%' ></img>
         //     </div>
-        <Card className={classes.root} elevation={0} >
+        <Card className={classes.root} elevation={0}>
             <CardActionArea onClick={() => {history.push('/open')}}>
                 <CardMedia
+                    component="img"
                     image={empty_party_img}
-                    style={{alignContent:'center', height:115}}
-                >
-                </CardMedia>
+                />
             </CardActionArea>
         </Card>
         // </div>
