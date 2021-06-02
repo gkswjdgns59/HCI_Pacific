@@ -63,6 +63,38 @@ _**React-custom-roulette**_ for roulette implement
 <br/>
 
 
+### PageMypage
+> PageMypage.js
+
+**Role of the page:**
+
+- Set default values of information of homeparty and roulette
+
+**Components**
+- [Header.js](#header)
+- [Mypage.js](#mypage)
+
+**Description**
+- additional information
+
+<br/>
+
+### PageGuestbook
+> PageGuestbook.js
+
+**Role of the page:**
+
+- one-line explanation of the page role
+
+**Components**
+- [Header.js](#header)
+- [Guests.js](#guests)
+
+**Description**
+- additional information
+
+<br/>
+
 
 ## Codes-components
 
@@ -80,7 +112,12 @@ _**React-custom-roulette**_ for roulette implement
 
 ### Header 
 > Header.js
-- additional information
+- Link to Home, Parties, Guest book and Mypage.
+
+### Mypage
+> Mypage.js
+- 
+ 
 
 <br/>
 
