@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import TextField from "@material-ui/core/TextField";
 import { createMuiTheme, withStyles, ThemeProvider } from '@material-ui/core/styles';
+import Auth from './Auth';
 
-// const databaseURL = "https://dp4-test-c4be7-default-rtdb.firebaseio.com/";
 const databaseURL = "https://aster-42bcb-default-rtdb.firebaseio.com/";
 
 
@@ -46,10 +46,11 @@ class OpenPartyInfo extends React.Component {
 
 
     _get() {
-      fetch(`${databaseURL}/Mypage.json`).then(res => {
+      fetch(`${databaseURL}${Auth.auth}/Mypage.json`).then(res => {
       if(res.status != 200) {
       throw new Error(res.statusText);
       }
+      console.log(`${databaseURL}${Auth.auth}/Mypage.json`)
       return res.json();
       }).then(mypage => this.setState({mypage: mypage}));
       }
@@ -66,6 +67,7 @@ class OpenPartyInfo extends React.Component {
       //var location_default = this.state.mypage.location
       //var location_default = "52, Rose street, Daejeon"
       //console.log(location_default)
+      console.log(this.state.mypage)
       info_list[2]=this.state.mypage.location
       const setInfo = this.props.setInfo;
 

@@ -3,7 +3,7 @@ import {Single_guest} from './Single_guest';
 import {Empty_guest} from './Empty_guest';
 import firebase from './Firebase.js'
 import SelectGuestDialog from './SelectGuestDialog'
-
+import Auth from './Auth';
 const Guests = ({partyname}) => {
     const [guests, setGuests] = useState([]);
     const userRef = firebase.database();
@@ -12,13 +12,13 @@ const Guests = ({partyname}) => {
     useEffect(() => {
         if(partyname != null) {
             let tempPartyGuests = [...partyGuests];
-            userRef.ref('/Parties/'+partyname+'/guests').once('value', snapshot => {
+            userRef.ref(Auth.getAuth()+'/Parties/'+partyname+'/guests').once('value', snapshot => {
                 const users = snapshot.val();
                 const guests_name = [];
                 for(let id in users) {
                     guests_name.push( id );
                 }
-                userRef.ref('/Guests').once('value', snapshot => {
+                userRef.ref(Auth.getAuth()+'/Guests').once('value', snapshot => {
                     const users = snapshot.val()
                     const usersData=[];
                     for(let guest_name of guests_name) {
@@ -37,7 +37,7 @@ const Guests = ({partyname}) => {
             })
         }
         else{
-            userRef.ref('/Guests').on('value', snapshot => {
+            userRef.ref(Auth.getAuth()+'/Guests').on('value', snapshot => {
                 const users = snapshot.val();
                 const usersData = [];
                 for(let id in users) {
@@ -63,7 +63,7 @@ const Guests = ({partyname}) => {
         }
         return (
             <div className="col-xs-6 col-sm-4 col-md-3 col-lg-2" key={name} >
-                <Single_guest num={guest[name].blob_num} fill={guest[name].blob_fill} key={name} name={name} showCoin={true} coins={guest[name].coins}/>
+                <Single_guest num={guest[name].blob_num} fill={guest[name].blob_fill} key={name} name={name} showCoin={true} coins={guest[name].coins} party={partyname}/>
             </div>
         )
     })
@@ -71,7 +71,11 @@ const Guests = ({partyname}) => {
     const parentCallback = (object) => {
         let tempPartyGuests = [];
         let tempGuests = [];
-        userRef.ref('/Parties/'+partyname+'/guests').remove()
+        let historyGuests = {};
+        userRef.ref(Auth.getAuth()+'/Parties/'+partyname+'/guests/').once('value',snapshot=>{
+            historyGuests = snapshot.val();
+        },[]);
+        userRef.ref(Auth.getAuth()+'/Parties/'+partyname+'/guests').remove()
         for (let i in object){
             tempPartyGuests.push({
                 key: i,
@@ -79,8 +83,13 @@ const Guests = ({partyname}) => {
             })
             let data = {};
             data[i] = object[i];
-            tempGuests.push(data)
-            userRef.ref('/Parties/'+partyname+'/guests/'+i).set(false);
+            tempGuests.push(data);
+            if (Object.keys(historyGuests).includes(i)){
+                userRef.ref(Auth.getAuth()+'/Parties/'+partyname+'/guests/'+i).set(historyGuests[i]);
+            }else{
+                userRef.ref(Auth.getAuth()+'/Parties/'+partyname+'/guests/'+i).set(false);
+            }
+            
         }
         setPartyGuests(tempPartyGuests);
         setGuests(tempGuests);
@@ -101,10 +110,10 @@ const Guests = ({partyname}) => {
     return(
         <div style={{marginBottom: '7%'}}>
             <div className="row">
-                {put_guests}
                 <div className="col-xs-6 col-sm-4 col-md-3 col-lg-2" align='center' style={{marginTop: "3.5%"}}>
                     {add_guest_version()}
                 </div>
+                {put_guests}
             </div>
         </div>
     )

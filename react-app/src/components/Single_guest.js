@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-
+import Auth from './Auth';
 import firebase from './Firebase.js'
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import { Link } from 'react-router-dom';
@@ -26,29 +26,37 @@ import {ReactComponent as Blob17} from '../blobs/blob-haikei (17).svg';
 import {ReactComponent as Blob18} from '../blobs/blob-haikei (18).svg';
 import {ReactComponent as Blob19} from '../blobs/blob-haikei (19).svg';
 import {ReactComponent as Blob20} from '../blobs/blob-haikei (20).svg';
+import { Box } from '@material-ui/core';
 
 
 
-
-export const Single_guest =({num,fill,showCoin,name,coins}) => {
+export const Single_guest =({num,fill,showCoin,name,coins,party}) => {
     const classes=useStyles();
     const color_Set=['#e6e6fa','#faece6','#e6f3fa','#e7fae6','#faf8e6']
     const userRef = firebase.database();
     const [coin, setCoin] = useState(coins)
+    const [send, setSend] = useState(true)
+
+    useEffect(()=>{
+        userRef.ref(Auth.getAuth()+'/Parties/'+party+'/guests/'+name).on('value',snapshot=>{
+            const isSent = snapshot.val();
+            setSend(isSent);
+        },[]);
+    }, []);
 
     const onPlus = () => {
-        userRef.ref('/Guests/'+name).update({coins: coin+1})
+        userRef.ref(Auth.getAuth()+'/Guests/'+name).update({coins: coin+1})
         setCoin(coin+1)
     }
     const onMinus = () => {
-        userRef.ref('/Guests/'+name).update({coins: coin-1})
+        userRef.ref(Auth.getAuth()+'/Guests/'+name).update({coins: coin-1})
         setCoin(coin-1)
     }
 
     const minusButton = () => {
         if(coin>0){
             return (
-                <span><i className={`${classes.abled} fas fa-minus`} onClick={onMinus} style={{margin:10}}></i></span>
+                <span><i className={`${classes.abled} fas fa-minus`} onClick={onMinus} style={{margin:10, cursor: 'pointer'}}></i></span>
             )
         }
         else {
@@ -57,21 +65,45 @@ export const Single_guest =({num,fill,showCoin,name,coins}) => {
             )
         }
     }
-
+    const isSentText = () => {
+        if (send===true || party===undefined){
+            return(
+                <div style={{height:"42px", display:"block"}}>
+                    {name}
+                </div>
+            )
+        }else{
+            return(
+                <div style={{height:"42px", display:"block"}}>
+                    {name}
+                    <br />
+                    <span style={{color:"#ABABAB"}}>(not sent)</span>
+                </div>
+            )
+        }
+    }
     if(showCoin){
         return(
             <div align='center' style={{paddingTop:'10%'}}>
                 <Link to={`/guests/${name}`} style={{textDecoration:'none'}}>
                     {makeblob(num,color_Set[fill-1])}
                 </Link>
-                <div className={`${classes.root} ${classes.abled}`}>
-                    {name}
+                <div className={`${classes.text} ${classes.abled}`}>
+                    {isSentText()}
                 </div>
                 <Paper className={classes.Paper} style={{boxShadow:'none', border:'1px solid #e2e2e2', paddingBottom:45}}>
-                    <Typography className={`${classes.root} ${classes.coin}`}>
-                            {minusButton()}
-                            <span className={`${classes.abled}`}> <MonetizationOnIcon/>   {coin}</span>
-                            <span className={classes.plus} style={{flexDirection:'row', justifyContent:'flex-end', margin:10}}> <i className={`${classes.abled} fas fa-plus`} onClick={onPlus}></i> </span>
+                    <Typography className={`${classes.root}`}>
+                        <Box display="flex" justifyContent='space-between' alignItems="center" style={{paddingTop:5}}>
+                            <Box>
+                                {minusButton()}
+                            </Box>
+                            <Box>
+                                <span className={`${classes.abled}`}> <MonetizationOnIcon/>   {coin}</span>
+                            </Box>
+                            <Box>
+                                <span className={classes.plus} style={{flexDirection:'row', justifyContent:'flex-end', margin:10, cursor: 'pointer'}}> <i className={`${classes.abled} fas fa-plus`} onClick={onPlus}></i> </span>
+                            </Box>
+                        </Box>
                     </Typography>
                 </Paper>
             </div>
@@ -181,6 +213,14 @@ const useStyles = makeStyles((theme)=>({
         textTransform: 'none',
         // width: 120,
         height: 30,
+        fontWeight: 300,
+        fontFamily: 'Poppins',
+        fontSize: '14px',
+    },
+    text: {
+        textTransform: 'none',
+        // width: 120,
+        height: 44,
         fontWeight: 300,
         fontFamily: 'Poppins',
         fontSize: '14px',

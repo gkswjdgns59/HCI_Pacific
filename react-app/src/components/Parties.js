@@ -13,6 +13,7 @@ import IconButton from '@material-ui/core/IconButton';
 import {  Paper } from '@material-ui/core';
 import Empty_party from './Empty_party';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import Auth from './Auth';
 // const guests_list=[{num:"1",fill:"#222222"},{num:"2",fill:"#555555"},{num:"1",fill:"#aaaaaa"},{num:"3",fill:"#333333"},{num:"1",fill:"#555555"},{num:"2",fill:"#555555"},{num:"2",fill:"#aaaaaa"}]
 // var cnt = 0
 // firebase.database().ref('/Parties/').on('value', snapshot =>{
@@ -121,7 +122,7 @@ export default function Parties() {
 
 
     useEffect(() => {
-        userRef.ref('/Parties').on('value',snapshot=>{
+        userRef.ref(Auth.getAuth()+'/Parties').on('value',snapshot=>{
             var ref = snapshot.val()
             var data=[];
             // var random_guest=[]

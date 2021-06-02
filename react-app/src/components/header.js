@@ -20,7 +20,8 @@ const navbar = {
     fontFamily: "Poppins",
     fontWeight: 300,
     fontSize: 14,
-    borderBottom: "1px black solid"
+    borderBottom: "1px black solid",
+
 }
 
 
@@ -35,7 +36,7 @@ class Header extends Component{
                     </Link>
                 </li>
                 <li className="nav-item">
-                    <Link to="/" style={{textDecoration:'none'}}>
+                    <Link to="/parties" style={{textDecoration:'none'}}>
                         <div style={st}>Parties</div>
                     </Link>
                 </li>
@@ -45,7 +46,7 @@ class Header extends Component{
             </ul>
             <ul className="nav navbar-nav navbar-right">
                 <li className="nav-item">
-                    <a className="nav-link" href="#" style={st}>My Page</a>
+                    <Link to="/mypage" style={{textDecoration:'none'}}><div style={st}>My Page</div></Link>
                 </li>
             </ul>       
         </nav>

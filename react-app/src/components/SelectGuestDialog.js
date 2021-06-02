@@ -25,6 +25,7 @@ import {ReactComponent as Blob18} from '../blobs/blob-haikei (18).svg';
 import {ReactComponent as Blob19} from '../blobs/blob-haikei (19).svg';
 import {ReactComponent as Blob20} from '../blobs/blob-haikei (20).svg';
 import firebase from './Firebase';
+import Auth from './Auth';
 
 export default function SelectGuestDialog(props) {
     const userRef=firebase.database();
@@ -38,7 +39,7 @@ export default function SelectGuestDialog(props) {
     useEffect(()=>{
         let inputObj = {};
         let loadedGuest = [];
-        userRef.ref('/Guests/').once('value',snapshot=>{
+        userRef.ref(Auth.getAuth()+'/Guests/').once('value',snapshot=>{
             const guests = snapshot.val();
             for (let i in guests){
                 inputObj[i] = guests[i];
@@ -162,7 +163,7 @@ export default function SelectGuestDialog(props) {
             const randomBlobFill = Math.floor(Math.random(0)*5+1)
             objectData[newGuest[0]]={'blob_num':randomBlobNum, 'blob_fill':randomBlobFill, 'coins':0, 'number':newGuest[1]};
             setObjectData(objectData);
-            userRef.ref('/Guests/'+ newGuest[0] ).set({'blob_num':randomBlobNum, 'blob_fill':randomBlobFill, 'coins':0, 'number':newGuest[1]});
+            userRef.ref(Auth.getAuth()+'/Guests/'+ newGuest[0] ).set({'blob_num':randomBlobNum, 'blob_fill':randomBlobFill, 'coins':0, 'number':newGuest[1]});
             setChipData(copyData);
             setChecked(copyChecked);
             setListData(copyList);
@@ -220,7 +221,7 @@ export default function SelectGuestDialog(props) {
     return (
     <span>
         <ThemeProvider theme={theme}>
-            <img src='/empty-blob.png' width='60' height='60' onClick={handleClickOpen}></img>
+            <img src='/empty-blob.png' width='60' height='60' onClick={handleClickOpen} style={{cursor:"pointer"}}></img>
             <Dialog open={open} onClose={handleClose} maxWidth={'sm'} fullWidth={true}>
                 <DialogTitle>
                     Select guests from Guest book
