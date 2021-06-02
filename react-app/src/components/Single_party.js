@@ -242,6 +242,18 @@ export const Single_party = (data) => {
     const classes=useStyles();
     const color_Set=['#D4D4FB','#FDDACB','#C3E5F8','#C7E2C6','#FFF9C8']
     const fill_color=color_Set[blobfill-1]
+
+    var badge_guest = 0
+    badge_guest = data.guest_num
+    if (badge_guest===0){
+        badge_guest="0"
+    }
+
+    var party_name=data['partyname']
+    if (data['partyname'].length>12){
+        party_name=party_name.slice(0, 10) + " . ."
+    }
+
     if((data.type == dict['when'] || data.type=='All')&&(data['partyname'].toLowerCase().replace(/\s/g, '').includes(data.searchname.replace(/\s/g, '').toLowerCase()))){
         return (
             <div className="col-xs-6 col-sm-4 col-md-3 col-lg-2" style={{paddingTop:'20px'}}>
@@ -258,8 +270,8 @@ export const Single_party = (data) => {
                                 {dict["when"]}
                             </Typography>
                         <br />
-                            <Typography variant="h5" component="h4"  style={{fontFamily:'Poppins'}}>
-                                {data['partyname']}
+                            <Typography variant="h6" component="h5"  style={{fontFamily:'Poppins'}}>
+                                {party_name}
                             </Typography>
                             
                             <Badge className={classes.badge}
@@ -268,7 +280,8 @@ export const Single_party = (data) => {
                                         vertical: "bottom",
                                         horizontal: "right"
                                         }}
-                                        badgeContent={<SmallAvatar alt={String(data.guest_num)} src="/static/images/avatar/1.jpg" />}
+                                        //badgeContent={<SmallAvatar alt={String(data.guest_num)} src="/static/images/avatar/1.jpg" />}
+                                        badgeContent={badge_guest}                                       
                                     >
                                         <BigAvatar
                                         style={{ backgroundColor: { color } }}
