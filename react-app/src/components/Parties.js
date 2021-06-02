@@ -149,6 +149,7 @@ export default function Parties() {
                 party_info['random_guest']=random_guest
                 data.push(party_info);
             }
+            data.sort((a,b) => (b.compareDate-a.compareDate))
             setList(data)
         })
     },[])
@@ -218,10 +219,10 @@ export default function Parties() {
         </div>
 
         <div className="row">
-            {parties}
             <div className="col-xs-6 col-sm-4 col-md-3 col-lg-2" align='center'>
                 <Empty_party></Empty_party>
             </div>
+            {parties}
         </div>
         </ThemeProvider>
     )
