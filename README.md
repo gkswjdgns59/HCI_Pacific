@@ -71,7 +71,7 @@ _**React-custom-roulette**_ for roulette implement
 
 **Role of the page**
 
-- one-line explanation of the page role
+- Homepage, where you signup or login
 
 **Components**
 - [Auth.js](#auth)
@@ -79,7 +79,7 @@ _**React-custom-roulette**_ for roulette implement
 - [Header.js](#header)
 
 **Description**
-- additional information
+- You can signup and login to your page. It shows our logo and explains our project. 
 
 <br/>
 
@@ -117,14 +117,14 @@ _**React-custom-roulette**_ for roulette implement
 
 **Role of the page**
 
-- one-line explanation of the page role
+- Editing information about the party. 
 
 **Components**
 - [EditPartyInfo.js](#editpartyinfo)
 - [EditPartyNotices.js](#editpartynotices)
 
 **Description**
-- additional information
+- Edit the information if you had made mistakes or typos, 
 
 <br/>
 
@@ -139,7 +139,7 @@ _**React-custom-roulette**_ for roulette implement
 
 **Role of the page**
 
-- one-line explanation of the page role
+- View all parties you have, both previous and upcoming. Click ‘+’ to open a new party. 
 
 **Components**
 - [Parties.js](#parties)
@@ -147,7 +147,7 @@ _**React-custom-roulette**_ for roulette implement
     - [Empty_party.js](#empty_party)
 
 **Description**
-- additional information
+- View the parties with cards containing party name, date/time, number of guests, etc. You can sort by ‘all’, ‘previous’, and ‘upcoming’. Also, you can search party by its name. 
 
 <br/>
 
@@ -161,7 +161,7 @@ _**React-custom-roulette**_ for roulette implement
 
 **Role of the page**
 
-- one-line explanation of the page role
+- Manage each party and party guests. 
 
 **Components**
 - [PartiesMain.js](#partiesmain)
@@ -171,7 +171,7 @@ _**React-custom-roulette**_ for roulette implement
     - [Empty_guest.js](#empty_guest)
 
 **Description**
-- additional information
+- You can go to edit information, add new guests, and send more invitations. Also, click ‘+’ below the guest to give them coins.
 
 <br/>
 
@@ -185,7 +185,7 @@ _**React-custom-roulette**_ for roulette implement
 
 **Role of the page**
 
-- one-line explanation of the page role
+- View all the list of guests you have. Add new guests. 
 
 **Components**
 - [Guests.js](#guests)
@@ -194,7 +194,7 @@ _**React-custom-roulette**_ for roulette implement
     - [Empty_guest.js](#empty_guest)
 
 **Description**
-- additional information
+- It shows all your guests, along with each guest’s coins. You can click onto each guest to manage more. 
 
 <br/>
 
@@ -208,13 +208,13 @@ _**React-custom-roulette**_ for roulette implement
 
 **Role of the page**
 
-- one-line explanation of the page role
+- Managing each guest
 
 **Components**
 - [Roulette.js](#roulette)
 
 **Description**
-- additional information
+- You can play the roulette when the guest has enough coins. The present they won will be tracked on the right. You can also give more coins on this page. 
 
 <br/>
 
@@ -228,13 +228,13 @@ _**React-custom-roulette**_ for roulette implement
 
 **Role of the page**
 
-- one-line explanation of the page role
+- Create your default settings of notices, location, and wishlist
 
 **Components**
 - [Mypage.js](#mypage)
 
 **Description**
-- additional information
+- The presets set here will be shown when opening a new party
 
 <br/>
 <br/>
@@ -245,19 +245,19 @@ _**React-custom-roulette**_ for roulette implement
 
 ### Auth 
 > Auth.js
-- additional information
+- Login of the website
 
 <br/>
 
 ### HomeHeader 
 > HomeHeader.js
-- additional information
+- Header with ‘signup’ and ‘login’
 
 <br/>
 
 ### Header 
 > Header.js
-- additional information
+- Navigator header, where you can go to ‘home’, ‘parties’, ‘guests’, and ‘mypage’.
 
 <br/>
 
@@ -269,98 +269,98 @@ _**React-custom-roulette**_ for roulette implement
 
 ### OpenPartyNotices
 > OpenPartyNotices.js
-- additional information
+- Check/uncheck whether you want to send your wishlist. Check/uncheck your default notices, or edit it. Also you can add new notice. 
 
 <br/>
 
 ### OpenPartyGuests
 > OpenPartyGuests.js
-- additional information
+- Select guests from the guestbook, or add new guests directly to invite to your party. You can also uncheck the pre-selected guests, if you have clicked wrong. 
 
 <br/>
 
 ### EditPartyInfo
 > EditPartyInfo.js
-- additional information
+- Editing area of party date/time, location and memo
 
 <br/>
 
 ###  EditPartyNotices
 > EditPartyNotices.js
-- additional information
+- Editing area of party notices and whether to send wishlist
 
 <br/>
 
 ###  Parties
 > Parties.js
-- additional information
+- Showing all parties you have
 
 <br/>
 
 ###  Single_party
 > Single_guest.js
-- additional information
+- Returns the party card of each party, with party name, date/time, number of guests, preview of guests, and whether it is ‘previous’ or ‘upcoming’ party. 
 
 <br/>
 
 ###  Empty_party
 > Empty_guest.js
-- additional information
+- ‘+’ button to click on to add new party
 
 <br/>
 
 ###  PartiesMain
 > PartiesMain.js
-- additional information
+- Area displaying party information and containing button to edit the information or to send the invitation
 
 <br/>
 
 ###  Guests
 > Guests.js
-- additional information
+- Showing all guests you have
 
 <br/>
 
 ###  SelectGuestDialog
 > SelectGuestDialog.js
-- additional information
+- Popup accordion enabling you to select guests. You can choose from the guestbook by searching and selecting them, or directly adding new guests. 
 
 <br/>
 
 ###  Single_guest
 > Single_guest.js
-- additional information
+- Returns each guest with their blob(shape), name, and coin managing bar. 
 
 <br/>
 
 ###  Empty_guest
 > Empty_guest.js
-- additional information
+- ‘+’ button to click on to add new guest
 
 <br/>
 
 ###  Roulette
 > Roulette.js
-- additional information
+- Roulette component which you can use when exchanging coins to real life gifts. (We will later manage to implement the roulette setting in mypage)
 
 <br/>
 
 ###  Mypage
 > Mypage.js
-- additional information
+- Where you can make your own presets of notices, location, and wishlist (Preset for the roulette will later be implemented)
 
 <br/>
 
 
 ###  Firebase
 > Firebase.js
-- additional information
+- Code used in several files in order to get access to firebase database
 
 <br/>
 
 ###  App
 > App.js
-- additional information
+- Where our page routing code code is
 
 <br/>
 
@@ -370,27 +370,10 @@ _**React-custom-roulette**_ for roulette implement
 
 _Hosting Information_
 
-- **Firebase Hosting**: firebase hosting information
+- **Firebase Hosting**: We used firebase as our database, and used react. Therefore, we used Firebase for hosting
 
 
 
 
-
-
-
-
--------------
-
-**Bold**
-  - first circle
-    - second circle
-      - third circle
-
-_Italic_
-> Note bar
-
-  ```markdown
-  # Standard Readme Style _(standard-readme)_
-  ```
 
 
