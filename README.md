@@ -35,6 +35,8 @@
     - [Single_guest.js](#single_guest)
     - [Empty_guest.js](#empty_guest)
   - [Roulette.js](#roulette)
+  - [Firebase.js](#firebase)
+  - [App.js](#app)
 - [Hosting](#hosting)
 
 ---
@@ -353,6 +355,11 @@ _**React-custom-roulette**_ for roulette implement
 
 <br/>
 
+###  App
+> App.js
+- additional information
+
+<br/>
 
 
 ------------
