@@ -11,7 +11,7 @@ import firebase from './Firebase'
 import Header from './Header'
 import {Typography} from '@material-ui/core';
 import { Link } from 'react-router-dom';
-
+import Auth from './Auth';
 const ColorButton = withStyles((theme) => ({
     root: {
       color: theme.palette.getContrastText('#F3F3FF'),
@@ -78,7 +78,7 @@ const PageOpen = ({history}) => {
 
     //const location_default
     React.useEffect(()=>{
-    userRef.ref('/Mypage/location').on('value',(snapshot) => {
+    userRef.ref(Auth.getAuth()+'/Mypage/location').on('value',(snapshot) => {
 
         location_default = snapshot.val();
         //console.log(location_snapshot)
@@ -101,14 +101,18 @@ const PageOpen = ({history}) => {
             alert('You need to add your party name')
         }
         else{
-            userRef.ref('/Parties/'+info.name).set(info)
+            userRef.ref(Auth.getAuth()+'/Parties/'+info.name).set(info)
             history.replace('/parties/'+info.name)
         }
     }
 
     const sendInvitation = () => {
         var temp = info
-
+        let tempGuests = {};
+        for (let i in info.guests){
+            tempGuests[i] = true;
+        }
+        temp.guests=tempGuests;
         if (temp.location==""){
             console.log(location_default)
             info.location=location_default
@@ -118,8 +122,8 @@ const PageOpen = ({history}) => {
             alert('You need to add your party name')
         }
         else{
-            userRef.ref('/Parties/'+info.name).set(info)
-            alert('successfully Sent')
+            userRef.ref(Auth.getAuth()+'/Parties/'+info.name).set(info)
+            alert('Successfully Sent')
             history.replace('/parties/'+info.name)
         }
     }

@@ -63,7 +63,6 @@ class OpenPartyGuests extends React.Component{
                     <div className="row">
                         <div align='center' style={{paddingTop:'2%', paddingBottom:'2%'}} className="col-xs-6 col-sm-4 col-md-3 col-lg-2" key={0}>
                             <SelectGuestDialog dataFromParent={this.dataSorting()} callbackFromParent={this.parentCallback}/>
-                            {/* edit 위해서 this.state.listData 이 부분 고쳐야 함!! */}
                         </div>
                         {fillGuests(this.state.objectData)}
                     </div>

@@ -3,9 +3,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import firebase from './Firebase.js'
-
-
-const databaseURL = "https://dp4jaeryung-default-rtdb.firebaseio.com/";
+import Auth from './Auth';
 
 const theme = createMuiTheme({
   typography :{
@@ -54,7 +52,7 @@ export default function OpenPartyNotices({info, setInfo}) {
 
   useEffect(()=>{
   
-    userRef.ref('/Mypage/notices').on('value',(snapshot) => {
+    userRef.ref(Auth.getAuth()+'/Mypage/notices').on('value',(snapshot) => {
       var temp_list = [];
       var temp_checked_list=[];
       var temp_info=info;

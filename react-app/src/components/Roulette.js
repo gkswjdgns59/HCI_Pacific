@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Wheel } from 'react-custom-roulette'
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import { Button, Dialog, DialogActions, Divider, TableContainer, Table, TableBody, TableHead, TableRow, TableCell, Hidden, DialogTitle, Typography } from '@material-ui/core';
+import { makeStyles} from '@material-ui/core/styles';
+import { Button, Dialog, DialogActions, Divider, TableContainer, Table, TableBody, TableHead, TableRow, TableCell, DialogTitle, Typography } from '@material-ui/core';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import firebase from './Firebase'
-
+import Auth from './Auth';
 const data = [
     { option: 'free Dinner', style: { backgroundColor: '#E6E6FA', textColor: '#222222'} },
     { option: 'nothing', style: { backgroundColor: '#FAECE6', textColor: '#222222' } },
@@ -13,17 +13,16 @@ const data = [
     { option: 'wish coupon', style: { backgroundColor: '#FAF8E6', textColor: '#222222' } }
 ];
 const cost = 2; //demo value
-const rows=[
-    // {date:'2021.05.24', value:'wish coupon'}
-];
 const useStyles = makeStyles((theme) => ({
     root: {
-        marginTop: 25
+        marginTop: '4%'
     },
     wheel: {
-        position: 'absolute',
-        left: '50%',
-        transform: 'translate(-50%, 0)',
+        margin: 'auto',
+        maxWidth: '445px',
+        minWidth: '445px',
+        minHeight: '445px',
+        maxHeight: '445px',
         overflow: 'hidden'
     },
     Block: {
@@ -35,6 +34,24 @@ const useStyles = makeStyles((theme) => ({
     },
     SpinText: {
         display: 'inline'
+    },
+    divWheel: {
+        minWidth: '445px',
+        maxWidth: '45%',
+        minHeight: '445px',
+        maxHeight: '445px',
+        margin: '2%',
+        overflow: 'hidden'
+    },
+    divList: {
+        minWidth: '445px',
+        maxWidth: '45%',
+        margin: '2%',
+    },
+    divTable: {
+        minHeight: '380px',
+        maxHeight: '380px',
+        overflow: 'hidden scroll',
     }
 
 }));
@@ -48,7 +65,7 @@ export default function Roulette(props) {
     const userRef= firebase.database();
 
     React.useEffect(()=>{
-        userRef.ref('/Guests/'+props.guestname+'/coupons').on('value',snapshot =>{
+        userRef.ref(Auth.getAuth()+'/Guests/'+props.guestname+'/coupons').on('value',snapshot =>{
             var data= snapshot.val();
             var temp=listData;
             for(let coupon in data){
@@ -85,7 +102,7 @@ export default function Roulette(props) {
         const dateString = `${dateNow.getFullYear()}.${dateNow.getMonth()+1}.${dateNow.getDate()}`;
         let copyList = [...listData];
         copyList.unshift({date: dateString, desc: value});
-        userRef.ref('/Guests/'+props.guestname).update({coupons: copyList});
+        userRef.ref(Auth.getAuth()+'/Guests/'+props.guestname).update({coupons: copyList});
         setListData(copyList);
     }
 
@@ -96,12 +113,20 @@ export default function Roulette(props) {
     const handleClose = () => {
         setOpen(false);
     };
-    // console.log(props.dataFromParent)
+
+    const handleSpin = () => {
+        if (props.dataFromParent<2 || mustSpin===true){
+            return(<Button variant="outlined" color="secondary" disabled className={classes.SpinButton}>SPIN</Button>)
+        }else{
+            return(<Button onClick={handleSpinClick} variant="outlined" color="primary" className={classes.SpinButton}>SPIN</Button>)
+        }
+    }
+
     return(
         <ThemeProvider theme={theme}>
         <div className="container" className={classes.root}>
             <div className="row">
-                <div className="col-md-6">
+                <div className="col-md-6" className={classes.divWheel}>
                     <div className={classes.wheel}>
                     <Wheel
                     mustStartSpinning={mustSpin}
@@ -120,14 +145,14 @@ export default function Roulette(props) {
                     />
                     </div>
                 </div>
-                <div className="col-md-6">
+                <div className="col-md-6" className={classes.divList}>
                     <div className={classes.Block}>
                         <Typography className={classes.SpinText}>Use {cost} X Coins to play roulette.
                         You have {props.dataFromParent} coins.
                         </Typography>
-                        <Button onClick={handleSpinClick} variant="outlined" color="primary" className={classes.SpinButton}>SPIN</Button>
+                        {handleSpin()}
                     </div>
-                    <TableContainer>
+                    <TableContainer className={classes.divTable} >
                         <Table>
                             <TableHead>
                                 <TableRow>
@@ -135,7 +160,7 @@ export default function Roulette(props) {
                                     <TableCell>Prize</TableCell>
                                 </TableRow>
                             </TableHead>
-                            <TableBody>
+                            <TableBody >
                                 {listData.map((row)=>(
                                     <TableRow key={row.date+row.desc+String(Math.floor(Math.random()*1000))}>
                                         <TableCell>{row.date}</TableCell>

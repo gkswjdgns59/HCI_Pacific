@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom'
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import firebase from './Firebase.js'
 import Badge from "@material-ui/core/Badge";
-
+import Auth from './Auth';
 import {ReactComponent as Blob1} from '../blobs/blob-haikei (1).svg';
 import {ReactComponent as Blob2} from '../blobs/blob-haikei (2).svg';
 import {ReactComponent as Blob3} from '../blobs/blob-haikei (3).svg';
@@ -213,7 +213,7 @@ export const Single_party = (data) => {
     const [blobnum,setNum]=React.useState(0)
     const [blobfill,setFill]=React.useState(0)
     React.useEffect(()=>{
-        userRef.ref('/Guests/'+random_guest).on('value',snapshot => {
+        userRef.ref(Auth.getAuth()+'/Guests/'+random_guest).on('value',snapshot => {
             var res = snapshot.val()
             if(res!=null){
                 setNum(res.blob_num)

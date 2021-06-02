@@ -6,9 +6,10 @@ import SendOutlinedIcon from '@material-ui/icons/SendOutlined';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
-
+import Auth from './Auth';
+import firebase from './Firebase.js';
 const databaseURL = "https://aster-42bcb-default-rtdb.firebaseio.com/";
-
+const userRef=firebase.database();
 const theme = createMuiTheme({
     typography :{
         fontFamily:"Poppins",
@@ -35,14 +36,15 @@ class PartiesMain extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            parties: {}
+            parties: {},
         };
         //var partyName = this.props.partyName  
         //var partyName = 'HBD Jaeryung'
     }
-    
+    guests = {};
+
     _get() {
-        fetch(`${databaseURL}/Parties/${this.props.partyname}.json`).then(res => {
+        fetch(`${databaseURL}${Auth.auth}/Parties/${this.props.partyname}.json`).then(res => {
         if(res.status != 200) {
         throw new Error(res.statusText);
         }
@@ -56,9 +58,13 @@ class PartiesMain extends React.Component{
         
     componentDidMount() {
         this._get();
+        let tempObj = {};
+        userRef.ref(Auth.getAuth()+'/Parties/'+this.props.partyname+'/guests/').on('value',snapshot=>{
+            const data = snapshot.val();
+            this.guests=data;
+            
+        },[]);
     }
-        
-
         
     render(){
         // return (
@@ -74,7 +80,15 @@ class PartiesMain extends React.Component{
         var partyLocation = this.state.parties.location
         
         var partyMemo = this.state.parties.memo
-
+        const sendInvitation= ()=>{
+            let copyGuests = {}
+            for (let i in this.guests){
+                copyGuests[i] = true;
+            }
+            this.guests = copyGuests;
+            userRef.ref(Auth.getAuth()+'/Parties/'+this.props.partyname+'/guests/').set(copyGuests);
+            alert('Successfully Sent')
+        }
                         
         return(
             <div><ThemeProvider theme={theme}>
@@ -91,7 +105,7 @@ class PartiesMain extends React.Component{
                         <Button  size="large" variant="outlined" color="secondary" onClick={() => { alert('clicked') }}>Edit </Button>
                         </Box>
                         <Box p={1} >
-                        <Button size="large" variant="outlined" color="primary" onClick={() => { alert('clicked') }} > Send   </Button>
+                        <Button size="large" variant="outlined" color="primary" onClick={()=>{sendInvitation()}} > Send   </Button>
                         </Box>
                     </Box>
                     </div>

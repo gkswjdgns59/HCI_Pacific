@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Button, TextField, DialogContent, Dialog, DialogActions, DialogContentText, DialogTitle, Typography } from '@material-ui/core';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import firebase from './Firebase'
-
+import Auth from './Auth';
 const useStyles = makeStyles((theme)=>({
     root: {
         width:120,
@@ -48,7 +48,7 @@ export const Empty_guest = () => {
         data['parties']=null;
         data['blob_fill']=Math.floor(1+Math.random()*5)
         data['blob_num']=Math.floor(1+Math.random()*20)
-        userRef.ref('/Guests/'+name).set(data)
+        userRef.ref(Auth.getAuth()+'/Guests/'+name).set(data)
         setOpen(false);
     };
     const theme = createMuiTheme({
@@ -86,7 +86,7 @@ export const Empty_guest = () => {
     return (
         <span>
             <ThemeProvider theme={theme}>
-                <div align='center' className={classes.root} onClick={handleClickOpen} style={{paddingTop:30}}>
+                <div align='center' className={classes.root} onClick={handleClickOpen} style={{paddingTop:30, cursor:'pointer'}}>
                     <img src='/empty-blob.png' width='80' height='80'></img>
                 </div>
                 <Dialog open={open} onClose={handleClose} maxWidth={'sm'} fullWidth={true}>

@@ -28,7 +28,7 @@ import AddIcon from '@material-ui/icons/Add';
 import firebase from './Firebase'
 import Header from './Header'
 import Roulette from './Roulette.js';
-
+import Auth from './Auth';
 export default function GuestInfo(props){
     const color_Set=['#e6e6fa','#faece6','#e6f3fa','#e7fae6','#faf8e6']
     const classes = useStyles();
@@ -42,7 +42,7 @@ export default function GuestInfo(props){
     // const [phone,setPhone] = React.useState('')
     
     useEffect(()=>{
-        userRef.ref('/Guests/'+name).once('value',snapshot=>{
+        userRef.ref(Auth.getAuth()+'/Guests/'+name).once('value',snapshot=>{
             setData(snapshot.val());
             setCoinData(snapshot.val().coins);
         },[])
@@ -137,13 +137,20 @@ export default function GuestInfo(props){
     const handleCoin = (value) =>{
         const coinUpdate = coinData+value;
         setCoinData(coinUpdate);
-        userRef.ref('/Guests/'+name).update({coins: coinUpdate});
+        userRef.ref(Auth.getAuth()+'/Guests/'+name).update({coins: coinUpdate});
     }
 
     const parentCallback = (dataFromChild) => {
         const coinUpdate = coinData-dataFromChild;
         setCoinData(coinUpdate);
-        userRef.ref('/Guests/'+name).update({coins: coinUpdate});
+        userRef.ref(Auth.getAuth()+'/Guests/'+name).update({coins: coinUpdate});
+    }
+    const RemoveHandler= () => {
+        if (coinData<1){
+            return(<RemoveIcon className={classes.CoinDisabled}/>)
+        }else{
+            return(<RemoveIcon className={classes.CoinAbled} onClick={()=>handleCoin(-1)}/>)
+        }
     }
     return (
         <div>
@@ -162,11 +169,11 @@ export default function GuestInfo(props){
                     <div className="col-md-3">
                         <Card variant="outlined" className={classes.Coin}>
                             <div className={classes.Buttons}>
-                                <RemoveIcon className={classes.CoinIcon} button onClick={()=>handleCoin(-1)}/>
+                                {RemoveHandler()}
                                 <Typography className={classes.CoinText}>
                                     Coin X {coinData}
                                 </Typography>
-                                <AddIcon className={classes.CoinIcon} button onClick={()=>handleCoin(1)} />
+                                <AddIcon className={classes.CoinIcon} onClick={()=>handleCoin(1)} />
                             </div>
                         </Card>
                     </div>
@@ -180,6 +187,9 @@ export default function GuestInfo(props){
         </div>
     )
 }
+
+
+
 const useStyles = makeStyles((theme) => ({
     Blob: {
         width:150,
@@ -221,14 +231,23 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: '20%',
         marginRight: '20%'
     },
-    CoinIcon: {
-        display: 'inline'
+    CoinAbled: {
+        display: 'inline',
+        color: '#222222',
+        cursor: "pointer"
+    },
+    CoinDisabled: {
+        display: 'inline',
+        color: '#ABABAB'
     },
     Buttons:{
         textAlign: 'center'
     },
     Container:{
         borderBottom: '1px solid #EAEAEA'
+    },
+    CoinIcon:{
+        cursor: "pointer"
     }
   }));
 
