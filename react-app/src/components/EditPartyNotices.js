@@ -17,7 +17,11 @@ const theme = createMuiTheme({
   palette :{
       primary: {
           main: "#A9A9FF"
-      }
+      },
+      secondary:{
+        main: "#ABABAB"
+    }
+      
   },
   status: {
         use: '#A9A9FF',
@@ -45,21 +49,25 @@ var wishlist_check=true
 var notice_check=[]
 
 var usersData=[]
-export default function OpenPartyNotices({info, setInfo}) {
+export default function EditPartyNotices({info, setInfo, partyname}) {
   const [list, setList] = useState([]);
   const [checked,setChecked] = useState([]);
   const userRef = firebase.database();
 
   var noticeList=[]
-
+  //console.log(partyname, 'notice')
+  var firebase_partyname=partyname
   useEffect(()=>{
   
-    userRef.ref('/Mypage/notices').on('value',(snapshot) => {
+    userRef.ref('/Parties/').on('value',(snapshot) => {
+      //console.log(firebase_partyname,'들어갓나')
       var temp_list = [];
       var temp_checked_list=[];
       var temp_info=info;
       var temp={};
-      const notices = snapshot.val();
+      const notices_2 = snapshot.val();
+      //console.log(notices_2[firebase_partyname].notices)
+      var notices=notices_2[firebase_partyname].notices
       for(let id in notices) {
         temp_list.push(notices[id]);
         temp_checked_list.push(true);
@@ -155,7 +163,6 @@ export default function OpenPartyNotices({info, setInfo}) {
     
     var ind=-1;
     var len = notices.length
-    //console.log(len)
     return notices.map(notice => {
       ind=ind+1;
       if (notice!=""){

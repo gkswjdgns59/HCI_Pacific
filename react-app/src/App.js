@@ -4,6 +4,7 @@ import { BrowserRouter, Route } from 'react-router-dom'
 
 import PageParties from './components/PageParties'
 import PageOpen from './components/PageOpen'
+import PageEdit from './components/PageEdit'
 import PageParty from './components/PageParty'
 import PageGuestInfo from './components/PageGuestInfo'
 import PageGuestbook from './components/PageGuestbook';
@@ -18,10 +19,11 @@ class App extends Component{
           <div className="row">
               <div className="col-xs-1 col-md-2"></div>
               <div className="col-xs-10 col-md-8"></div>
-              {/*<Mypage></Mypage>*/} 
+              {/*<Mypage></Mypage>*/}                  
                 <BrowserRouter>
                   <Route exact path="/" component={PageParties}/>
                   <Route exact path="/open" component={PageOpen}/>
+                  <Route exact path="/parties/:partyname/edit" component={PageEdit}/>
                   <Route exact path="/parties/:partyname" component={PageParty}/>
                   <Route exact path="/guests/:guestname" component={PageGuestInfo}/>
                   <Route exact path="/guestbook" component={PageGuestbook}/>
