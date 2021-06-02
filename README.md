@@ -143,7 +143,7 @@ _**React-custom-roulette**_ for roulette implement
 - [Parties.js](#parties)
     - [Single_party.js](#single_party)
     - [Empty_party.js](#empty_party)
-    - 
+
 **Description**
 - additional information
 
