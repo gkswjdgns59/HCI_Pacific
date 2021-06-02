@@ -71,7 +71,7 @@ _**React-custom-roulette**_ for roulette implement
 
 **Role of the page**
 
-- Homepage, where you signup or login
+- Homepage, where you signup or login.
 
 **Components**
 - [Auth.js](#auth)
@@ -93,7 +93,7 @@ _**React-custom-roulette**_ for roulette implement
 
 **Role of the page**
 
-- Opening party by typing in information and sending invitations to selected guests. 
+- Opening party by typing in information and sending invitations to selected guests.
 
 **Components**
 - [OpenPartyInfo.js](#openpartyinfo)
@@ -117,14 +117,14 @@ _**React-custom-roulette**_ for roulette implement
 
 **Role of the page**
 
-- Editing information about the party. 
+- Editing information about the party.
 
 **Components**
 - [EditPartyInfo.js](#editpartyinfo)
 - [EditPartyNotices.js](#editpartynotices)
 
 **Description**
-- Edit the information if you had made mistakes or typos, 
+- Edit the information if you had made mistakes or typos.
 
 <br/>
 
@@ -208,13 +208,13 @@ _**React-custom-roulette**_ for roulette implement
 
 **Role of the page**
 
-- Managing each guest
+- Managing each guest.
 
 **Components**
 - [Roulette.js](#roulette)
 
 **Description**
-- You can play the roulette when the guest has enough coins. The present they won will be tracked on the right. You can also give more coins on this page. 
+- You can play the roulette when the guest has enough coins. The present they won will be tracked on the right. You can also manage their coins on the bar below the guest. 
 
 <br/>
 
@@ -228,13 +228,13 @@ _**React-custom-roulette**_ for roulette implement
 
 **Role of the page**
 
-- Create your default settings of notices, location, and wishlist
+- Create your default settings of notices, location, and wishlist.
 
 **Components**
 - [Mypage.js](#mypage)
 
 **Description**
-- The presets set here will be shown when opening a new party
+- The presets set here will be shown when opening a new party.
 
 <br/>
 <br/>
@@ -246,6 +246,7 @@ _**React-custom-roulette**_ for roulette implement
 ### Auth 
 > Auth.js
 - Login of the website
+- (Logout not yet implemented)
 
 <br/>
 
@@ -257,25 +258,30 @@ _**React-custom-roulette**_ for roulette implement
 
 ### Header 
 > Header.js
-- Navigator header, where you can go to ‘home’, ‘parties’, ‘guests’, and ‘mypage’.
+- Navigator header, where you can go to ‘home’, ‘parties’, ‘guests’, and ‘mypage’
+- It is on every page, exept for the homepage before login
 
 <br/>
 
 ### OpenPartyInfo
 > OpenPartyInfo.js
-- Type in your party name, date/time, location, and memo. You can also pick date/time from date-time picker on the right. 
+- Type in your party name, date/time, location, and memo
+- You can also pick date/time from date-time picker on the right
 
 <br/>
 
 ### OpenPartyNotices
 > OpenPartyNotices.js
-- Check/uncheck whether you want to send your wishlist. Check/uncheck your default notices, or edit it. Also you can add new notice. 
+- Check/uncheck whether you want to send your wishlist
+- Check/uncheck your default notices, or edit it
+- Also you can add new notice 
 
 <br/>
 
 ### OpenPartyGuests
 > OpenPartyGuests.js
-- Select guests from the guestbook, or add new guests directly to invite to your party. You can also uncheck the pre-selected guests, if you have clicked wrong. 
+- Select guests from the guestbook, or add new guests directly to invite to your party
+- You can also uncheck the pre-selected guests, if you have clicked wrong
 
 <br/>
 
@@ -299,7 +305,7 @@ _**React-custom-roulette**_ for roulette implement
 
 ###  Single_party
 > Single_guest.js
-- Returns the party card of each party, with party name, date/time, number of guests, preview of guests, and whether it is ‘previous’ or ‘upcoming’ party. 
+- Returns the party card of each party, with party name, date/time, number of guests, preview of guests, and whether it is ‘previous’ or ‘upcoming’ party
 
 <br/>
 
@@ -323,13 +329,14 @@ _**React-custom-roulette**_ for roulette implement
 
 ###  SelectGuestDialog
 > SelectGuestDialog.js
-- Popup accordion enabling you to select guests. You can choose from the guestbook by searching and selecting them, or directly adding new guests. 
+- Popup accordion enabling you to select guests
+- You can choose from the guestbook by searching and selecting them, or directly adding new guests
 
 <br/>
 
 ###  Single_guest
 > Single_guest.js
-- Returns each guest with their blob(shape), name, and coin managing bar. 
+- Returns each guest with their blob(shape), name, and coin managing bar
 
 <br/>
 
@@ -341,7 +348,8 @@ _**React-custom-roulette**_ for roulette implement
 
 ###  Roulette
 > Roulette.js
-- Roulette component which you can use when exchanging coins to real life gifts. (We will later manage to implement the roulette setting in mypage)
+- Roulette component which you can use when exchanging coins to real life gifts
+- (We will later manage to implement the roulette setting in mypage)
 
 <br/>
 
@@ -370,7 +378,7 @@ _**React-custom-roulette**_ for roulette implement
 
 _Hosting Information_
 
-- **Firebase Hosting**: We used firebase as our database, and used react. Therefore, we used Firebase for hosting
+- **Firebase Hosting**: We used firebase and react. Therefore, we managed to uese Firebase for hosting
 
 
 
