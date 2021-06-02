@@ -3,6 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import {Input} from "@material-ui/core"
 import { createMuiTheme, withStyles, ThemeProvider } from '@material-ui/core/styles';
 import firebase from './Firebase.js'
+import Auth from './Auth'
 // const databaseURL = "https://dp4-test-c4be7-default-rtdb.firebaseio.com/";
 const databaseURL = "https://aster-42bcb-default-rtdb.firebaseio.com/";
 
@@ -50,7 +51,7 @@ class EditPartyInfo extends React.Component {
 
 
     _get() {
-      fetch(`${databaseURL}/Parties/${this.props.partyname}.json`).then(res => {
+      fetch(`${databaseURL}/${Auth.auth}/Parties/${this.props.partyname}.json`).then(res => {
       if(res.status != 200) {
       throw new Error(res.statusText);
       }

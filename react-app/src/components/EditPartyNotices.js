@@ -3,7 +3,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import firebase from './Firebase.js'
-
+import Auth from './Auth'
 
 const databaseURL = "https://aster-42bcb-default-rtdb.firebaseio.com/";
 
@@ -59,7 +59,7 @@ export default function EditPartyNotices({info, setInfo, partyname}) {
   var firebase_partyname=partyname
   useEffect(()=>{
   
-    userRef.ref('/Parties/').on('value',(snapshot) => {
+    userRef.ref(Auth.getAuth()+'/Parties/').on('value',(snapshot) => {
       //console.log(firebase_partyname,'들어갓나')
       var temp_list = [];
       var temp_checked_list=[];

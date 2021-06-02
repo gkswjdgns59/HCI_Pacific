@@ -12,7 +12,7 @@ import firebase from './Firebase'
 import {Typography} from '@material-ui/core';
 // import { Link } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-
+import Auth from './Auth'
 
 
 //   const theme = createMuiTheme({
@@ -161,7 +161,7 @@ export default function PageEdit(props){
   var memo_props=""
   useEffect(()=>{
   
-    userRef.ref('/Parties/'+name+'/').on('value',(snapshot) => {
+    userRef.ref(Auth.getAuth()+'/Parties/'+name+'/').on('value',(snapshot) => {
       
       const party_info = snapshot.val();
       //console.log(party_info, 'snaphot')
@@ -226,18 +226,18 @@ const useStyles = makeStyles((theme) => ({
         //     userRef.ref('/Parties/'+info.name).set(info)
         //     //history.replace('/parties/'+info.name)
         // }
-        userRef.ref('/Parties/'+name+'/notices').set(info.notices)
+        userRef.ref(Auth.getAuth()+'/Parties/'+name+'/notices').set(info.notices)
         if((info.dateTime!==(undefined)) && (info.dateTime!==(""))){
             //console.log('/Parties/'+name+'/dateTime', '주소')
-            userRef.ref('/Parties/'+name+'/dateTime').set(info.dateTime)
+            userRef.ref(Auth.getAuth()+'/Parties/'+name+'/dateTime').set(info.dateTime)
         }
         if((info.location!==(undefined)) && (info.location!==(""))){
-            userRef.ref('/Parties/'+name+'/location').set(info.location)
+            userRef.ref(Auth.getAuth()+'/Parties/'+name+'/location').set(info.location)
         }
         if((info.memo!==(undefined)) && (info.memo!==(""))){
-            userRef.ref('/Parties/'+name+'/memo').set(info.memo)
+            userRef.ref(Auth.getAuth()+'/Parties/'+name+'/memo').set(info.memo)
         }
-        userRef.ref('/Parties/'+name+'/notices').set(info.notices)
+        userRef.ref(Auth.getAuth()+'/Parties/'+name+'/notices').set(info.notices)
         //console.log(info.notices)
         //history.replace('/parties/'+info.name)
         

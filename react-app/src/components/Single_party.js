@@ -262,7 +262,7 @@ export const Single_party = (data) => {
     }
 
     const deleteParty= () => {
-        userRef.ref('/Parties/'+data['partyname']).remove()
+        userRef.ref(Auth.getAuth()+'/Parties/'+data['partyname']).remove()
         setAnchorEl(null);
     }
 
@@ -327,7 +327,7 @@ export const Single_party = (data) => {
                         </Card>
                     </CardActionArea>
                 </Link>
-                <IconButton aria-label="settings" style={{position:'absolute', right:'2%', top:'2%'}} onClick={handleClick}>
+                <IconButton aria-label="settings" style={{position:'absolute', right:'2%', top:'10%'}} onClick={handleClick}>
                     <MoreVertIcon />
                 </IconButton>
                 <Menu
