@@ -388,7 +388,7 @@ _**React-custom-roulette**_ for roulette implement
 
 _Hosting Information_
 
-- **Firebase Hosting**: We used firebase and react. Therefore, we managed to uese Firebase for hosting
+- **Firebase Hosting**: We used firebase and react. Therefore, we managed to ues Firebase for hosting
 
 
 
