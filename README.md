@@ -141,7 +141,9 @@ _**React-custom-roulette**_ for roulette implement
 
 **Components**
 - [Parties.js](#parties)
-
+    - [Single_party.js](#single_party)
+    - [Empty_party.js](#empty_party)
+    - 
 **Description**
 - additional information
 
@@ -162,6 +164,9 @@ _**React-custom-roulette**_ for roulette implement
 **Components**
 - [PartiesMain.js](#partiesmain)
 - [Guests.js](#guests)
+    - [SelectGuestDialog.js](#selectguestdialog)
+    - [Single_guest.js](#single_guest)
+    - [Empty_guest.js](#empty_guest)
 
 **Description**
 - additional information
