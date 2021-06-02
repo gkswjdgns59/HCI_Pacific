@@ -93,7 +93,7 @@ _**React-custom-roulette**_ for roulette implement
 
 **Role of the page**
 
-- one-line explanation of the page role
+- Opening party by typing in information and sending invitations to selected guests. 
 
 **Components**
 - [OpenPartyInfo.js](#openpartyinfo)
@@ -103,7 +103,7 @@ _**React-custom-roulette**_ for roulette implement
     - [Single_guest.js](#single_guest)
 
 **Description**
-- additional information
+- Set your party name, date/time, location and additional information, and select your guests. You can ‘Open Only’ or ‘Open and Send’ to your friends. 
 
 <br/>
 
@@ -263,7 +263,7 @@ _**React-custom-roulette**_ for roulette implement
 
 ### OpenPartyInfo
 > OpenPartyInfo.js
-- additional information
+- Type in your party name, date/time, location, and memo. You can also pick date/time from date-time picker on the right. 
 
 <br/>
 
@@ -392,4 +392,5 @@ _Italic_
   ```markdown
   # Standard Readme Style _(standard-readme)_
   ```
+
 
