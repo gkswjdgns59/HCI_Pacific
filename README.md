@@ -69,7 +69,7 @@ _**React-custom-roulette**_ for roulette implement
   width="650" >
 </p>
 
-**Role of the page:**
+**Role of the page**
 
 - one-line explanation of the page role
 
@@ -91,7 +91,7 @@ _**React-custom-roulette**_ for roulette implement
   width="650" >
 </p>
 
-**Role of the page:**
+**Role of the page**
 
 - one-line explanation of the page role
 
@@ -115,7 +115,7 @@ _**React-custom-roulette**_ for roulette implement
   width="650" >
 </p>
 
-**Role of the page:**
+**Role of the page**
 
 - one-line explanation of the page role
 
@@ -137,7 +137,7 @@ _**React-custom-roulette**_ for roulette implement
   width="650" >
 </p>
 
-**Role of the page:**
+**Role of the page**
 
 - one-line explanation of the page role
 
@@ -159,7 +159,7 @@ _**React-custom-roulette**_ for roulette implement
   width="650" >
 </p>
 
-**Role of the page:**
+**Role of the page**
 
 - one-line explanation of the page role
 
@@ -183,7 +183,7 @@ _**React-custom-roulette**_ for roulette implement
   width="650" >
 </p>
 
-**Role of the page:**
+**Role of the page**
 
 - one-line explanation of the page role
 
@@ -203,7 +203,7 @@ _**React-custom-roulette**_ for roulette implement
   width="650" >
 </p>
 
-**Role of the page:**
+**Role of the page**
 
 - one-line explanation of the page role
 
@@ -223,7 +223,7 @@ _**React-custom-roulette**_ for roulette implement
   width="650" >
 </p>
 
-**Role of the page:**
+**Role of the page**
 
 - one-line explanation of the page role
 
