@@ -316,13 +316,13 @@ _**React-custom-roulette**_ for roulette implement
 <br/>
 
 ###  Single_party
-> Single_guest.js
+> Single_party.js
 - Returns the party card of each party, with party name, date/time, number of guests, preview of guests, and whether it is ‘previous’ or ‘upcoming’ party
 
 <br/>
 
 ###  Empty_party
-> Empty_guest.js
+> Empty_party.js
 - ‘+’ button to click on to add new party
 
 <br/>
