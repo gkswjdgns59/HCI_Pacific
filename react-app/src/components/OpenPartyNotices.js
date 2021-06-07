@@ -4,6 +4,7 @@ import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/sty
 import Input from '@material-ui/core/Input';
 import firebase from './Firebase.js'
 import Auth from './Auth';
+import { TextField } from '@material-ui/core';
 
 
 const databaseURL = "https://aster-42bcb-default-rtdb.firebaseio.com/";
@@ -187,15 +188,22 @@ export default function OpenPartyNotices({info, setInfo}) {
                   <CustomCheckbox_checked id_num={ind} key={String(ind)}/>
               </div>
               <div className="col-md-11">
-              <Input 
+              <div>
+              <TextField 
                   id_num={ind}
-                  placeholder="Click to add more..."  
+                  placeholder="Ex)
+                  1. Dresscode: Red
+                  2. Menu: Chicken
+                  "  
                   fullWidth
+                  multiline
+                  row={4}
                   onChange={onChangeInput(ind)}
                   style={{fontFamily: 'Poppins', fontSize:14, marginBottom: 15}}
                   marginbottom={20}
-                  inputProps={{style: {fontSize: 14,  fontFamily: 'Poppins' , color:'#ADADAD'},}}
+                  inputProps={{style: {fontSize: 14,  fontFamily: 'Poppins' , color:'#ADADAD', lineHeight:'150%'},}}
               />
+              </div>
               </div>
           </div>
         )
