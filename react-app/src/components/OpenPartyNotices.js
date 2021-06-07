@@ -193,7 +193,7 @@ export default function OpenPartyNotices({info, setInfo}) {
                   id_num={ind}
                   placeholder="Ex)
                   1. Dresscode: Red
-                  2. Menu: Chicken
+                  2. Menu: Fried Chicken
                   "  
                   fullWidth
                   multiline
@@ -232,13 +232,8 @@ export default function OpenPartyNotices({info, setInfo}) {
          
         </div>
 
-
-
-
-
         </div>
       <p></p>
     </ThemeProvider>
   );
 }
-
