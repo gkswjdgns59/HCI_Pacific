@@ -5,8 +5,12 @@ class Auth{
         return `/${this.auth}`;
     }
     static login(id){
-        sessionStorage.setItem('id', id);
+        localStorage.setItem('id', id);
         this.auth = id;
+    }
+    static logout(){
+        localStorage.clear()
+        this.auth='';
     }
 }
 

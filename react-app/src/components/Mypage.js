@@ -13,7 +13,7 @@ const styles = {
 const theme = createMuiTheme({
   typography :{
       fontFamily:"Poppins",
-      fontSize: 16,
+      fontSize: 20,
       fontWeight:300,
       color: "#222222"
   },
@@ -31,200 +31,147 @@ const theme = createMuiTheme({
       },
 })
 
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     color: theme.status.use,
-//     '&$checked': {
-//       color: theme.status.use,
-//       fontSize: 200
-//     },
-//     fontSize: 200
-//   },
-//   checked: {
-//     fontSize: 200 
-//   },
-// }));
+const useStyles = makeStyles((theme) => ({
+  root: {
+    color: 'primary',
+    '&$checked': {
+      color: 'primary',
+      fontSize: 14
+    },
+    fontSize: 14
+  },
+}));
 
 
 
 // var init_location = ""
-var init_notice = []
-var init_wishlist = []
-var upnotice = []
 var uplocation = ""
 var upwishlist = []
 
-var x = 0
-var y = 0
 export const Mypage = () => {
-  let updatenotice = []
-  const [notice, setNotice] = React.useState([]);
-  const [temp, setTemp] = React.useState([]);
+  const [notice, setNotice] = React.useState({});
   const [location, setLocation] = React.useState([])
-  let updatewishlist = []
-  const [wishlist, setWishlist] = React.useState([]);
-  const [tempw, setTempw] = React.useState([]);
+
+  const [data,setData] = React.useState({})
+  const userRef=firebase.database();
+  const classes = useStyles();
+  
   React.useEffect(()=>{
     firebase.database().ref(Auth.getAuth()+'/Mypage/location').once('value',(snapshot) => {
       setLocation([snapshot.val()])
       uplocation = snapshot.val()
     })
-    firebase.database().ref(Auth.getAuth()+'/Mypage/notices').once('value').then((snapshot)=>{
-      init_notice=[]
-      for(let obj in snapshot.val()){
-        var defval = String(snapshot.val()[obj]);
-        if(defval!==""){
-          init_notice.push(defval)
-        }
+    userRef.ref(Auth.getAuth()+'/Mypage/notices').on('value', snapshot=>{
+      var res=snapshot.val();
+      var temp={}
+      var last=-1;
+      for(let key in res){
+        var temp_form={}
+        temp_form['name']=res[key];
+        temp_form['key']=key
+        temp[key]=temp_form
+        last=key;
       }
-      init_notice.push("")
-      setNotice(init_notice)
-      upnotice = init_notice
-      console.log("ㅊ어ㅡㅁ", upnotice)
-    })
-    firebase.database().ref(Auth.getAuth()+'/Mypage/wishlist').once('value').then((snapshot)=>{
-      init_wishlist=[]
-      for(let obj in snapshot.val()){
-        var defval = String(snapshot.val()[obj]);
-        if(defval!==""){
-          init_wishlist.push(defval)
-        }
-      }
-      init_wishlist.push("")
-      setWishlist(init_wishlist)
-      upwishlist = init_wishlist
+      var temp_data={}
+      temp_data['name']=''
+      temp_data['key']=parseInt(last)+1
+      temp[parseInt(last)+1]=temp_data
+      setData(temp)
     })
   },[])
 
-  const handleNotice = (event) => {
-    const inputText = event.target.value.trim();
-    if(x===0){
-      console.log(x)
-      let copyList = [...notice]
-      if (inputText.length>0){
-        copyList[parseInt(event.target.name)]=inputText;
-        if (copyList[copyList.length-1]!==""){
-          copyList.push("");
+  const onFilledChange = (event, key) => {
+    var temp={};
+    var last;
+    last=-1;
+    for(let notice in data){
+        temp[notice]=data[notice]
+        if(notice==key){
+            temp[notice].name=event.target.value
         }
-        setNotice(copyList);
-        upnotice = copyList
-      }else if (inputText.length===0){
-        setNotice([]);
-        copyList.splice(parseInt(event.target.name), 1);
-        setTemp(copyList);
-        upnotice = copyList
-        // updatenotice = copyList
-        // for(var i=0;i<updatenotice.length;i++){
-        //   firebase.database().ref(Auth.getAuth()+'/Mypage/notices').update({[i] : updatenotice[i]})
-        // }
-        x = 1
-      }
-    }else if(x===1){
-      console.log(x)
-      let copyList = [...temp]
-      if (inputText.length>0){
-        copyList[parseInt(event.target.name)]=inputText;
-        if (copyList[copyList.length-1]!==""){
-          copyList.push("");
+        last=notice;
+    }
+    if(temp[last].name!=''){
+        var temp_data={}
+        temp_data['name']=''
+        temp_data['key']=parseInt(last)+1
+        temp[parseInt(last)+1]=temp_data
+    }
+    setData(temp)
+}
+
+const onFilledBlur = (event,key) => {
+    var cnt=0;
+    var last;
+    for(let obj in data){
+        cnt=cnt+1;
+    }
+    if(event.target.value==='' && cnt>1){
+        var temp={}
+        for(let notice in data){
+            if(notice==key){
+                continue
+            }
+            else{
+                temp[notice]=data[notice]
+                last=notice;
+            }
         }
-        setTemp(copyList);
-        upnotice = copyList
-      }else if (inputText.length===0){
-        setTemp([]);
-        copyList.splice(parseInt(event.target.name), 1);
-        setNotice(copyList);
-        upnotice = copyList
-        // updatenotice = copyList
-        // for(var i=0;i<updatenotice.length;i++){
-        //   firebase.database().ref(Auth.getAuth()+'/Mypage/notices').update({[i] : updatenotice[i]})
-        // }
-        // const idx = event.target.name
-        // firebase.database().ref('Mypage/notices'+idx).set(null)
-        x = 0
-      }
+        if(temp[last].name!=''){
+            var temp_data={}
+            temp_data['name']=''
+            temp_data['key']=parseInt(last)+1
+            temp[parseInt(last)+1]=temp_data
+        }
+        setData(temp)
     }
   }
 
-  // const onblurnotice = (event) => {
-  //   const idx = event.target.name
-  //   const inputText = event.target.value.trim();
-  //   firebase.database().ref(Auth.getAuth()+'/Mypage/notices').update({[idx] : inputText})
-  // }
+  const filled_input_helper = (notice) => {
+      return(
+          <ThemeProvider theme={theme}>
+            <Input 
+            placeholder='Type in your Notices and Wishes'
+            value={notice.name}
+            fullWidth
+            style={{ margin: 8, fontFamily: 'Poppins'}}
+            onChange = {event => onFilledChange(event,notice.key)}
+            onBlur = {event => onFilledBlur(event,notice.key)}
+            className={classes.root}
+            />
+          </ThemeProvider>
+      )
+  }
+
+  const filled_input = () => {
+      var res = [];
+      for(let notice in data){
+          res.push(filled_input_helper(data[notice]))
+      }
+      return res;
+  }
 
   const onblurLocation = (event) => {
     const inputText = event.target.value.trim();
     uplocation = inputText
-    console.log("up uplocation", uplocation)
   }
 
-  
-  const handleWishlist = (event) => {
-    const inputText = event.target.value.trim();
-    if(y===0){
-      let copyList = [...wishlist]
-      if (inputText.length>0){
-        copyList[parseInt(event.target.name)]=inputText;
-        if (copyList[copyList.length-1]!==""){
-          copyList.push("");
-        }
-        setWishlist(copyList);
-        upwishlist = copyList
-      }else if (inputText.length===0){
-        setWishlist([]);
-        copyList.splice(parseInt(event.target.name), 1);
-        setTempw(copyList);
-        upwishlist = copyList
-        // updatewishlist = copyList
-        // for(var i=0;i<updatewishlist.length;i++){
-        //   firebase.database().ref(Auth.getAuth()+'/Mypage/wishlist').update({[i] : updatewishlist[i]})
-        // }
-        y = 1
-      }
-    }else if(y===1){
-      let copyList = [...tempw]
-      if (inputText.length>0){
-        copyList[parseInt(event.target.name)]=inputText;
-        if (copyList[copyList.length-1]!==""){
-          copyList.push("");
-        }
-        setTempw(copyList);
-        upwishlist = copyList
-      }else if (inputText.length===0){
-        setTempw([]);
-        copyList.splice(parseInt(event.target.name), 1);
-        setWishlist(copyList);
-        upwishlist = copyList
-        // updatewishlist = copyList
-        // for(var i=0;i<updatewishlist.length;i++){
-        //   firebase.database().ref(Auth.getAuth()+'/Mypage/wishlist').update({[i] : updatewishlist[i]})
-        // }
-        y = 0
-      }
-    }
-  }
   const save = () =>{
-    firebase.database().ref(Auth.getAuth()+'/Mypage/').update({"notices": null})
-    firebase.database().ref(Auth.getAuth()+'/Mypage/').update({"wishlist": null})
-    console.log("upnotice", upnotice)
-    console.log("uplocation", uplocation)
-    console.log("upwsihlist", upwishlist)
-    for(var i=0;i<upnotice.length;i++){
-        firebase.database().ref(Auth.getAuth()+'/Mypage/notices').update({[i] : upnotice[i]})
+    userRef.ref(Auth.getAuth()+'/Mypage/location').set(uplocation)
+    var temp=data;
+    var last=0;
+    for(let obj in data){
+      last=obj
     }
-    firebase.database().ref(Auth.getAuth()+'/Mypage/').update({
-      location: uplocation
-    })
-    for(var i=0;i<upwishlist.length;i++){
-      firebase.database().ref(Auth.getAuth()+'/Mypage/wishlist').update({[i] : upwishlist[i]})
+    delete temp[last]
+    var modified_data={};
+    for(let key in temp){
+      modified_data[key]=temp[key].name
     }
+    userRef.ref(Auth.getAuth()+'/Mypage/notices').set(modified_data)
     alert('Successfully Saved')
   }
-  // const onblurwishlist = (event) => {
-  //   const idx = event.target.name
-  //   const inputText = event.target.value.trim();
-  //   firebase.database().ref(Auth.getAuth()+'/Mypage/wishlist').update({[idx] : inputText})
-  // }
-  // const classes = useStyles();
+
     return  (
       <ThemeProvider theme={theme}>
       <div>
@@ -263,89 +210,7 @@ export const Mypage = () => {
           <h2
             style={{fontFamily: 'Poppins', fontSize: 16, color:'#383838'}}
             ><b>Notices and Wishes</b></h2>
-          <List>
-            {notice.map((guest, index)=>(
-              <TextField 
-              className="custom-input"
-              id="standard-basic"
-              name={String(index)}
-              style={{ margin: 8, fontFamily: 'Poppins'}}
-              placeholder="Type in your Notices and Wishes"
-              defaultValue={guest}
-              fullWidth
-              size='large'
-              //margin="normal"
-              onChange={handleNotice}
-              // onBlur={onblurnotice}
-              inputProps={{style: {fontSize: 14}, fontFamily: 'Poppins'}}
-              InputLabelProps={{style: {fontSize: 14}, shrink: true, fontFamily: 'Poppins'}}
-              color="#D6D6FF"
-              inputStyle={styles.textField}
-              />
-            ))}
-          </List>
-          <List>
-            {temp.map((guest, index)=>(
-                <TextField className="custom-input"
-              id="standard-basic"
-              name={String(index)}
-              style={{ margin: 8, fontFamily: 'Poppins'}}
-              placeholder="Type in your Notices and Wishes"
-              defaultValue={guest}
-              fullWidth
-              size='large'
-              //margin="normal"
-              onChange={handleNotice}
-              // onBlur={onblurnotice}
-              inputProps={{style: {fontSize: 14}, fontFamily: 'Poppins'}}
-              InputLabelProps={{style: {fontSize: 14}, shrink: true, fontFamily: 'Poppins'}}
-              color="#D6D6FF"
-              inputStyle={styles.textField}
-            />         
-            ))}
-          </List>
-
-          {/* <h4 style={{ margin: 8 ,fontFamily: 'Poppins'}}>Wish List.</h4>
-          <List>
-            {wishlist.map((guest, index)=>(
-              <TextField className="custom-input"
-              id="standard-basic"
-              name={String(index)}
-              style={{ margin: 8, fontFamily: 'Poppins'}}
-              placeholder="Wishlist"
-              defaultValue={guest}
-              fullWidth
-              size='large'
-              margin="normal"
-              onChange={handleWishlist}
-              // onBlur={onblurwishlist}
-              inputProps={{style: {fontSize: 14}, fontFamily: 'Poppins'}}
-              InputLabelProps={{style: {fontSize: 14}, shrink: true, fontFamily: 'Poppins'}}
-              color="#D6D6FF"
-              inputStyle={styles.textField}
-            />
-            ))}
-          </List>
-          <List>
-            {tempw.map((guest, index)=>(
-              <TextField className="custom-input"
-              id="standard-basic"
-              name={String(index)}
-              style={{ margin: 8, fontFamily: 'Poppins'}}
-              placeholder="Notice"
-              defaultValue={guest}
-              fullWidth
-              size='large'
-              margin="normal"
-              onChange={handleWishlist}
-              // onBlur={onblurwishlist}
-              inputProps={{style: {fontSize: 14}, fontFamily: 'Poppins'}}
-              InputLabelProps={{style: {fontSize: 14}, shrink: true, fontFamily: 'Poppins'}}
-              color="#D6D6FF"
-              inputStyle={styles.textField}
-            />
-            ))}
-          </List>           */}
+          {filled_input()}
         </form>
         <Box display="flex" justifyContent="center">
                 <Box>

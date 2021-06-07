@@ -67,14 +67,17 @@ class HomeHeader extends Component{
         }else{
             Auth.login(this.state.id);
             this.userRef.ref('/'+this.state.id+'/Mypage/').set({
-                location: 'default',
+                location: '',
                 notices: {
-                    0 : 'default'
+                    0 : 'I wish you to bring ...',
+                    1 : 'Please do not ...'
                 },
-                wishlist: {
-                    0: 'default'
-                }
             });
+            const default_prizes = ['Free Dinner', 'Nothing', 'Free Icecream', 'Kind Words', 'Wish Coupon']
+            this.userRef.ref('/'+this.state.id+'/cost/').set(2)
+            for(let prize of default_prizes){
+                this.userRef.ref('/'+this.state.id+'/prizes/').push(prize)
+            }
             this.userRef.ref('/'+this.state.id+'/pw/').set(this.state.pw);
             this.handleClose();
             this.props.history.push('/parties')
@@ -203,7 +206,7 @@ class HomeHeader extends Component{
                     <ThemeProvider theme={theme}>
                         <Dialog open={this.state.openLogin} onClose={this.handleCloseLogin} maxWidth={'sm'} fullWidth={true}>
                             <DialogTitle>
-                                Sign up
+                                Login
                             </DialogTitle>
                             <DialogContent dividers>
                             <DialogContentText>

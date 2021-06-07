@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import Checkbox from '@material-ui/core/Checkbox';
+import React from 'react'
+import {TextField, List, Input, Box, Button, Typography} from "@material-ui/core";
 import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
 import firebase from './Firebase.js'
-import Auth from './Auth'
+import Auth from './Auth';
 
-const databaseURL = "https://aster-42bcb-default-rtdb.firebaseio.com/";
 
 const theme = createMuiTheme({
   typography :{
@@ -21,7 +19,6 @@ const theme = createMuiTheme({
       secondary:{
         main: "#ABABAB"
     }
-      
   },
   status: {
         use: '#A9A9FF',
@@ -31,216 +28,153 @@ const theme = createMuiTheme({
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    color: theme.status.use,
+    color: 'primary',
     '&$checked': {
-      color: theme.status.use,
-      fontSize: 200
+      color: 'primary',
+      fontSize: 14
     },
-    fontSize: 200
-  },
-  checked: {
-    fontSize: 200 
+    fontSize: 14
   },
 }));
 
 
 
-var wishlist_check=true
-var notice_check=[]
-
-var usersData=[]
-export default function EditPartyNotices({info, setInfo, partyname}) {
-  const [list, setList] = useState([]);
-  const [checked,setChecked] = useState([]);
-  const userRef = firebase.database();
-
-  var noticeList=[]
-  //console.log(partyname, 'notice')
-  var firebase_partyname=partyname
-  useEffect(()=>{
-  
-    userRef.ref(Auth.getAuth()+'/Parties/').on('value',(snapshot) => {
-      //console.log(firebase_partyname,'들어갓나')
-      var temp_list = [];
-      var temp_checked_list=[];
-      var temp_info=info;
-      var temp={};
-      const notices_2 = snapshot.val();
-      //console.log(notices_2[firebase_partyname].notices)
-      var notices=notices_2[firebase_partyname].notices
-      for(let id in notices) {
-        temp_list.push(notices[id]);
-        temp_checked_list.push(true);
-        temp[id]=notices[id]
-      }
-      temp_list.push("")
-      temp_checked_list.push(true)
-      temp_info['notices']=temp;
-      setList(temp_list)
-      setChecked(temp_checked_list)
-      setInfo(temp_info)
-    })
-  },[])
-
-  function CustomCheckbox_checked(id_num) {
+const OpenPartyNotices = ({info,setInfo, partyname}) => {
+    const [data,setData] = React.useState({})
+    const userRef=firebase.database();
     const classes = useStyles();
-  
-    return (
-      <Checkbox
-        defaultChecked
-        classes={{
-          root: classes.root,
-          checked: classes.checked,
-        }}
-        onClick={(event)=>{
-          var temp = checked;
-          var temp_info = info
-          var temp_notices = {}
-          
 
-          temp[id_num.id_num]=event.target.checked
-          setChecked(temp)
+    React.useEffect(() => {
+      userRef.ref(Auth.getAuth()+'/Parties/'+partyname+'/notices').on('value', snapshot=>{
+        var res=snapshot.val();
+        var temp={}
+        var last=-1;
+        for(let key in res){
+          var temp_form={}
+          temp_form['name']=res[key];
+          temp_form['key']=key
+          temp[key]=temp_form
+          last=key;
+        }
+        var temp_data={}
+        temp_data['name']=''
+        temp_data['key']=parseInt(last)+1
+        temp[parseInt(last)+1]=temp_data
+        setData(temp)
+        var temp_info=info;
+        temp_info['notices']=snapshot.val()
+        setInfo(temp_info)
+      })
+      
+    },[])
 
-          for(let id in list){
-            if(checked[id]){
-              temp_notices[id]=list[id]
+    const onFilledChange = (event, key) => {
+        var temp={};
+        var temp_info=info
+        var last;
+        last=-1;
+        for(let notice in data){
+            temp[notice]=data[notice]
+            if(notice==key){
+                temp[notice].name=event.target.value
             }
-          }
-          temp_info['notices']=temp_notices
-          setInfo(temp_info)
-
-      }
-      }
-        style={{fontSize:200}}
-      />
-      
-    );
-  }
-
-
-
-  function CustomCheckbox_checked_wish(id) {
-    const classes = useStyles(); 
-  
-    return (
-      <Checkbox
-        defaultChecked
-        classes={{
-          root: classes.root,
-          checked: classes.checked,
-        }}
-        onClick={(event)=>{
-
-          wishlist_check=event.target.checked
-
-      }
-      }
-        style={{fontSize:200}}
-      />
-      
-    );
-  }
-
-  const onChangeInput = (ind) => {
-    const _onchange = event => {
-      var temp_list = list;
-      var temp_notices={};
-      var temp_info = info;
-      temp_list[ind] = event.target.value
-      setList(temp_list)
-      for(let id in temp_list) {
-        if(checked[id]){
-          temp_notices[id]=temp_list[id];
+            last=notice;
         }
-      }
-      temp_info['notices']=temp_notices;
-      setInfo(temp_info)
+        console.log(data)
+        if(temp[last].name!=''){
+            var temp_data={}
+            temp_data['name']=''
+            temp_data['key']=parseInt(last)+1
+            temp[parseInt(last)+1]=temp_data
+        }
+        setData(temp)
+        last=0;
+        var info_data={};
+        for(let key in data){
+          last=key;
+        }
+        for(let key in data){
+          if(key!=last)
+            info_data[key]=data[key].name
+        }
+        temp_info['notices']=info_data;
+        setInfo(temp_info)
     }
-    return _onchange
-  }
 
-  const notice_map= (notices) => {
-    
-    var ind=-1;
-    var len = notices.length
-    return notices.map(notice => {
-      ind=ind+1;
-      if (notice!=""){
-        return (
-          <div className="row" key={ind}>
-              <div className="col-md-1">
-                  <CustomCheckbox_checked id_num={ind} key={String(ind)}/>
-              </div>
-              <div className="col-md-11">
-              <Input 
-                  id_num={ind}
-                  defaultValue={notice} 
-                  onChange={onChangeInput(ind)}
-                  fullWidth
-                  key={ind}
-                  style={{fontFamily: 'Poppins', fontWeight: 300, fontSize:14, marginBottom: 15}}
-                  inputProps={{style: {fontSize: 14,  fontFamily: 'Poppins' , color:'#ADADAD'},}}
-              />
-              </div>
-          </div>
-        )}
-      else {
-        if(ind==(len-1)){
-          return(
-          <div className="row" key={ind}> 
-              <div className="col-md-1">
-                  <CustomCheckbox_checked id_num={ind} key={String(ind)}/>
-              </div>
-              <div className="col-md-11">
-              <Input 
-                  id_num={ind}
-                  placeholder="Ex)
-                  1. Dresscode: Purple 
-                  2. Menu: Fried Chicken
-                  "  
-                  fullWidth
-                  multiline
-                  row={4}
-                  onChange={onChangeInput(ind)}
-                  style={{fontFamily: 'Poppins', fontSize:14, marginBottom: 15}}
-                  marginbottom={20}
-                  inputProps={{style: {fontSize: 14,  fontFamily: 'Poppins' , color:'#ADADAD',lineHeight:'150%'},}}
-              />
-              </div>
-          </div>
-        )
+    const onFilledBlur = (event,key) => {
+        var cnt=0;
+        var last;
+        for(let obj in data){
+            cnt=cnt+1;
         }
-        
-      }
-    })
-  }
+        if(event.target.value==='' && cnt>1){
+            var temp={}
+            for(let notice in data){
+                if(notice==key){
+                    continue
+                }
+                else{
+                    temp[notice]=data[notice]
+                    last=notice;
+                }
+            }
+            if(temp[last].name!=''){
+                var temp_data={}
+                temp_data['name']=''
+                temp_data['key']=parseInt(last)+1
+                temp[parseInt(last)+1]=temp_data
+            }
+            setData(temp)
+            last=0;
+            var temp_info=info
+            var info_data={};
+            for(let key in temp){
+              last=key;
+            }
+            for(let key in temp){
+              if(key!=last)
+                info_data[key]=data[key].name
+            }
+            temp_info['notices']=info_data;
+            console.log(temp_info)
+            setInfo(temp_info)
+        }
+    }
 
-  return (
-    
-    <ThemeProvider theme={theme}>
-       
-        <h2
-            style={{ fontFamily: 'Poppins', fontSize: 16, color:'#383838', marginBottom:20}}
-            ><b>Notices and Wishes</b></h2>
-          <div className="container" >{notice_map(list)}</div>
-      
+    const filled_input_helper = (notice) => {
+        return(
+            <ThemeProvider theme={theme}>
+              <Input 
+              placeholder='Type in your Notices and Wishes'
+              value={notice.name}
+              fullWidth
+              style={{ margin: 8, fontFamily: 'Poppins'}}
+              onChange = {event => onFilledChange(event,notice.key)}
+              onBlur = {event => onFilledBlur(event,notice.key)}
+              className={classes.root}
+              />
+            </ThemeProvider>
+        )
+    }
 
-
-      <div className="container">
-      
-        
-        
-        <div>
-         
-        </div>
-
-
-
-
-
-        </div>
-      <p></p>
-    </ThemeProvider>
-  );
+    const filled_input = () => {
+        var res = [];
+        for(let notice in data){
+            res.push(filled_input_helper(data[notice]))
+        }
+        return res;
+    }
+    return (
+        <ThemeProvider theme={theme}>
+          <h2
+            style={{ fontFamily: 'Poppins', fontSize: 16, color:'#383838'}}
+            ><b>Notices and Wishes</b>
+          </h2>
+          <div style={{paddingLeft:15, paddingRight:15}}>
+              {filled_input()}
+          </div>
+        </ThemeProvider>
+    )
 }
 
+export default OpenPartyNotices

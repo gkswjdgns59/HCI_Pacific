@@ -127,25 +127,9 @@ class PartiesMain extends React.Component{
                             style={{fontFamily: 'Poppins', fontSize: 16, color:'#ADADAD', fontWeight:300}}
                             >Date / Time   </h1></div>
                         <div className="col-sm-7">
-
-
-
-{
-                                partyDateTime==null
-                                ? <h2
-                                style={{ fontFamily: 'Poppins', marginBottom: 5, color:'#ADADAD', fontSize: 16, fontWeight:300}}
-                                ></h2>
-                                :                         <h2
-                                style={{ fontFamily: 'Poppins', marginBottom: 5, color:'#383838', fontSize: 16, fontWeight:300}}
-                                >{String(partyDate) +' / '+ String(partyTime)}</h2>
-
-                                
-                            }
-
-
-
-
-
+                        <h2
+                            style={{ fontFamily: 'Poppins', marginBottom: 5, color:'#383838', fontSize: 16, fontWeight:300}}
+                            >{String(partyDate) +' / '+ String(partyTime)}</h2>
                         </div>
                     </div>
 

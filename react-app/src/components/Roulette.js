@@ -5,14 +5,21 @@ import { Button, Dialog, DialogActions, Divider, TableContainer, Table, TableBod
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import firebase from './Firebase'
 import Auth from './Auth';
-const data = [
-    { option: 'free Dinner', style: { backgroundColor: '#E6E6FA', textColor: '#222222'} },
-    { option: 'nothing', style: { backgroundColor: '#FAECE6', textColor: '#222222' } },
-    { option: 'free icecream', style: { backgroundColor: '#E6F3FA', textColor: '#222222' } },
-    { option: 'clean-up coupon', style: { backgroundColor: '#E7FAE6', textColor: '#222222' } },
-    { option: 'wish coupon', style: { backgroundColor: '#FAF8E6', textColor: '#222222' } }
-];
-const cost = 2; //demo value
+
+// const data = [
+//     { option: 'free Dinner', style: { backgroundColor: '#E6E6FA', textColor: '#222222'} },
+//     { option: 'nothing', style: { backgroundColor: '#F3F3FD', textColor: '#222222' } },
+//     { option: 'free icecream', style: { backgroundColor: '#ffffff', textColor: '#222222' } },
+//     { option: 'clean-up coupon', style: { backgroundColor: '#e6e6fa', textColor: '#222222' } },
+//     { option: 'wish coupon', style: { backgroundColor: '#F3F3FD', textColor: '#222222' } },
+//     { option: 'test1', style: { backgroundColor: '#ffffff', textColor: '#222222' } },
+//     { option: 'test2', style: { backgroundColor: '#e6e6fa', textColor: '#222222' } },
+//     { option: 'test3', style: { backgroundColor: '#F3F3FD', textColor: '#222222' } },
+//     { option: 'test4', style: { backgroundColor: '#ffffff', textColor: '#222222' } },
+//     { option: 'test4', style: { backgroundColor: '#F3F3FD', textColor: '#222222' } }
+// ];
+// const cost = 2; //demo value
+
 const useStyles = makeStyles((theme) => ({
     root: {
         marginTop: '4%'
@@ -64,6 +71,11 @@ export default function Roulette(props) {
     const callbackFunction = props.callbackFromParent;
     const userRef= firebase.database();
 
+    const [cost,setCost] = React.useState(0)
+    const [data,setData] = React.useState([{option: null}])
+
+    const roulette_colorSet=['#ffffff','#F3F3FD','#e6e6fa']
+
     React.useEffect(()=>{
         userRef.ref(Auth.getAuth()+'/Guests/'+props.guestname+'/coupons').on('value',snapshot =>{
             var data= snapshot.val();
@@ -72,6 +84,25 @@ export default function Roulette(props) {
                 temp.push({date:data[coupon].date,desc:data[coupon].desc})
             }
             setListData(temp)
+        })
+        userRef.ref(Auth.getAuth()).on('value',snapshot => {
+            setCost(snapshot.val().cost)
+            const prizes = snapshot.val().prizes
+            var temp =[];
+            var count=0;
+            for(let temp in prizes){
+                count=count+1;
+            }
+            for(let prize in prizes){
+                var format={};
+                format['option']=prizes[prize]
+                format['style']={}
+                format['style']['backgroundColor']=roulette_colorSet[count%3]
+                format['style']['textColor']='#222222'
+                count=count-1;
+                temp.push(format)
+            }
+            setData(temp)
         })
     }, [])
 
@@ -115,10 +146,33 @@ export default function Roulette(props) {
     };
 
     const handleSpin = () => {
-        if (props.dataFromParent<2 || mustSpin===true){
+        if (props.dataFromParent<cost || mustSpin===true){
             return(<Button variant="outlined" color="secondary" disabled className={classes.SpinButton}>SPIN</Button>)
         }else{
             return(<Button onClick={handleSpinClick} variant="outlined" color="primary" className={classes.SpinButton}>SPIN</Button>)
+        }
+    }
+
+    const showSpin =() => {
+        if(data[0].option!=null){
+            return(
+                <Wheel
+                mustStartSpinning={mustSpin}
+                prizeNumber={prizeNumber}
+                data={data}
+                radiusLineWidth='0'
+                radiusLineColor='#222222'
+                outerBorderWidth='1'
+                outerBorderColor='#222222'
+                fontSize= '16'
+                onStopSpinning={() => {
+                    setMustSpin(false)
+                    addValueToList(data[prizeNumber].option)
+                    handleOpen()
+                }}
+                />)}
+        else{
+            return null;
         }
     }
 
@@ -128,27 +182,13 @@ export default function Roulette(props) {
             <div className="row">
                 <div className="col-md-6" className={classes.divWheel}>
                     <div className={classes.wheel}>
-                    <Wheel
-                    mustStartSpinning={mustSpin}
-                    prizeNumber={prizeNumber}
-                    data={data}
-                    radiusLineWidth='0'
-                    radiusLineColor='#222222'
-                    outerBorderWidth='1'
-                    outerBorderColor='#222222'
-                    fontSize= '16'
-                    onStopSpinning={() => {
-                        setMustSpin(false)
-                        addValueToList(data[prizeNumber].option)
-                        handleOpen()
-                    }}
-                    />
+                    {showSpin()}
                     </div>
                 </div>
                 <div className="col-md-6" className={classes.divList}>
                     <div className={classes.Block}>
-                        <Typography className={classes.SpinText}>Use {cost} X Coins to play roulette.
-                        You have {props.dataFromParent} coins.
+                        <Typography className={classes.SpinText}>Use {cost} X Petals to play roulette.
+                        You have {props.dataFromParent} petals.
                         </Typography>
                         {handleSpin()}
                     </div>

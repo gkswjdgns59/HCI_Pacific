@@ -12,6 +12,7 @@ import PageGuestbook from './components/PageGuestbook';
 import PageMypage from './components/PageMypage'
 import Auth from './components/Auth';
 
+
 class App extends Component{
   componentDidMount(){
     const id = sessionStorage.getItem('id');
