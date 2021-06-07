@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {TextField, List, Input, Box, Button, Typography} from "@material-ui/core";
+import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import firebase from "./Firebase"
 import Auth from './Auth';
 const styles = {
@@ -7,6 +8,44 @@ const styles = {
     fontSize: 50, //works!
  }
 }
+
+
+const theme = createMuiTheme({
+  typography :{
+      fontFamily:"Poppins",
+      fontSize: 16,
+      fontWeight:300,
+      color: "#222222"
+  },
+  palette :{
+      primary: {
+          main: "#A9A9FF"
+      },
+      secondary:{
+        main: "#ABABAB"
+    }
+  },
+  status: {
+        use: '#A9A9FF',
+        fontSize: 200
+      },
+})
+
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     color: theme.status.use,
+//     '&$checked': {
+//       color: theme.status.use,
+//       fontSize: 200
+//     },
+//     fontSize: 200
+//   },
+//   checked: {
+//     fontSize: 200 
+//   },
+// }));
+
+
 
 // var init_location = ""
 var init_notice = []
@@ -60,6 +99,7 @@ export const Mypage = () => {
   const handleNotice = (event) => {
     const inputText = event.target.value.trim();
     if(x===0){
+      console.log(x)
       let copyList = [...notice]
       if (inputText.length>0){
         copyList[parseInt(event.target.name)]=inputText;
@@ -80,6 +120,7 @@ export const Mypage = () => {
         x = 1
       }
     }else if(x===1){
+      console.log(x)
       let copyList = [...temp]
       if (inputText.length>0){
         copyList[parseInt(event.target.name)]=inputText;
@@ -176,28 +217,64 @@ export const Mypage = () => {
     for(var i=0;i<upwishlist.length;i++){
       firebase.database().ref(Auth.getAuth()+'/Mypage/wishlist').update({[i] : upwishlist[i]})
     }
+    alert('Successfully Saved')
   }
   // const onblurwishlist = (event) => {
   //   const idx = event.target.name
   //   const inputText = event.target.value.trim();
   //   firebase.database().ref(Auth.getAuth()+'/Mypage/wishlist').update({[idx] : inputText})
   // }
+  // const classes = useStyles();
     return  (
+      <ThemeProvider theme={theme}>
       <div>
-          <h2 style={{ margin: 8 ,fontFamily: 'Poppins', color:"#A9A9FF", marginBottom: 30}}>Fill in the blocks to set default of party.</h2>
+      <h1
+            style={{ fontFamily: 'Poppins', marginBottom: 10, color:'#A9A9FF'}}
+            ><b>My Page</b></h1>
+            <h2
+            style={{ fontFamily: 'Poppins', marginBottom: 40, color:'#A9A9FF', fontSize: 14}}
+            >Create your default setting</h2>
+
+
           <form noValidate>
-          <h4 style={{ margin: 8 ,fontFamily: 'Poppins'}}>Notice.</h4>
+
+          <h2
+            style={{fontFamily: 'Poppins', fontSize: 16, color:'#383838'}}
+            ><b>Location</b></h2>
+          <List style={{marginBottom: 10}}>
+            {location.map((value)=>(
+              <Input className="custom-input"
+              id="standard-basic"
+              style={{ margin: 8, fontFamily: 'Poppins'}}
+              defaultValue = {value}
+              placeholder= "Type in your location"
+              fullWidth
+              onBlur={onblurLocation}
+              //margin="normal"
+              inputProps={{style: {fontSize: 14,  fontFamily: 'Poppins'},}}
+              InputLabelProps={{style: {fontSize: 14, fontFamily: 'Poppins' }, shrink: true, }}
+              color="#D6D6FF"
+              inputStyle={styles.textField}
+            />
+            ))}
+          </List>
+
+
+          <h2
+            style={{fontFamily: 'Poppins', fontSize: 16, color:'#383838'}}
+            ><b>Notices and Wishes</b></h2>
           <List>
             {notice.map((guest, index)=>(
-              <TextField className="custom-input"
+              <TextField 
+              className="custom-input"
               id="standard-basic"
               name={String(index)}
               style={{ margin: 8, fontFamily: 'Poppins'}}
-              placeholder="Notice"
+              placeholder="Type in your Notices and Wishes"
               defaultValue={guest}
               fullWidth
               size='large'
-              margin="normal"
+              //margin="normal"
               onChange={handleNotice}
               // onBlur={onblurnotice}
               inputProps={{style: {fontSize: 14}, fontFamily: 'Poppins'}}
@@ -213,11 +290,11 @@ export const Mypage = () => {
               id="standard-basic"
               name={String(index)}
               style={{ margin: 8, fontFamily: 'Poppins'}}
-              placeholder="Notice"
+              placeholder="Type in your Notices and Wishes"
               defaultValue={guest}
               fullWidth
               size='large'
-              margin="normal"
+              //margin="normal"
               onChange={handleNotice}
               // onBlur={onblurnotice}
               inputProps={{style: {fontSize: 14}, fontFamily: 'Poppins'}}
@@ -227,25 +304,8 @@ export const Mypage = () => {
             />         
             ))}
           </List>
-          <h4 style={{ margin: 8 ,fontFamily: 'Poppins'}}>Location.</h4>
-          <List>
-            {location.map((value)=>(
-              <Input className="custom-input"
-              id="standard-basic"
-              style={{ margin: 8, fontFamily: 'Poppins', marginBottom: 15}}
-              defaultValue = {value}
-              // placeholder= {value}
-              fullWidth
-              onBlur={onblurLocation}
-              margin="normal"
-              inputProps={{style: {fontSize: 14,  fontFamily: 'Poppins'},}}
-              InputLabelProps={{style: {fontSize: 14, fontFamily: 'Poppins' }, shrink: true, }}
-              color="#D6D6FF"
-              inputStyle={styles.textField}
-            />
-            ))}
-          </List>
-          <h4 style={{ margin: 8 ,fontFamily: 'Poppins'}}>Wish List.</h4>
+
+          {/* <h4 style={{ margin: 8 ,fontFamily: 'Poppins'}}>Wish List.</h4>
           <List>
             {wishlist.map((guest, index)=>(
               <TextField className="custom-input"
@@ -285,16 +345,16 @@ export const Mypage = () => {
               inputStyle={styles.textField}
             />
             ))}
-          </List>          
+          </List>           */}
         </form>
         <Box display="flex" justifyContent="center">
                 <Box>
-                    <Button  variant="outlined" color="primary" onClick={save}>
+                    <Button  variant="outlined" color="primary" onClick={save} style={{marginBottom:30}}>
                         {/* <SendOutlinedIcon style={{color:'#A9A9FF'}}/> */}
                         <Typography >Save</Typography>
                     </Button>
                 </Box>
             </Box>
-      </div>
+      </div></ThemeProvider>
     );
   }
