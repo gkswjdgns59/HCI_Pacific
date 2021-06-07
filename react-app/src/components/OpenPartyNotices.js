@@ -208,26 +208,10 @@ export default function OpenPartyNotices({info, setInfo}) {
   return (
     
     <ThemeProvider theme={theme}>
-        <h2
-            style={{ fontFamily: 'Poppins', fontSize: 16, color:'#383838'}}
-            ><b>Wishlist</b></h2>
-            
-
-            <div className="container" style={{marginBottom:30}}>
-            <div className="row">
-            <div className="col-md-1">
-                <CustomCheckbox_checked_wish key='wishlist' id='wishlist'/>
-            </div>
-            <div className="col-md-11">
-            <h2 style={{fontSize: 14,  fontWeight: 300, fontFamily: 'Poppins' , color:'#ADADAD', margintop:20, paddingTop: 7.5, paddingBottom:9}} >Send Wishlist</h2>
-
-            </div>
-            </div>
-        </div>
 
         <h2
-            style={{ fontFamily: 'Poppins', fontSize: 16, color:'#383838'}}
-            ><b>Notices</b></h2>
+            style={{ fontFamily: 'Poppins', fontSize: 16, color:'#383838', marginBottom:20}}
+            ><b>Notices and Wishes</b></h2>
           <div className="container" >{notice_map(list)}</div>
       
 

@@ -79,7 +79,10 @@ class EditPartyInfo extends React.Component {
       //console.log(info_list, 'all string?')
       //const initial_name=initial.name
       //const initial_dateTime=this.state.party.dateTime
-      const initial_location=initial.location
+      var initial_location=initial.location
+      if (initial_location==""){
+        initial_location="Type in your location"
+      }
       const initial_memo=initial.memo
       const initial_dateTime=initial.dateTime
       
@@ -149,7 +152,7 @@ class EditPartyInfo extends React.Component {
       //console.log(this.props.partyname)
 
 
-      var newdateTime = String(initial_dateTime);
+      const newdateTime = String(initial_dateTime);
       var time = newdateTime.substring(newdateTime.length-5,newdateTime.length)
       var year = newdateTime.substring(0, newdateTime.length-12)
       var month = newdateTime.substring(newdateTime.length-11, newdateTime.length-9)
@@ -221,7 +224,7 @@ class EditPartyInfo extends React.Component {
               id="datetime-local"
               label={"Date Time" + initial_dateTime}
               type="datetime-local"
-              placeholder={initial_dateTime}
+              defaultValue={newdateTime}
               fullWidth
               onChange={onChangeInputDateTime}
               InputLabelProps={{
@@ -245,7 +248,7 @@ class EditPartyInfo extends React.Component {
                 <TextField className="custom-input"
               id="Location"
               label="Location"
-              style={{ margin: 8, fontFamily: 'Poppins', marginBottom: 10}}
+              style={{ margin: 8, fontFamily: 'Poppins', marginBottom: 40}}
               placeholder={initial_location}
               //laceholerProps={{style: {color='#383838'}}}
               fullWidth
@@ -262,12 +265,8 @@ class EditPartyInfo extends React.Component {
             />
                 </div>
             </div>
-            <div className="row">
-            {/* <div className="col-sm-12">
-                  <p
-                style={{ fontFamily: 'Poppins', marginBottom: -10, paddingLeft: 8, color:'#A9A9FF', fontSize: 14}}
-                >Memo</p>
-              </div> */}
+            {/* <div className="row">
+
                 <div className="col-sm-12">
                 <TextField className="custom-input"
               id="Memo"
@@ -285,7 +284,7 @@ class EditPartyInfo extends React.Component {
               inputstyle={styles.textField}
             />
                 </div>
-            </div>
+            </div> */}
         </div>
 
 
