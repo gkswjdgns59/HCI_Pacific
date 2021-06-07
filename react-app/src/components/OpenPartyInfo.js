@@ -50,7 +50,6 @@ class OpenPartyInfo extends React.Component {
       if(res.status != 200) {
       throw new Error(res.statusText);
       }
-      console.log(`${databaseURL}${Auth.auth}/Mypage.json`)
       return res.json();
       }).then(mypage => this.setState({mypage: mypage}));
       }
@@ -67,7 +66,7 @@ class OpenPartyInfo extends React.Component {
       //var location_default = this.state.mypage.location
       //var location_default = "52, Rose street, Daejeon"
       //console.log(location_default)
-      console.log(this.state.mypage)
+      // console.log(this.state.mypage)
       info_list[2]=this.state.mypage.location
       const setInfo = this.props.setInfo;
 

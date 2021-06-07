@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
-
+import { Link, withRouter } from 'react-router-dom'
+import Auth from './Auth'
 const logo = {
     width: "100px"
 };
@@ -24,8 +24,11 @@ const navbar = {
 
 }
 
-
 class Header extends Component{
+    signOut = () => {
+        Auth.logout();
+        this.props.history.replace('/')
+    }
     render(){
         return (
         <nav style={navbar} className="navbar navbar-expand-lg collapse navbar-collapse bs-navbar-collapse">
@@ -46,12 +49,16 @@ class Header extends Component{
             </ul>
             <ul className="nav navbar-nav navbar-right">
                 <li className="nav-item">
+                    <Link to="/" style={{textDecoration:'none'}} onClick={()=>this.signOut()}><div style={st}>Sign Out</div></Link>
+                </li>
+                <li className="nav-item" >
                     <Link to="/mypage" style={{textDecoration:'none'}}><div style={st}>My Page</div></Link>
                 </li>
+
             </ul>       
         </nav>
         );
     }
 }
 
-export default Header;
+export default withRouter(Header);

@@ -7,7 +7,7 @@ import dummy from '../images/dummy.png'
 export default class PageParties extends Component{
     isAuth = () => {
         if (Auth.auth!==''){
-            console.log(Auth.auth)
+            // console.log(Auth.auth)
             return (<Header></Header>)
         }else{
             return (<HomeHeader></HomeHeader>)

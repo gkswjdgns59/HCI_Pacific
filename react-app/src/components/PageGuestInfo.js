@@ -171,7 +171,7 @@ export default function GuestInfo(props){
                             <div className={classes.Buttons}>
                                 {RemoveHandler()}
                                 <Typography className={classes.CoinText}>
-                                    Coin X {coinData}
+                                    Petal X {coinData}
                                 </Typography>
                                 <AddIcon className={classes.CoinIcon} onClick={()=>handleCoin(1)} />
                             </div>

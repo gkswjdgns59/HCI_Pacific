@@ -98,7 +98,7 @@ export const Single_guest =({num,fill,showCoin,name,coins,party}) => {
                                 {minusButton()}
                             </Box>
                             <Box>
-                                <span className={`${classes.abled}`}> <MonetizationOnIcon/>   {coin}</span>
+                                <span className={`${classes.abled}`}> <img src='/petal.png' style={{width:20, paddingBottom:2}}></img> {coin}</span>
                             </Box>
                             <Box>
                                 <span className={classes.plus} style={{flexDirection:'row', justifyContent:'flex-end', margin:10, cursor: 'pointer'}}> <i className={`${classes.abled} fas fa-plus`} onClick={onPlus}></i> </span>
