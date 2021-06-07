@@ -96,7 +96,7 @@ class PartiesMain extends React.Component{
                         
         return(
             <div><ThemeProvider theme={theme}>
-                <div class="container" style={{marginBottom:40, borderBottom:'1px solid #EAEAEA', paddingBottom:'3%'}}> 
+                <div className="container" style={{marginBottom:40, borderBottom:'1px solid #EAEAEA', paddingBottom:'3%'}}> 
 
 
                 <div style={{ width: '100%' }}>
@@ -122,11 +122,11 @@ class PartiesMain extends React.Component{
 
 
 
-                    <div class="row">
-                        <div class="col-sm-offset-0 col-sm-2"><h1
+                    <div className="row">
+                        <div className="col-sm-offset-0 col-sm-2"><h1
                             style={{fontFamily: 'Poppins', fontSize: 16, color:'#ADADAD', fontWeight:300}}
                             >Date / Time   </h1></div>
-                        <div class="col-sm-7">
+                        <div className="col-sm-7">
 
 
 
@@ -149,11 +149,11 @@ class PartiesMain extends React.Component{
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-sm-2"><h1
+                    <div className="row">
+                        <div className="col-sm-2"><h1
                             style={{fontFamily: 'Poppins', fontSize: 16, color:'#ADADAD', fontWeight:300}}
                             >Location </h1></div>
-                        <div class="col-sm-7">
+                        <div className="col-sm-7">
                         {
                                 partyLocation==null
                                 ? <h2
@@ -170,11 +170,11 @@ class PartiesMain extends React.Component{
                             </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-sm-2"><h1
+                    <div className="row">
+                        <div className="col-sm-2"><h1
                             style={{fontFamily: 'Poppins', fontSize: 16, color:'#ADADAD', fontWeight:300}}
                             >Memo </h1></div>
-                        <div class="col-sm-7">
+                        <div className="col-sm-7">
                             {
                                 partyMemo==null
                                 ? <h2

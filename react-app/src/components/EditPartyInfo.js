@@ -227,12 +227,12 @@ class EditPartyInfo extends React.Component {
               defaultValue={newdateTime}
               fullWidth
               onChange={onChangeInputDateTime}
-              InputLabelProps={{
-                shrink: true,
-              }}
+              //InputLabelProps={{
+              //  shrink: true,
+              //}}
               style={{ margin: 8, fontFamily: 'Poppins', marginBottom: 15}}
               inputProps={{style: {fontSize: 15,  fontFamily: 'Poppins', fontWeight: 300},}}
-              InputLabelProps={{style: {fontSize: 16, fontFamily: 'Poppins' }, shrink: true, }}
+              inputlabelprops={{style: {fontSize: 16, fontFamily: 'Poppins' }, shrink: true, }}
             />
                 </div>
             </div>
@@ -258,7 +258,7 @@ class EditPartyInfo extends React.Component {
               //defaultValue={String(this.state.mypage.location)}
               margin="normal"
               inputProps={{style: {fontSize: 16,  fontFamily: 'Poppins', fontWeight: 300},}}
-              InputLabelProps={{style: {fontSize: 16, fontFamily: 'Poppins' }, shrink: true, }}
+              inputlabelprops={{style: {fontSize: 16, fontFamily: 'Poppins' }, shrink: true, }}
               //color="#D6D6FF"
               // color="#383838"
               inputstyle={styles.textField}
