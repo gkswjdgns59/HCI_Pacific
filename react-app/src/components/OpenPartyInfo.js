@@ -27,7 +27,22 @@ const styles = {
 }
 // 
 
-const info_list = ['', '2021-01-01T00:00', 'no location', '']
+console.log(new Date())
+var today=new Date()
+var nowyear = String(today.getFullYear())
+var nowmonth = String(today.getMonth()+1)
+if (nowmonth.length==1){
+  nowmonth = String('0'+String(nowmonth))
+}
+var nowdate = String(today.getDate())
+if (String(nowdate).length==1){
+  nowdate = String(0)+(today.getDate())
+}
+var nowhour = today.getHours()
+var nowmin = today.getMinutes()
+var today_datetime=String(nowyear+'-'+nowmonth+'-'+nowdate+'T00:00')
+console.log(today_datetime)
+var info_list = ['', today_datetime, '', '']
 
 
 
@@ -69,6 +84,11 @@ class OpenPartyInfo extends React.Component {
       // console.log(this.state.mypage)
       info_list[2]=this.state.mypage.location
       const setInfo = this.props.setInfo;
+      var location_placeholder=String(this.state.mypage.location)
+
+      if (String(this.state.mypage.location)==""){
+        location_placeholder="Type in your location"
+      }
 
       const onChangeInputName = (event) => {
         info_list[0]=event.target.value
@@ -152,7 +172,7 @@ class OpenPartyInfo extends React.Component {
               //focused
               error={this.isEmpty}
 
-              inputProps={{style: {fontSize: 16,  fontFamily: 'Poppins', fontWeight: 300},}}
+              inputProps={{style: {fontSize: 14,  fontFamily: 'Poppins', fontWeight: 300},}}
               InputLabelProps={{style: {fontSize: 16, fontFamily: 'Poppins' }, shrink: true, }}
               // color="#D6D6FF"
               
@@ -166,7 +186,7 @@ class OpenPartyInfo extends React.Component {
               id="datetime-local"
               label="Date Time"
               type="datetime-local"
-              defaultValue="2021-01-01T00:00"
+              defaultValue={today_datetime}
               fullWidth
               onChange={onChangeInputDateTime}
               InputLabelProps={{
@@ -183,16 +203,16 @@ class OpenPartyInfo extends React.Component {
                 <TextField className="custom-input"
               id="Location"
               label="Location"
-              style={{ margin: 8, fontFamily: 'Poppins', marginBottom: 10}}
-              defaultValue= {this.state.mypage.location}
+              style={{ margin: 8, fontFamily: 'Poppins', marginBottom: 40}}
+              //defaultValue= {location_placeholder}
               //laceholerProps={{style: {color='#383838'}}}
               fullWidth
               onChange={onChangeInputLocation} 
               //defaultValue={location_default}
-              placeholder={String(this.state.mypage.location)}
+              placeholder={location_placeholder}
               //defaultValue={String(this.state.mypage.location)}
               margin="normal"
-              inputProps={{style: {fontSize: 16,  fontFamily: 'Poppins', fontWeight: 300},}}
+              inputProps={{style: {fontSize: 14,  fontFamily: 'Poppins', fontWeight: 300},}}
               InputLabelProps={{style: {fontSize: 16, fontFamily: 'Poppins' }, shrink: true, }}
               //color="#D6D6FF"
               // color="#383838"
@@ -200,7 +220,7 @@ class OpenPartyInfo extends React.Component {
             />
                 </div>
             </div>
-            <div className="row">
+            {/* <div className="row">
                 <div className="col-sm-12">
                 <TextField className="custom-input"
               id="Memo"
@@ -216,7 +236,7 @@ class OpenPartyInfo extends React.Component {
               inputstyle={styles.textField}
             />
                 </div>
-            </div>
+            </div> */}
         </div>
 
 

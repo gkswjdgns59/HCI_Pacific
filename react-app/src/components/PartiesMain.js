@@ -142,7 +142,7 @@ class PartiesMain extends React.Component{
                                 partyLocation==null
                                 ? <h2
                                 style={{ fontFamily: 'Poppins', marginBottom: 5, color:'#ADADAD', fontSize: 16, fontWeight:300}}
-                                >no location</h2>
+                                ></h2>
                                 : <h2
                                 style={{ fontFamily: 'Poppins', marginBottom: 5, color:'#383838', fontSize: 16, fontWeight:300}}
                                 >{String(partyLocation)}</h2>
@@ -163,7 +163,7 @@ class PartiesMain extends React.Component{
                                 partyMemo==null
                                 ? <h2
                                 style={{ fontFamily: 'Poppins', marginBottom: 5, color:'#ADADAD', fontSize: 16, fontWeight:300}}
-                                >no memo</h2>
+                                ></h2>
                                 : <h2
                                 style={{ fontFamily: 'Poppins', marginBottom: 5, color:'#383838', fontSize: 16, fontWeight:300}}
                                 >{String(partyMemo)}</h2>

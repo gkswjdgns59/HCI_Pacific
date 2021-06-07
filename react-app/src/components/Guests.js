@@ -74,6 +74,8 @@ const Guests = ({partyname}) => {
         let historyGuests = {};
         userRef.ref(Auth.getAuth()+'/Parties/'+partyname+'/guests/').once('value',snapshot=>{
             historyGuests = snapshot.val();
+            if (historyGuests===null)
+                historyGuests={}
         },[]);
         userRef.ref(Auth.getAuth()+'/Parties/'+partyname+'/guests').remove()
         for (let i in object){

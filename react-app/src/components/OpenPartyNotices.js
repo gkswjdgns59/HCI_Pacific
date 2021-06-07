@@ -3,6 +3,7 @@ import {TextField, List, Input, Box, Button, Typography} from "@material-ui/core
 import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import firebase from './Firebase.js'
 import Auth from './Auth';
+import { TextField } from '@material-ui/core';
 
 
 const theme = createMuiTheme({
@@ -178,3 +179,4 @@ const OpenPartyNotices = ({info,setInfo}) => {
 }
 
 export default OpenPartyNotices
+

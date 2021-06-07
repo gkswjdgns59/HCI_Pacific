@@ -118,13 +118,15 @@ const PageOpen = ({history}) => {
             info.location=location_default
             console.log(info)
         }
-        if (temp.name==("" ||undefined)){
+        if (info.name==("")||(info.name==undefined)){
+            console.log(info)
             alert('You need to add your party name')
         }
         else{
-            userRef.ref(Auth.getAuth()+'/Parties/'+info.name).set(info)
-            alert('Successfully Sent')
-            history.replace('/parties/'+info.name)
+            // userRef.ref(Auth.getAuth()+'/Parties/'+info.name+'/').set(info)
+            // alert('Successfully Sent')
+            // history.replace('/parties/'+info.name)
+            console.log(info)
         }
     }
         

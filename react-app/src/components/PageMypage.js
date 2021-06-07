@@ -8,7 +8,14 @@ export default class PageMypage extends Component{
         return(
             <div>
                 <Header />
-                <Mypage />
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-offset-2 col-md-8">
+                        <Mypage />
+                        </div>
+                    </div>
+                </div>
+
             </div>
         )
     }
