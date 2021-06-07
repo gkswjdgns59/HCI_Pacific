@@ -28,7 +28,7 @@ export const Mypage = () => {
   React.useEffect(()=>{
     firebase.database().ref(Auth.getAuth()+'/Mypage/location').once('value',(snapshot) => {
       setLocation([snapshot.val()])
-      uplocation = location
+      uplocation = snapshot.val()
     })
     firebase.database().ref(Auth.getAuth()+'/Mypage/notices').once('value').then((snapshot)=>{
       init_notice=[]
@@ -40,7 +40,8 @@ export const Mypage = () => {
       }
       init_notice.push("")
       setNotice(init_notice)
-      upnotice = notice
+      upnotice = init_notice
+      console.log("ㅊ어ㅡㅁ", upnotice)
     })
     firebase.database().ref(Auth.getAuth()+'/Mypage/wishlist').once('value').then((snapshot)=>{
       init_wishlist=[]
@@ -52,7 +53,7 @@ export const Mypage = () => {
       }
       init_wishlist.push("")
       setWishlist(init_wishlist)
-      upwishlist = wishlist
+      upwishlist = init_wishlist
     })
   },[])
 
@@ -112,6 +113,7 @@ export const Mypage = () => {
   const onblurLocation = (event) => {
     const inputText = event.target.value.trim();
     uplocation = inputText
+    console.log("up uplocation", uplocation)
   }
 
   
@@ -162,6 +164,9 @@ export const Mypage = () => {
   const save = () =>{
     firebase.database().ref(Auth.getAuth()+'/Mypage/').update({"notices": null})
     firebase.database().ref(Auth.getAuth()+'/Mypage/').update({"wishlist": null})
+    console.log("upnotice", upnotice)
+    console.log("uplocation", uplocation)
+    console.log("upwsihlist", upwishlist)
     for(var i=0;i<upnotice.length;i++){
         firebase.database().ref(Auth.getAuth()+'/Mypage/notices').update({[i] : upnotice[i]})
     }
