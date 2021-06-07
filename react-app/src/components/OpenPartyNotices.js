@@ -192,7 +192,7 @@ export default function OpenPartyNotices({info, setInfo}) {
               <TextField 
                   id_num={ind}
                   placeholder="Ex)
-                  1. Dresscode: Red
+                  1. Dresscode: Purple
                   2. Menu: Fried Chicken
                   "  
                   fullWidth
@@ -223,17 +223,6 @@ export default function OpenPartyNotices({info, setInfo}) {
           <div className="container" >{notice_map(list)}</div>
       
 
-
-      <div className="container">
-      
-        
-        
-        <div>
-         
-        </div>
-
-        </div>
-      <p></p>
     </ThemeProvider>
   );
 }

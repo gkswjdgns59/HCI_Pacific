@@ -194,12 +194,17 @@ export default function EditPartyNotices({info, setInfo, partyname}) {
               <div className="col-md-11">
               <Input 
                   id_num={ind}
-                  placeholder="Click to add more..."  
+                  placeholder="Ex)
+                  1. Dresscode: Purple 
+                  2. Menu: Fried Chicken
+                  "  
                   fullWidth
+                  multiline
+                  row={4}
                   onChange={onChangeInput(ind)}
                   style={{fontFamily: 'Poppins', fontSize:14, marginBottom: 15}}
                   marginbottom={20}
-                  inputProps={{style: {fontSize: 14,  fontFamily: 'Poppins' , color:'#ADADAD'},}}
+                  inputProps={{style: {fontSize: 14,  fontFamily: 'Poppins' , color:'#ADADAD',lineHeight:'150%'},}}
               />
               </div>
           </div>
@@ -213,26 +218,10 @@ export default function EditPartyNotices({info, setInfo, partyname}) {
   return (
     
     <ThemeProvider theme={theme}>
+       
         <h2
-            style={{ fontFamily: 'Poppins', fontSize: 16, color:'#383838'}}
-            ><b>Wishlist</b></h2>
-            
-
-            <div className="container" style={{marginBottom:30}}>
-            <div className="row">
-            <div className="col-md-1">
-                <CustomCheckbox_checked_wish key='wishlist' id='wishlist'/>
-            </div>
-            <div className="col-md-11">
-            <h2 style={{fontSize: 14,  fontWeight: 300, fontFamily: 'Poppins' , color:'#ADADAD', margintop:20, paddingTop: 7.5, paddingBottom:9}} >Send Wishlist</h2>
-
-            </div>
-            </div>
-        </div>
-
-        <h2
-            style={{ fontFamily: 'Poppins', fontSize: 16, color:'#383838'}}
-            ><b>Notices</b></h2>
+            style={{ fontFamily: 'Poppins', fontSize: 16, color:'#383838', marginBottom:20}}
+            ><b>Notices and Wishes</b></h2>
           <div className="container" >{notice_map(list)}</div>
       
 

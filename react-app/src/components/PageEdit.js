@@ -249,9 +249,9 @@ const useStyles = makeStyles((theme) => ({
         <ThemeProvider theme={theme}>
         <div>
             <Header />
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-offset-2 col-md-8">
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-offset-2 col-md-8">
                         <EditPartyInfo dateTime_props={dateTime_props} location_props={location_props} memo_props={memo_props} partyname={name} info={info} setInfo={setInfo} />
                         <EditPartyNotices partyname={name} info={info} setInfo={setInfo} />
                         {/* <Guests partyname={name} info={info} setInfo={setInfo}/>  */}
