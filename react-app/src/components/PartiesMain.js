@@ -154,25 +154,7 @@ class PartiesMain extends React.Component{
                             </div>
                     </div>
 
-                    <div className="row">
-                        <div className="col-sm-2"><h1
-                            style={{fontFamily: 'Poppins', fontSize: 16, color:'#ADADAD', fontWeight:300}}
-                            >Memo </h1></div>
-                        <div className="col-sm-7">
-                            {
-                                partyMemo==null
-                                ? <h2
-                                style={{ fontFamily: 'Poppins', marginBottom: 5, color:'#ADADAD', fontSize: 16, fontWeight:300}}
-                                ></h2>
-                                : <h2
-                                style={{ fontFamily: 'Poppins', marginBottom: 5, color:'#383838', fontSize: 16, fontWeight:300}}
-                                >{String(partyMemo)}</h2>
-
-                                
-                            }
-                            
-                            </div>
-                    </div>
+                    
                 </div>
             </ThemeProvider></div>
         )

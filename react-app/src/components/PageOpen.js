@@ -6,11 +6,9 @@ import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box'
 import { makeStyles } from '@material-ui/core/styles';
 import { createMuiTheme, withStyles, ThemeProvider} from '@material-ui/core/styles';
-import SendOutlinedIcon from '@material-ui/icons/SendOutlined';
 import firebase from './Firebase'
 import Header from './Header'
 import {Typography} from '@material-ui/core';
-import { Link } from 'react-router-dom';
 import Auth from './Auth';
 const ColorButton = withStyles((theme) => ({
     root: {
@@ -118,15 +116,13 @@ const PageOpen = ({history}) => {
             info.location=location_default
             console.log(info)
         }
-        if (info.name==("")||(info.name==undefined)){
-            console.log(info)
+        if (temp.name==("" ||undefined)){
             alert('You need to add your party name')
         }
         else{
-            // userRef.ref(Auth.getAuth()+'/Parties/'+info.name+'/').set(info)
-            // alert('Successfully Sent')
-            // history.replace('/parties/'+info.name)
-            console.log(info)
+            userRef.ref(Auth.getAuth()+'/Parties/'+info.name).set(info)
+            alert('Successfully Sent')
+            history.replace('/parties/'+info.name)
         }
     }
         
