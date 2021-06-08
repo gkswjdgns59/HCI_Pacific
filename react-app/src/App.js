@@ -15,7 +15,7 @@ import Auth from './components/Auth';
 
 class App extends Component{
   componentDidMount(){
-    const id = sessionStorage.getItem('id');
+    const id = localStorage.getItem('id');
     if (id){
       Auth.auth = id;
     }
