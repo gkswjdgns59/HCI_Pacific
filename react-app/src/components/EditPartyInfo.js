@@ -42,7 +42,9 @@ class EditPartyInfo extends React.Component {
       this.state = {
               mypage: {location:""},
               //isEmpty: false
-              party:{}
+              party:{},
+              location:'',
+              dateTime:''
           };
 
 
@@ -56,11 +58,16 @@ class EditPartyInfo extends React.Component {
       throw new Error(res.statusText);
       }
       return res.json();
-      }).then(party => this.setState({party: party}));
+      }).then(party => {
+        console.log(party.location)
+        this.setState({party: party})
+        this.setState({location: party.location})
+        this.setState({dateTime:party.dateTime})
+      });
       }
       
   shouldComponentUpdate(nextProps, nextState) {
-      return nextState.party != this.state.party
+      return (nextState.location != this.state.location) || (nextState.dateTime != this.state.dateTime)
   }
       
   componentDidMount() {
@@ -125,6 +132,7 @@ class EditPartyInfo extends React.Component {
         data['location']=info_list[2]
         data['memo']=info_list[3]
         //console.log(info_list)
+        this.setState({dateTime:event.target.value})
         setInfo(data)
       }
       const onChangeInputLocation = (event) => {
@@ -136,6 +144,7 @@ class EditPartyInfo extends React.Component {
         data['memo']=info_list[3]
         //console.log(info_list)
         //console.log(data)
+        this.setState({location:event.target.value})
         setInfo(data)
       }
       const onChangeInputMemo = (event) => {
@@ -210,21 +219,21 @@ class EditPartyInfo extends React.Component {
                 </div>
             </div> */}
             <div className="row">
-              <div className="col-sm-12">
+              {/* <div className="col-sm-12">
                   <p
                 style={{ fontFamily: 'Poppins', marginBottom: -5, paddingLeft: 8, color:'#666666', fontSize: 12, fontWeight: 200}}
                 >{dateTime_show}</p>
-              </div>
+              </div> */}
 
                 
                 <div className="col-sm-12">
 
                   
-                <Input
+                <TextField
               id="datetime-local"
-              label={"Date Time" + initial_dateTime}
+              label="Date Time"
               type="datetime-local"
-              defaultValue={newdateTime}
+              value={this.state.dateTime}
               fullWidth
               onChange={onChangeInputDateTime}
               //InputLabelProps={{
@@ -249,7 +258,8 @@ class EditPartyInfo extends React.Component {
               id="Location"
               label="Location"
               style={{ margin: 8, fontFamily: 'Poppins', marginBottom: 40}}
-              placeholder={initial_location}
+              // placeholder={initial_location}
+              value={this.state.location}
               //laceholerProps={{style: {color='#383838'}}}
               fullWidth
               onChange={onChangeInputLocation} 

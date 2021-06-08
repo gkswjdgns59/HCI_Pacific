@@ -136,7 +136,6 @@ const OpenPartyNotices = ({info,setInfo, partyname}) => {
                 info_data[key]=data[key].name
             }
             temp_info['notices']=info_data;
-            console.log(temp_info)
             setInfo(temp_info)
         }
     }
