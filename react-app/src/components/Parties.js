@@ -148,6 +148,8 @@ export default function Parties() {
                     cnt=cnt+1;
                 }
                 party_info['random_guest']=random_guest
+                party_info['compareDate']=Date.parse(party_info.dateTime)
+                console.log(party_info)
                 data.push(party_info);
             }
             data.sort((a,b) => (b.compareDate-a.compareDate))

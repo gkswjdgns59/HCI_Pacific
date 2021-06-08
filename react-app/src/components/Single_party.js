@@ -201,10 +201,10 @@ export const Single_party = (data) => {
     let history=useHistory()
 
     let today = new Date();
-    let nowyear = today.getFullYear();
-    let nowmonth = today.getMonth()+1;
-    let nowdate = today.getDate()
-    let nowtime = today.getHours()
+    // let nowyear = parseInt(today.getFullYear());
+    // let nowmonth = parseInt(today.getMonth()+1);
+    // let nowdate = parseInt(today.getDate())
+    // let nowtime = parseInt(today.getHours())
 
     var newdateTime = data.dateTime;
     var time = newdateTime.substring(newdateTime.length-5,newdateTime.length)
@@ -227,17 +227,24 @@ export const Single_party = (data) => {
         })
     },[])
 
-    if(nowyear<year){
-        dict["when"]="Upcoming"
-    }else if (nowmonth<month){
-        dict["when"]="Upcoming"
-    }else if (nowdate<date){
-        dict["when"]="Upcoming"
-    }else if (nowtime<time){
-        dict["when"]="Upcoming"
-    }else{
-        dict["when"]="Previous"
+    // if(nowyear<year){
+    //     dict["when"]="Upcoming"
+    // }else if (nowmonth<month){
+    //     dict["when"]="Upcoming"
+    // }else if (nowdate<date){
+    //     dict["when"]="Upcoming"
+    // }else if (nowtime<time){
+    //     dict["when"]="Upcoming"
+    // }else{
+    //     dict["when"]="Previous"
+    // }
+    if(Date.parse(newdateTime)<today){
+        dict['when']='Previous'
     }
+    else{
+        dict['when']='Upcoming'
+    }
+
     month = month_list[month-1]
     newdateTime = year+" "+month+" "+date+" "+time
     dict["dateTime"] = newdateTime;
