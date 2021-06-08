@@ -35,6 +35,7 @@ export default function SelectGuestDialog(props) {
     const [checked, setChecked] = React.useState({});
     const [chipData, setChipData] = React.useState([]);
     const callbackFunction = props.callbackFromParent;
+    const [defaultData, setDefaultData] = React.useState([]);
     
     useEffect(()=>{
         let inputObj = {};
@@ -48,6 +49,7 @@ export default function SelectGuestDialog(props) {
         },[]);
         setObjectData(inputObj);
         setListData(loadedGuest);
+        setDefaultData(loadedGuest);
     }, []);
 
     const [open, setOpen] = React.useState(false);
@@ -137,14 +139,14 @@ export default function SelectGuestDialog(props) {
         const inputText = event.target.value.trim().toLowerCase();
         let resultList = [];
         if (inputText.length>0){
-            for (let i=0; i<listData.length; i++){
-                if (inputText===listData[i].slice(0, inputText.length).toLowerCase()){
-                    resultList.push(listData[i]);
+            for (let i=0; i<defaultData.length; i++){
+                if (inputText===defaultData[i].slice(0, inputText.length).toLowerCase()){
+                    resultList.push(defaultData[i]);
                 }
             }
             setListData(resultList);
         }else{
-            setListData(listData);
+            setListData(defaultData);
         }
     }
     
@@ -448,4 +450,3 @@ const useStyles = makeStyles((theme) => ({
         float: 'right'
     }
   }));
-
